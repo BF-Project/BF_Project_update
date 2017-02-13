@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- MultipartResolver bean등록!!! 업로드하기 위함-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8"/>
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1"/>
+	
+	<context:component-scan base-package="com.pro" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+
+		<!-- DaoImpl Bean 등록 / DaoImpl에 setter가 있어야 한다.-->
+	<!-- DAOImpl -->
+	<bean id="addressDAOImpl" class="com.pro.bf.daoImpl.AddrDaoImpl" p:client-ref="client" />
+	<bean id="adminDAOImpl" class="com.pro.bf.daoImpl.AdminDaoImpl" p:client-ref="client" />
+	<bean id="cmmtcmtDAOImpl" class="com.pro.bf.daoImpl.CmmtCmtDaoImpl" p:client-ref="client" />
+	<bean id="cmtDAOImpl" class="com.pro.bf.daoImpl.CmtDaoImpl" p:client-ref="client" />
+	<bean id="communityDAOImpl" class="com.pro.bf.daoImpl.CommunityDaoImpl" p:client-ref="client" />
+	<bean id="flowageDAOImpl" class="com.pro.bf.daoImpl.FlowageDaoImpl" p:client-ref="client" />
+	<bean id="freeDAOImpl" class="com.pro.bf.daoImpl.FreeDaoImpl" p:client-ref="client" />
+	<bean id="lentDAOImpl" class="com.pro.bf.daoImpl.LentDaoImpl" p:client-ref="client" />
+	<bean id="mbrDAOImpl" class="com.pro.bf.daoImpl.MbrDaoImpl" p:client-ref="client" />
+	<bean id="motelDAOImpl" class="com.pro.bf.daoImpl.MotelDaoImpl" p:client-ref="client" />
+	<bean id="msgDAOImpl" class="com.pro.bf.daoImpl.MsgDaoImpl" p:client-ref="client" />
+	<bean id="noticeDAOImpl" class="com.pro.bf.daoImpl.NoticeDaoImpl" p:client-ref="client" />
+	<bean id="offlineDAOImpl" class="com.pro.bf.daoImpl.OfflineDaoImpl" p:client-ref="client" />
+	<bean id="OnlineDAOImpl" class="com.pro.bf.daoImpl.OnlineDaoImpl" p:client-ref="client" />
+	<bean id="paymentDAOImpl" class="com.pro.bf.daoImpl.PaymentDaoImpl" p:client-ref="client" />
+	<bean id="populationDAOImpl" class="com.pro.bf.daoImpl.PopulationDaoImpl" p:client-ref="client" />
+	<bean id="ptf_dldDAOImpl" class="com.pro.bf.daoImpl.PTF_DldDaoImpl" p:client-ref="client" />
+	<bean id="ptfDAOImpl" class="com.pro.bf.daoImpl.PTFDaoImpl" p:client-ref="client" />
+	<bean id="qnaDAOImpl" class="com.pro.bf.daoImpl.QnADaoImpl" p:client-ref="client" />
+	<bean id="qttDAOImpl" class="com.pro.bf.daoImpl.QttDaoImpl" p:client-ref="client" />
+	<bean id="shopDAOImpl" class="com.pro.bf.daoImpl.ShopDaoImpl" p:client-ref="client" />
+	<bean id="touristDAOImpl" class="com.pro.bf.daoImpl.TouristDaoImpl" p:client-ref="client" />
+
+	<bean id="qnAServiceImpl" class="com.pro.bf.serviceImpl.QnAServiceImpl">
+		<property name="qnaDaoImpl" ref="qnaDAOImpl" />
+	</bean> 
+  	<!-- <bean id="mbrServiceImpl" class="com.pro.bf.serviceImpl.MbrServiceImpl" p:mbrDAO-ref="mbrDAOImpl" /> -->
+	
+	<!-- Service -->
+	<bean id="addrServiceImpl" class="com.pro.bf.serviceImpl.AddrServiceImpl">
+		<property name="addressDAO" ref="addressDAOImpl" />
+	</bean>
+	<bean id="mbrServiceImpl" class="com.pro.bf.serviceImpl.MbrServiceImpl">
+		<property name="mbrDAO" ref="mbrDAOImpl" />
+	</bean>
+	<bean id="adminServiceImpl" class="com.pro.bf.serviceImpl.AdminServiceImpl">
+		<property name="adminDAO" ref="adminDAOImpl" />
+	</bean>
+	<bean id="noticeServiceImpl" class="com.pro.bf.serviceImpl.NoticeServiceImpl">
+		<property name="noticeDAO" ref="noticeDAOImpl" />
+	</bean>
+	<bean id="freeServiceImpl" class="com.pro.bf.serviceImpl.FreeServiceImpl">
+		<property name="freeDAO" ref="freeDAOImpl"></property>
+	</bean>
+		
+	<bean id="cmmtcmtServiceImpl" class="com.pro.bf.serviceImpl.CmmtCmtServiceImpl">
+		<property name="cmmtcmtDAO" ref="cmmtcmtDAOImpl"></property>
+	</bean>
+	
+	
+	<bean id="cmtServiceImpl" class="com.pro.bf.serviceImpl.CmtServiceImpl">
+		<property name="cmtDAO" ref="cmtDAOImpl"></property>
+	</bean>
+	<bean id="lentServiceImpl" class="com.pro.bf.serviceImpl.LentServiceImpl">
+		<property name="lentDAO" ref="lentDAOImpl"/>
+	</bean>
+	<bean id="flowageServiceImpl" class="com.pro.bf.serviceImpl.FlowageServiceImpl">
+		<property name="flowageDAO" ref="flowageDAOImpl"/>
+	</bean>
+	<bean id="populationServiceImpl" class="com.pro.bf.serviceImpl.PopulationServiceImpl">
+		<property name="populationDAO" ref="populationDAOImpl"/>
+	</bean>
+	<bean id="motelServiceImpl" class="com.pro.bf.serviceImpl.MotelServiceImpl">
+		<property name="motelDAO" ref="motelDAOImpl"/>
+	</bean>
+	<bean id="touristServiceImpl" class="com.pro.bf.serviceImpl.TouristServiceImpl">
+		<property name="touristDAO" ref="touristDAOImpl"/>
+	</bean>
+	<bean id="shopServiceImpl" class="com.pro.bf.serviceImpl.ShopServiceImpl">
+		<property name="shopDAO" ref="shopDAOImpl"/>
+	</bean>
+	<bean id="calculateScoreImpl" class="com.pro.bf.serviceImpl.CalculateScoreImpl"/>
+		
+	
+</beans>

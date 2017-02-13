@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"   
+     "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+     
+<sqlMapConfig>
+	<sqlMap resource="com/pro/db/sqlmap/Blank.xml"></sqlMap>
+	<!-- <sqlMap resource="com/pro/db/sqlmap/Addr.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Admin.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/CmmtCmt.xml"></sqlMap>	
+	<sqlMap resource="com/pro/db/sqlmap/Cmt.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Community.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Flowage.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Free.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Lent.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Mbr.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Motel.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Msg.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Notice.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Offline.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Online.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Payment.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Population.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Ptf_Dld.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/PTF.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/QnA.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Qtt.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Shop.xml"></sqlMap>
+	<sqlMap resource="com/pro/db/sqlmap/Tourist.xml"></sqlMap>	 -->
+	
+</sqlMapConfig>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<decorators defaultdir="/">	
+
+	<!-- 일반 회원 -->
+	<decorator name="main" page="WEB-INF/page_decorator.jsp">
+		<pattern>/**</pattern>
+	</decorator>
+	
+	<!-- 관리자 -->
+	<decorator name="admin" page="WEB-INF/admin_decorator.jsp">
+		<pattern>/admin/**</pattern>
+	</decorator>
+
+	<excludes>
+		<pattern>/join/joinForm</pattern>
+		<pattern>/join/joinjoinForm*</pattern>
+		<pattern>/join/findZipNum*</pattern>
+		
+		<pattern>/chat**</pattern>
+		<pattern>/admin/chat**</pattern>
+	</excludes>
+	
+</decorators>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+     
+<sqlMap namespace="Notice">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<!-- <typeAlias alias="notice" type="com.pro.bf.dto.NoticeVO" /> -->
+	
+	<!-- Query 문 작성란 -->
+	<select id="noticeList" parameterClass="str" resultClass="notice">
+		select * from notice where notice_title like '%'||#search#||'%' order by notice_num desc
+	</select>
+	
+	<select id="totalRecord" parameterClass="str" resultClass="int">
+		select count(*) from notice where notice_title like '%'||#search#||'%'
+	</select>
+	
+	<insert id="insertNotice" parameterClass="notice">
+		insert into notice(notice_num,notice_title,notice_content,admin_id,notice_pict_afat)
+		values(notice_seq.nextval,#notice_title#,#notice_content#,#admin_id#,#notice_pict_afat#)
+	</insert>
+	
+	<select id="NoticeDetail" parameterClass="int" resultClass="notice">
+		select * from notice where notice_num=#noticeNum#
+	</select>
+	
+	<update id="NoticeCountPlus" parameterClass="int">
+		update notice set notice_cnt=(notice_cnt+1) where notice_num=#noticeNum#
+	</update>
+	
+	<delete id="NoticeDelete" parameterClass="int">
+		delete from notice where notice_num=#noticeNum#
+	</delete>
+	
+	<select id="NoticeFileSearch" parameterClass="int" resultClass="str">
+		select notice_pict_afat from notice where notice_num=#noticeNum#
+	</select>
+	
+	<update id="NoticeUpdate" parameterClass="notice">
+		update notice set admin_id=#admin_id#, notice_title=#notice_title#, notice_content=#notice_content#, notice_pict_afat=#notice_pict_afat#
+		where notice_num=#notice_num#
+	</update>
+</sqlMap>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+     
+<sqlMap namespace="Mbr">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<!-- <typeAlias alias="mbr" type="com.pro.bf.dto.MbrVO" /> -->
+	
+	<!-- Query 문 작성란 -->
+	<insert id="insertMember" parameterClass="mbr" >
+		insert into mbr(mbr_id, mbr_pwd, mbr_nm, mbr_eml, mbr_phone, mbr_addr, mbr_brt, mbr_gnd, mbr_eml_yn) 
+		values(#mbr_id#, #mbr_pwd#, #mbr_nm#, #mbr_eml#, #mbr_phone#, #mbr_addr#, #mbr_brt#, #mbr_gnd#, #mbr_eml_yn#)
+	</insert>
+	
+	<select id="idcheck" parameterClass="str" resultClass="str">
+		select mbr_id from mbr where mbr_id=#userid#
+	</select>
+	
+	<select id="login" parameterClass="mbr" resultClass="str">
+		select mbr_id from mbr where mbr_id=#mbr_id# and mbr_pwd=#mbr_pwd#
+	</select>
+	
+	<select id="SearchLoginUserName" parameterClass="str" resultClass="str">
+		select mbr_nm from mbr where mbr_id=#login#
+	</select>
+	
+	<select id="SearchUserId" parameterClass="mbr" resultClass="str">
+		select mbr_id from mbr where mbr_nm=#mbr_nm# and mbr_eml=#mbr_eml#
+	</select>
+	
+	<select id="SearchUserPwd" parameterClass="mbr" resultClass="mbr">
+		select * from mbr where mbr_id=#mbr_id# and mbr_nm=#mbr_nm#
+	</select>
+	
+	<select id="MemberList" parameterClass="str" resultClass="mbr">
+		select * from mbr where mbr_nm like '%'||#search#||'%' order by mbr_nm
+	</select>
+	
+	<select id="MemberListforId" parameterClass="str" resultClass="mbr">
+		select * from mbr where mbr_id like '%'||#search#||'%' order by mbr_id
+	</select>
+	
+	<select id="MemberListforPhone" parameterClass="str" resultClass="mbr">
+		select * from mbr where mbr_phone like '%'||#search#||'%' order by mbr_phone
+	</select>
+	
+	<select id="totalMemberRecord" parameterClass="str" resultClass="int">
+		select count(*) from mbr where mbr_nm like '%'||#search#||'%'
+	</select>
+	
+	<select id="totalMemberRecordforID" parameterClass="str" resultClass="int">
+		select count(*) from mbr where mbr_id like '%'||#search#||'%'
+	</select>
+	
+	<select id="totalMemberRecordforPhone" parameterClass="str" resultClass="int">
+		select count(*) from mbr where mbr_phone like '%'||#search#||'%'
+	</select>
+	
+	<update id="MemberDelete" parameterClass="str">
+		update mbr set mbr_use_yn='N' where mbr_id=#mbr_id#
+	</update>
+	
+	<select id="LoginUserUseYNCheck" parameterClass="str" resultClass="str">
+		select mbr_use_yn from mbr where mbr_id=#login#
+	</select>
+	
+	<update id="ReuseMember" parameterClass="str">
+		update mbr set mbr_use_yn='Y' where mbr_id=#memberId#
+	</update>
+	
+	<select id="MemberListForUseYN" parameterClass="str" resultClass="mbr">
+		select * from mbr where mbr_use_yn=#choiceUseYNT#
+	</select>
+	
+	<select id="MemberVoSearch" parameterClass="str" resultClass="mbr">
+		select * from mbr where mbr_id=#memberId#
+	</select>
+	
+	<update id="MemberUpdate" parameterClass="mbr">
+		update mbr set mbr_pwd=#mbr_pwd#, mbr_nm=#mbr_nm#, mbr_eml=#mbr_eml#, mbr_phone=#mbr_phone#,mbr_addr=#mbr_addr# where mbr_id=#mbr_id#
+	</update>
+	
+	<select id="memberUseYCount" resultClass="int">
+		select count(*) from mbr where mbr_use_yn='Y'
+	</select>
+</sqlMap>

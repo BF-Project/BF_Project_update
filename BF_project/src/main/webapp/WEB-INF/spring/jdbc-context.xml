@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<!-- jdbc 정보 읽기 -->
+	<context:property-placeholder 
+		location = "classpath:com/pro/jdbc/properties/jdbc.properties" />
+	
+	<!-- dbcp2 DataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.url}"
+		p:username="${jdbc.username}"
+		p:password="${jdbc.password}" />
+	
+	<!-- ibatis client -->	
+	<bean id="client" class="kr.or.ddit.commons.ibatis.CustomSqlMapClientFactoryBean"
+		p:configLocation="classpath:com/pro/db/sqlMapConfig.xml"
+		p:dataSource-ref="dataSource"
+		p:mappingLocations="classpath:com/pro/db/sqlmap/*.xml"
+		p:typeAliasPackages="com.pro.**.dto"
+		 />
+
+</beans>

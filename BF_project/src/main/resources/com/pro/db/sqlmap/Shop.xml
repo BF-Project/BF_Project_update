@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+     
+<sqlMap namespace="Shop">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<!-- <typeAlias alias="shop" type="com.pro.bf.dtd.ShopVO" /> -->
+	
+	<!-- Query 문 작성란 -->
+	<select id="shopTotal" parameterClass="str" resultClass="str">
+		select count(shop_nm) from shop where shop_dong_addr like '%'||#dong#||'%'
+	</select>
+	
+	<select id="shopCount" resultClass="str">
+		select count(distinct shop_dong_addr) from shop
+	</select>
+	
+	<select id="shopCountAll" resultClass="str">
+		select count(*) from shop
+	</select>
+	
+	
+</sqlMap>

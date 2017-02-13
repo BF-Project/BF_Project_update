@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+     
+<sqlMap namespace="Free">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<!-- <typeAlias alias="free" type="com.pro.bf.dto.FreeVO" /> -->
+	
+	<!-- Query 문 작성란 -->
+	<select id="freeList" parameterClass="str" resultClass="free">
+		select * from free where mbr_id=#mbr_id# order by fre_num desc
+	</select>
+	
+	<select id="listAllFree" resultClass="free">
+		select * from free order by fre_num desc
+	</select>
+	
+	<insert id="insertFree" parameterClass="free">
+		insert into free(fre_num, fre_title, fre_content, mbr_id) values(free_seq.nextval, #fre_title#, #fre_content#, #mbr_id#)
+	</insert>
+	
+	<select id="getFree" parameterClass="int" resultClass="free">
+		select * from free where fre_num=#fre_num# order by fre_num desc
+	</select>
+	
+	<delete id="deleteFree" parameterClass="int" >
+		delete from free where fre_num=#fre_num#
+    </delete>
+    
+    <update id="updateFree" parameterClass="free">
+		update free set fre_content = #fre_content# where fre_num=#fre_num#
+	</update>
+	
+	<update id="countFree" parameterClass="free">
+		update free set fre_cnt = #fre_cnt#+1
+		where fre_num = #fre_num#
+	</update>
+	
+	<select id="totalFree" parameterClass="str" resultClass="int">
+		select count(*) from free where fre_title like '%'||#fre_title#||'%'
+	</select>
+	
+	<select id="fre_title" resultClass="free">
+		select * from free where fre_title like '%'||#fre_title#||'%'
+	</select>
+	
+	<!-- <select id="articleSearch_seq" parameterClass="int" resultClass="article">
+    select * from notice_article where noar_seq like '%'||#noar_seq#||'%'
+    </select> -->
+	
+	
+</sqlMap>
