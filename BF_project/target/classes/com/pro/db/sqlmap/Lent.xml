@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+     
+<sqlMap namespace="Lent">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<!-- <typeAlias alias="lent" type="com.pro.bf.dtd.LentVO" /> -->
+	
+	<!-- Query 문 작성란 -->
+	
+	<select id="lentList" resultClass="str">
+		select replace(lent_price,',','') from lent
+	</select>
+	
+	<select id="lentTotal" parameterClass="str" resultClass="str">
+		select replace(lent_price,',','') from lent where lent_Addr like '%'||#dong#||'%'
+	</select>
+	
+	<select id="lentCount" resultClass="str">
+		select count(*) from lent
+	</select>
+		
+</sqlMap>

@@ -23,13 +23,8 @@
 			<url>http://maven.jahia.org/maven2</url> <!-- 오라클을 사용하기 위해 repository를 등록하고 dependency를 등록한다. -->
 		</repository>
 	</repositories>
-	<dependencies>
-	<dependency>
-		<groupId>com.googlecode.log4jdbc</groupId>
-		<artifactId>log4jdbc</artifactId>
-		<version>1.2</version>
-	</dependency>
 	
+	<dependencies>
 	
 		<!-- Spring -->
 		<dependency>
@@ -49,33 +44,32 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-orm</artifactId>
-    <version>3.2.9.RELEASE</version>
-</dependency>
-
-<dependency>
-		<groupId>kr.or.ddit</groupId>
-		<artifactId>ibatis-typealias-generator</artifactId>
-		<version>1.0</version>
-		<scope>system</scope>
-		<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\ibatis-typealias-generator.jar</systemPath>
-	</dependency>
 		
-				
 		<!-- ************************************************************* -->
 		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		    <version>3.2.9.RELEASE</version>
+		</dependency>
+		
+		<!-- iBatis에서 MyBatis의 기능을 사용하기 위한 jar를 불러옴 -->
+		<dependency>
+			<groupId>kr.or.ddit</groupId>
+			<artifactId>ibatis-typealias-generator</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}\src\main\webapp\WEB-INF\lib\ibatis-typealias-generator.jar</systemPath>
+		</dependency>
+				
 		<!-- oracle jdbc --> <!-- DataSource -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.1.0.7.0</version>
 		</dependency>
-		
-		<!-- spring-ibatis --> <!-- iBatis -->
-		
+				
 		<!-- sptring jdbc --> <!-- sql, injection, transaction 처리 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -83,38 +77,47 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		  <!-- myBatis -->        
-    <dependency>
-     <groupId>org.mybatis</groupId>
-     <artifactId>mybatis</artifactId>
-     <version>3.0.6</version>
- </dependency>
-    <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis-spring</artifactId>
-        <version>1.0.2</version>
-    </dependency>
-    <!-- Spring -->
- <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-core</artifactId>
-        <version>${org.springframework-version}</version>
- </dependency>
- 
-
-
+		<!-- iBatis -->
+		<dependency>
+			<groupId>org.apache.ibatis</groupId>
+			<artifactId>ibatis-sqlmap</artifactId>
+			<version>2.3.4.726</version>
+		</dependency>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		<!-- myBatis -->        
+<!--     	<dependency> -->
+<!-- 		     <groupId>org.mybatis</groupId> -->
+<!-- 		     <artifactId>mybatis</artifactId> -->
+<!-- 		     <version>3.0.6</version> -->
+<!--  		</dependency> -->
+ 		
+<!-- 	    <dependency> -->
+<!-- 	        <groupId>org.mybatis</groupId> -->
+<!-- 	        <artifactId>mybatis-spring</artifactId> -->
+<!-- 	        <version>1.0.2</version> -->
+<!-- 	    </dependency> -->
+	    
+	    <!-- lombok.jar -->
+	    <dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.12</version>
+		</dependency>
+	    
+	    <!-- log4jdbc -->
+	    <dependency>
+			<groupId>com.googlecode.log4jdbc</groupId>
+			<artifactId>log4jdbc</artifactId>
+			<version>1.2</version>
+		</dependency>
+	    
+    	<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>	
+ 		
 		<!-- commons-dbcp2 -->
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
@@ -149,21 +152,14 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.3.3</version>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-<dependency>
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-core</artifactId>
-    <version>2.7.8</version>
-</dependency>
-		
-		
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>com.google.code.gson</groupId> -->
-<!-- 		    <artifactId>gson</artifactId> -->
-<!-- 		    <version>2.3.1</version> -->
-<!-- 		</dependency> -->
-		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.7.8</version>
+		</dependency>
+				
 		<!-- poi : Excel -->
 		<dependency>
 		    <groupId>org.apache.poi</groupId>
@@ -291,22 +287,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-
-
-
-
-
-
-		<dependency>
-			<groupId>org.apache.ibatis</groupId>
-			<artifactId>ibatis-sqlmap</artifactId>
-			<version>2.3.4.726</version>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.16.12</version>
-		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>

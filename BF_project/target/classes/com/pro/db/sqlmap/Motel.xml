@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  
+     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+     
+<sqlMap namespace="Msg">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<!-- <typeAlias alias="msg" type="com.pro.bf.dtd.MsgVO" /> -->
+	
+	<!-- Query 문 작성란 -->
+	
+	<select id="motelCountAll" resultClass="str">
+		select count(*) from motel
+	</select>
+	
+	<select id="motelTotal" parameterClass="str" resultClass="str">
+		select count(*) from motel where mt_addr like '%'||#dong#||'%'
+	</select>
+	
+	<select id="motelCount" resultClass="str">
+		select count(distinct substr(mt_addr,15,3)) from motel
+	</select>
+	
+</sqlMap>

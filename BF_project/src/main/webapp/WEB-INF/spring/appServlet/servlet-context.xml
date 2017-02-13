@@ -44,12 +44,15 @@
 	<!-- down로드하기 위한 bean 등록!! -->
 	<beans:bean id="download" class="com.pro.bf.controller.DownloadView"/>
 	
+	<!-- context:component-scan : root-Context에서 이미 Repository와 Service를 읽어왔기 때문에 Controller만 읽어오면 됨  -->
+	<!-- 클래스에 @Service 등을 사용하면 바로 bean 등록이 되며 사용 가능하다. -->
 	<context:component-scan base-package="com.pro" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 	</context:component-scan>
 	
+	<context:annotation-config /> <!-- controller로 등록한 bean을 바로 사용할 수 있음 -->
 	
 	<!-- interceptor : servlet-context.xml 에서 설정한다. -->
 	<interceptors>
