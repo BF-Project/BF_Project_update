@@ -80,11 +80,13 @@ public class ChatWebSocketHandler extends TextWebSocketHandler{
 				users.get(member).sendMessage(message); // 회원이 자신이 보낸 글을 자신이 볼 수 있어야 한다.
 				// 그럼 여기서 admin에게 알림을 줘야하지! ☆★☆★☆★☆★☆★☆★☆
 				// 접속한 회원 본인의 고유번호와 message를 넘겨줘야한다.
+				
 			}else{
 				// admin이 접속해 있을때
 				users.get(member).sendMessage(message);  
 				users.get(admin).sendMessage(message); // 관리자와 자신 모두 보임				
-			}			
+			}	
+			
 		}else if(currentMyId=="admin"){ // 현재 컴퓨터의 접속자가 admin일때
 			for(WebSocketSession s : users.values()){
 				s.sendMessage(message);	
