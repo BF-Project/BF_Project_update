@@ -3,7 +3,6 @@ package com.pro.bf.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.pro.bf.dto.CmtVO;
 import com.pro.bf.dto.FreeVO;
 
 public interface FreeDao {
