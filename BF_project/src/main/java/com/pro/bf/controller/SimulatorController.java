@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -200,7 +201,38 @@ public class SimulatorController {
 
 			return data;
 		}else{
+			int totalScore = 20;
+			int salesAccount = 1000000;
+			if(marketing.equals("yes")){
+				totalScore += 20;
+			}
+			if(prodManage.equals("yes")){
+				totalScore += 10;
+			}
+			if(sitemap.equals("yes")){
+				totalScore += 10;
+			}
+			if(prodDirect.equals("yes")){
+				totalScore += 10;
+			}
+			if(cooperation.equals("yes")){
+				totalScore += 10;
+			}
+			if(customerManage.equals("yes")){
+				totalScore += 10;
+			}
+			if(itemCreativity.equals("high")){
+				totalScore += 20;
+			}else if(itemCreativity.equals("mid")){
+				totalScore += 10;
+			}
 			
+			if(totalScore>85){
+				totalScore = 85;
+			}
+			System.out.println("totalScore : "+totalScore);
+			salesAccount = salesAccount*totalScore/100;
+			data.add(salesAccount+"");
 		}
 		
 		return data;
