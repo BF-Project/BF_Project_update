@@ -6,7 +6,7 @@
 <sqlMap namespace="Free">
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<!-- <typeAlias alias="free" type="com.pro.bf.dto.FreeVO" /> -->
+	<typeAlias alias="free" type="com.pro.bf.dto.FreeVO" />
 	
 	<!-- Query 문 작성란 -->
 	<select id="freeList" parameterClass="str" resultClass="free">
