@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.pro.bf.dao.FreeDao;
 import com.pro.bf.dto.FreeVO;
-import com.pro.bf.dto.QnAVO;
 
 public class FreeDaoImpl implements FreeDao{
 

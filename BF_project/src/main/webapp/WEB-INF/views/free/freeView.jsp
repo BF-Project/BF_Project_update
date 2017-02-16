@@ -51,7 +51,6 @@ $(document).ready(function() {
              month = month >= 10 ? month : '0' + month;
              var day = date.getDate();
              day = day >= 10 ? day : '0' + day;
-
              var fullD = year + '년' + month + '월' + day + '일';
              var cmtList = '<div id="'
 						+ data[i].cmt_num   
@@ -113,7 +112,6 @@ function commm_go() {
        'cmt_content' : cmt_content
     };
     $.ajax({
-
       url : '<%=request.getContextPath()%>/cmt/cmtWrite',
       data : JSON.stringify(dataWrite),
       type : 'post',
@@ -181,32 +179,26 @@ function commm_go() {
          alert('댓글 등록 실패');
       }
    });
-
-       
 }
 
-
-$(document).on('click','.asd',function(e){
+$(document).on('click','.delete',function(e){
     e.preventDefault();
     var result = $(this).attr('id');
     $.ajax({
-       url:"<%=request.getContextPath()%>/cmt/cmtDelete",
-       data: {"result" : result},
-       dataType:'json',
-       type:'post',
-       
-       success:function(map1){
-          freeMap = jQuery.map(map1 , function(a){
-             return a;
-          })
-          $('#'+freeMap).remove();
-       }
-    });
- });
-</script>
-
-<script>
-
+       		url:"<%=request.getContextPath()%>/cmt/cmtDelete",
+			data : {
+				"result" : result
+			},
+			dataType : 'json',
+			type : 'post',
+			success : function(map) {
+				cmtList = jQuery.map(map, function(a) {
+					return a;
+				});
+				$('#' + cmtList).remove();
+			}
+	});
+});
 
 $(document).on('click','.writeForm', function(e) {
 	e.preventDefault();
@@ -358,14 +350,6 @@ $(document).on('click','.btnn', function(e) {
 				<input type="hidden" value="${loginUser }" id="loginUser">
 
 
-
-
-
-				<div id="comment"></div>
-				<input type="hidden" value="${freeVO.fre_num }" id="fre_num" name="fre_num"> 
-				댓글 : <input type="text" id="cmt_content" name="cmt_content"> 
-				<input type="button" id="insertCmt" name="insertCmt" value="등록" onclick="commm_go();">
-			
 
 			</form>
 		</div>

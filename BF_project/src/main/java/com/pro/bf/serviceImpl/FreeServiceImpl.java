@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pro.bf.daoImpl.FreeDaoImpl;
 import com.pro.bf.dto.FreeVO;
-import com.pro.bf.dto.QnAVO;
 import com.pro.bf.service.FreeService;
 
 public class FreeServiceImpl implements FreeService {

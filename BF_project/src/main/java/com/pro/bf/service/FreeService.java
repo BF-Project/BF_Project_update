@@ -3,9 +3,7 @@ package com.pro.bf.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.pro.bf.dto.CmtVO;
 import com.pro.bf.dto.FreeVO;
-import com.pro.bf.dto.QnAVO;
 
 public interface FreeService {
 

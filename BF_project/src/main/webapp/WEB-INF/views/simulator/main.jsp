@@ -311,19 +311,29 @@ function layer_open2(el){
 
 var cnt = 1;
 var term = 0;
+var salesAccount = 0;
+var population = 0;
+var tourist = 0;
+var shop = 0;
+var lent = 0;
+var flowage = 0;
+var expenditure = 0;
+var benefit = 0;
+var restart = 0;
 
 function interval(){
+	salesAccount=0;
 	term = $("select[name=endPeriod]").val()*1 - $("select[name=startPeriod]").val()*1
 	if($('#addrDetail').val()==''){
 		alert('상세주소를 입력해 주세요');
 		return;
 	}else if($("select[name=startPeriod]").val()>=$("select[name=endPeriod]").val()){
-		alert('영업기간을 정확히 입력해주세요')
+		alert('영업기간을 정확히 입력해주세요');
+		return;
 	}else{
 		layer_open2('layer3');	
 		setTest = setInterval("start()",2000);
 	}
-	
 	
 	var elem = document.getElementById("myBar");   
 	  var width = 0;
@@ -337,18 +347,9 @@ function interval(){
 	      document.getElementById("label").innerHTML = width * 1  + '%';
 	    }
 	  }
-	
+	  restart++;
+	  
 }
-
-var population = 0;
-var tourist = 0;
-var shop = 0;
-var lent = 0;
-var flowage = 0;
-var salesAccount = 0;
-var expenditure = 0;
-
-var benefit = 0;
 
 function start(){
 	
@@ -373,12 +374,21 @@ function start(){
 			
 		},
 		success:function(data){
-			population = data[0];
-			tourist = data[1];
-			shop = data[2];
-			lent = data[3];
-			flowage = data[4];
-			salesAccount = salesAccount*1 + data[5]*term;
+			if($("input:radio[id='radio1']").is(":checked")){
+				population = 0;
+				tourist = 0;
+				shop = 0;
+				lent = 0;
+				flowage = 0;
+				salesAccount = salesAccount*1 + data[0]*term;
+			}else{
+				population = data[0];
+				tourist = data[1];
+				shop = data[2];
+				lent = data[3];
+				flowage = data[4];
+				salesAccount = salesAccount*1 + data[5]*term;
+			}
 			expenditure = Math.floor((salesAccount*(Math.random()*7+73)/100)/1000)*1000;
 			benefit = Math.floor((salesAccount*1 - expenditure*1)/1000)*1000;
 		},
@@ -389,23 +399,209 @@ function start(){
 	});
 	
 	if(cnt==1){
-		FusionCharts1();
+		if(restart==1){
+			FusionCharts1();	
+		}
 		FusionCharts2();
 		FusionCharts3();
 	}
 	
-	if(cnt==10){
+	if(restart>=2){
+		//revBulletChart.restartUpdate();
+		FusionCharts5();
+	}
+	
+	
+	if(cnt==10){		
 		FusionCharts2();
 		clearInterval(setTest);
+		//salesAccount = 0;
 		cnt=0;
 		alert("시뮬레이션이 끝났습니다");
 	}
 	
 	//alert(salesAccount);
 	cnt++;
-	//alert(cnt);
-		
+	//alert(cnt);		
 }
+
+
+function FusionCharts1() {
+   var revBulletChart = new FusionCharts({
+    	id: 'stackedbullet',
+    	type: 'vbullet',
+        renderAt: 'chart-container',
+        width: '170',
+        height: '300',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+            	"id":"test",
+                "caption": "총매출",
+                "subcaption": "(단위:천원)",
+                "captionFontSize": "11.5",
+                "subcaptionFontSize": "11.5",
+                "subcaptionFontBold": "1",
+                "captionPadding": "5",
+                "animation": "1",
+                "upperLimit": "12000",
+                "numberprefix": "￦",
+                "targetFillPercent": "75",
+                "targetColor": "#444444",
+                "plotFillPercent": "40",
+                "plotFillColor": "#444444",
+                "formatNumberScale": "0",
+                "baseFontColor": "595959",
+                "plotToolText": "<div>Sales : <b>$$value</b></div>",
+                "targettooltext": "Target : <b>$$targetvalue</b>",
+                "theme": "zune",
+                "dataStreamURL": "../../resources/php/gauge-and-widgets-guide-bullet-chart-real-time-bullet-chart-php-1.php",
+                "exportEnabled":"1",
+                "refreshInterval": "2"
+            },
+            "colorRange": {
+                "color": [
+                    {
+                    	"minValue":"0",
+                    	"maxValue":"3000",
+                    	"code":"#999498"
+                    	
+                    },
+                    {
+                        "minValue": "3000",
+                        "maxValue": "6000",
+                        "code": "#BDBDBD"
+                    },
+                    {
+                        "minValue": "6000",
+                        "maxValue": "9000",
+                        "code": "#c5c2c6"
+                    },
+                    {
+                        "minValue": "9000",
+                        "maxValue": "12000",
+                        "code": "#e1dee2"
+                    }
+                ]
+            },
+            "value":"0",
+            //"target": "10000"
+        },
+        "events": {
+            "initialized": function (e) {
+                function updateData() {
+                    // Get reference to the chart using its ID
+                    var chartRef = FusionCharts("stackedbullet"),
+                        // Build Data String in format &label=...&value=...
+                        newValue=Math.floor(salesAccount/1000);
+                        strData = "&value=" + newValue;
+                    // Feed it to chart.
+                    chartRef.feedData(strData);
+                    
+                    if(cnt==9){
+                    	revBulletChart.stopUpdate();
+                    	clearInterval(myVar);
+                    }
+                }
+                
+                var myVar = setInterval(function () {
+                    updateData();
+                }, 2000);
+                
+            }
+        }
+    })
+    .render();
+};
+
+function FusionCharts5() {
+    var revBulletChart1 = new FusionCharts({
+    	id: 'stackedbullet',
+    	type: 'vbullet',
+        renderAt: 'chart-container5',
+        width: '170',
+        height: '300',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+            	"id":"test",
+                "caption": "총매출",
+                "subcaption": "(단위:천원)",
+                "captionFontSize": "11.5",
+                "subcaptionFontSize": "11.5",
+                "subcaptionFontBold": "1",
+                "captionPadding": "5",
+                "animation": "1",
+                "upperLimit": "12000",
+                "numberprefix": "￦",
+                "targetFillPercent": "75",
+                "targetColor": "#444444",
+                "plotFillPercent": "40",
+                "plotFillColor": "#444444",
+                "formatNumberScale": "0",
+                "baseFontColor": "595959",
+                "plotToolText": "<div>Sales : <b>$$value</b></div>",
+                "targettooltext": "Target : <b>$$targetvalue</b>",
+                "theme": "zune",
+                "dataStreamURL": "../../resources/php/gauge-and-widgets-guide-bullet-chart-real-time-bullet-chart-php-1.php",
+                "exportEnabled":"1",
+                "refreshInterval": "2"
+            },
+            "colorRange": {
+                "color": [
+                    {
+                    	"minValue":"0",
+                    	"maxValue":"3000",
+                    	"code":"#999498"
+                    	
+                    },
+                    {
+                        "minValue": "3000",
+                        "maxValue": "6000",
+                        "code": "#BDBDBD"
+                    },
+                    {
+                        "minValue": "6000",
+                        "maxValue": "9000",
+                        "code": "#c5c2c6"
+                    },
+                    {
+                        "minValue": "9000",
+                        "maxValue": "12000",
+                        "code": "#e1dee2"
+                    }
+                ]
+            },
+            "value":"0",
+            //"target": "10000"
+        },
+        "events": {
+            "initialized": function (e) {
+                function updateData() {
+                    // Get reference to the chart using its ID
+                    var chartRef = FusionCharts("stackedbullet"),
+                        // Build Data String in format &label=...&value=...
+                        newValue=Math.floor(salesAccount/1000);
+                        strData = "&value=" + newValue;
+                    // Feed it to chart.
+                    chartRef.feedData(strData);
+                    if(cnt==9){
+                    	revBulletChart1.stopUpdate();
+                    	clearInterval(myVar);
+                    }
+                }
+                
+                var myVar = setInterval(function () {
+                    updateData();
+                }, 2000);
+                
+            }
+        }
+    })
+    .render();
+};
+
+
 
 function FusionCharts2() {
     var ageGroupChart = new FusionCharts({
@@ -444,6 +640,7 @@ function FusionCharts2() {
                 "legendShadow": '0',
                 "legendItemFontSize": '10',
                 "legendItemFontColor": '#666666',
+                "exportEnabled":"1",
                 "formatNumberScale":"0",
                 "numberPrefix":"￦"
             },
@@ -459,99 +656,6 @@ function FusionCharts2() {
             ]
         }
     }).render();
-};
-
-
-function FusionCharts1() {
-    var revBulletChart = new FusionCharts({
-    	id: 'stackedbullet',
-    	type: 'vbullet',
-        renderAt: 'chart-container',
-        width: '170',
-        height: '300',
-        dataFormat: 'json',
-        dataSource: {
-            "chart": {
-                "caption": "총매출",
-                "subcaption": "(단위:천원)",
-                "captionFontSize": "11.5",
-                "subcaptionFontSize": "11.5",
-                "subcaptionFontBold": "1",
-                "captionPadding": "5",
-                "animation": "1",
-                "upperLimit": "12000",
-                "numberprefix": "￦",
-                "targetFillPercent": "75",
-                "targetColor": "#444444",
-                "plotFillPercent": "40",
-                "plotFillColor": "#444444",
-                "formatNumberScale": "0",
-                "baseFontColor": "595959",
-                "plotToolText": "<div>Sales : <b>$$value</b></div>",
-                "targettooltext": "Target : <b>$$targetvalue</b>",
-                "theme": "zune",
-                "dataStreamURL": "../../resources/php/gauge-and-widgets-guide-bullet-chart-real-time-bullet-chart-php-1.php",
-                "refreshInterval": "2"
-            },
-            "colorRange": {
-                "color": [
-                    {
-                        "minValue": "0",
-                        "maxValue": "6000",
-                        "code": "#999498"
-                    },
-                    {
-                        "minValue": "6000",
-                        "maxValue": "9000",
-                        "code": "#c5c2c6"
-                    },
-                    {
-                        "minValue": "9000",
-                        "maxValue": "12000",
-                        "code": "#e1dee2"
-                    }
-                ]
-            },
-            "value":"300",
-            //"target": "10000"
-        },
-        "events": {
-            "initialized": function (e) {
-                function addLeadingZero(num){
-                    return (num <= 9)? ("0"+num) : num;
-                }
-                function updateData() {
-                    // Get reference to the chart using its ID
-                    var chartRef = FusionCharts("stackedbullet"),
-                        // We need to create a querystring format incremental update, containing
-                        // label in hh:mm:ss format
-                        // and a value (random).
-                        currDate = new Date(),
-                        label = addLeadingZero(currDate.getHours()) + ":" +
-                        addLeadingZero(currDate.getMinutes()) + ":" +
-                        addLeadingZero(currDate.getSeconds()),
-                        // Get random number between 20 & 38 - rounded to 2 decimal places
-                        randomValue = parseInt(Math.random()     
-                                                 * 20000 )  + 7000,
-                        // Build Data String in format &label=...&value=...
-                        newValue=Math.floor(salesAccount/1000);
-                        strData = "&value=" + newValue;
-                    // Feed it to chart.
-                    chartRef.feedData(strData);
-                }
-                
-                var myVar = setInterval(function () {
-                    updateData();
-                }, 2000);
-                
-                /* if(cnt==10){
-                	chartRef.stopUpdate();
-                } */
-       
-            }
-        }
-    })
-    .render();
 };
 
 
@@ -583,6 +687,7 @@ function FusionCharts3() {
                 "usePlotGradientColor": "0",
                 "numberPreffix": "$",
                 "legendBorderAlpha": "0",
+                "exportEnabled":"1",
                 "legendShadow": "0"
             },
             "categories": [
@@ -621,7 +726,7 @@ function FusionCharts3() {
     }).render();    
 };
 
-FusionCharts.ready(function () {
+/* FusionCharts.ready(function () {
     var revenueChart = new FusionCharts({
         type: 'scrollColumn2d',
         renderAt: 'chart-container4',
@@ -639,6 +744,7 @@ FusionCharts.ready(function () {
                 "rotateValues": "1",
                 "valueFontColor" : "#ffffff",
                 "numberprefix": "$",
+                "exportEnabled":"1",
                 
                 //Cosmetics
                 "baseFontColor" : "#333333",
@@ -735,7 +841,7 @@ FusionCharts.ready(function () {
     
     revenueChart.render();
 });
-
+ */
 
 function changeOption1(){
 	$('#offOption').hide();
