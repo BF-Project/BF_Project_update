@@ -1,5 +1,7 @@
 package com.pro.bf.dto;
 
+import java.sql.Date;
+
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
 

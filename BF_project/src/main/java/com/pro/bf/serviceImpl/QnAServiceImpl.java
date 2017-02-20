@@ -174,4 +174,11 @@ public class QnAServiceImpl implements QnAService{
 		}
 		return qnaVO;
 	}
+
+	//파일다운로드
+	@Override
+	public String qnaFileNameSearch(int qna_num) throws SQLException {
+		String fileName=qnaDaoImpl.qnaFileNameSearch(qna_num);
+		return fileName;
+	}
 }

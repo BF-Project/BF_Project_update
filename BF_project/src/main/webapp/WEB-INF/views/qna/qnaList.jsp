@@ -10,11 +10,6 @@
 <meta charset="UTF-8">
 <title>Q&A 게시판</title>
 
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
 <script>
 	function gowrite() {
 		document.form1.action = "qnaWrite";
@@ -37,7 +32,7 @@
 	
 	#qnaList {
 		margin : auto;
-		width : 70%;
+		width : 85%;
 	}
 </style>
 	<script>
@@ -80,8 +75,6 @@
 					<h2>
 						<b>Q & A</b> 고객 게시판
 					</h2>
-					<br> <br>
-					<p>'Q & A 게시판' 페이지 입니다.</p>
 				</div>
 			</section>
 			<!-- //BREADCRUMBS -->
@@ -89,7 +82,7 @@
 			<form name="form1" method="post">
 				<div class="container">
 					<table class="table table-hover" id="qnaList">
-						<tr>
+						<tr style="font-size: 20px">
 							<th>글번호</th>
 							<th>제목</th>
 							<th>작성자</th>
@@ -120,7 +113,7 @@
 										<c:if test="${!(qnaVO.mbr_id eq sessionScope.loginUser)}">
 											<tr onclick="qnaDetatil('${qnaVO.qna_num}')">
 												<td>${qnaVO.qna_num }</td>
-												<td><b style="color:red"><del>${qnaVO.qna_title} (비밀글)</del></b></td>
+												<td><b style="color:red"><ins>${qnaVO.qna_title} (비밀글)</ins></b></td>
 												<td>${qnaVO.mbr_id }</td>
 												<td>${qnaVO.qna_date }</td>
 												<td>${qnaVO.qna_cnt }</td>
@@ -154,16 +147,19 @@
 			<center>
 			<div id="searchsearch" style="margin-left: 40px">
 			<form method="post" action="search">
-			<input type="text" id="search" name="search" value="Search" style="font-size: 16px;" 
-				onFocus="if (this.value == 'Search') this.value = '';" onBlur="if (this.value == '') this.value = 'Search';" />
+			<input type="text" id="search" name="search" value="TitleSearch" style="font-size: 16px;" 
+				onFocus="if (this.value == 'TitleSearch') this.value = '';" onBlur="if (this.value == '') this.value = 'TitleSearch';" />
 				
 			</form>
 			</div>
 		</center>
-					<button type="button" id="writeBtn" class="btn" onclick="gowrite(this.form)" style="background-color:black;">글 작성</button>
-
-			<!-- <input type="button" value="글 작성" onclick="gowrite(this.form)"> -->
-			
+					<button type="button" id="writeBtn" class="btn" onclick="gowrite(this.form)" 
+						style="padding:8px; background-color:gray;
+							border:1px solid gray; border-radius:6px; color:white;">
+							<i class="fa fa-pencil-square-o"></i>&nbsp;
+							<b style="font-size:14px"></b>글작성
+					</button>
+					
 		</div>
 	</div>
 </body>

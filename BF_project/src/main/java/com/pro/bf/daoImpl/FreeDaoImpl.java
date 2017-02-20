@@ -73,5 +73,10 @@ public class FreeDaoImpl implements FreeDao{
 		ArrayList<FreeVO> freTitle = (ArrayList<FreeVO>)client.queryForList("fre_title", fre_title);
 		return freTitle;
 	}
+	@Override
+	public String freeFileNameSearch(int fre_num) throws SQLException {
+		String fileName=(String)client.queryForObject("freeFileNameSearch", fre_num);
+		return fileName;
+	}
 	
 }

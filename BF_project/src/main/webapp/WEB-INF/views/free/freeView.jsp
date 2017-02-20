@@ -9,14 +9,6 @@
 <meta charset="UTF-8">
 <title></title>
 
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
 <script>
    function goUpdate(fre_num) {
       document.free.action = "update";
@@ -277,10 +269,9 @@ $(document).on('click','.btnn', function(e) {
 			<section class="breadcrumbs_block clearfix parallax">
 				<div class="container center">
 					<h2>
-						<b>FREE</b> BOARD
+						<b>자유</b> 게시판
 					</h2>
-					<br> <br>
-					<p>'자유게시판' 페이지 입니다.</p>
+						<p>'자유게시판' 페이지 입니다.</p>
 				</div>
 			</section>
 			<!-- //BREADCRUMBS -->
@@ -308,6 +299,25 @@ $(document).on('click','.btnn', function(e) {
 							<td>${freeVO.fre_date }</td>
 						</tr>
 
+						<c:if test="${!empty freeVO.fre_pict_afat}">
+						<tr>
+						<th><i class="fa fa-image"/>사진첨부</th>
+						<td>
+						<img src="<%=request.getContextPath() %>/resources/upload/${freeVO.fre_pict_afat}" width="200px"> 
+						
+						<%-- <a href="<%=request.getContextPath()%>/cmmtphotoDownload/${cmmtVO.cmmt_num}">  
+						<b style="color:#6495ed">파일다운로드</b></a>
+						 --%>
+						 
+						 <a href="<%=request.getContextPath()%>/freephotoDownload/${freeVO.fre_num}">
+						 <b style="color:#6495ed">파일 다운로드</b>
+						 </a>
+							
+						</td>
+					
+						</tr>
+						</c:if>
+
 						<tr>
 							<th>댓글</th>
 							<td>
@@ -316,7 +326,12 @@ $(document).on('click','.btnn', function(e) {
 								<textarea id="cmt_content" name="cmt_content"></textarea>
 								<button type="button" id="insertCmt" class="btn"
 									name="insertCmt" onclick="commm_go();"
-									style="background-color: black;">등록</button>
+						
+									style="padding:8px; background-color: gray; border: 1px solid gray; 
+									border-radius: 6px; color:white;">
+									<i class="fa fa-sign-in"></i>&nbsp;<b style="font-size:14px">등록</b>
+								</button>
+												
 							</td>
 						</tr>
 					</table>
@@ -327,23 +342,36 @@ $(document).on('click','.btnn', function(e) {
 						<!-- 수정  -->
 						<button type="button" id="mod" class="btn"
 							onclick="goUpdate('${freeVO.fre_num}')"
-							style="background-color: black;">수정</button>
+					 		style="padding:8px; background-color: gray; border: 1px solid gray; 
+				 		 	border-radius: 6px; color:white;">
+				  		<i class="fa fa-exchange"></i>&nbsp;<b style="font-size:14px">수정</b>
+		    			</button>
+						
 						<!-- 삭제  -->
 						<button type="button" id="del" class="btn"
-							onclick="goDelete('${freeVO.fre_num}')"
-							style="background-color: black;">삭제</button>
+							 onclick="goDelete('${freeVO.fre_num}')"
+							 style="padding:8px; background-color: gray; border: 1px solid gray; 
+							 border-radius: 6px; color:white;">
+							 <i class="fa fa-cut"></i>&nbsp;<b style="font-size:14px">삭제</b>
+					   </button>
+						
 						<!-- 목록 -->
 						<button type="button" id="list" class="btn"
 							onclick="location.href='freeList'"
-							style="background-color: black;">목록</button>
-							<br><br>
-					</c:when>
+							style="padding:8px; background-color: gray; border: 1px solid gray; 
+							border-radius: 6px; color:white;">
+							<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
+						</button>
+						</c:when>
 
 					<c:otherwise>
 						<button type="button" id="list2" class="btn"
-							onclick="location.href='freeList'"
-							style="background-color: black; margin-left:67%;">목록</button>
-							<br><br>
+								onclick="location.href='freeList'"
+							    style="padding:8px; background-color: gray; border: 1px solid gray; 
+								border-radius: 6px; color:white;">
+								<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
+						</button>
+
 					</c:otherwise>
 				</c:choose>
 

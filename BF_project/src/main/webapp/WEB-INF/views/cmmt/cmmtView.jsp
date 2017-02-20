@@ -236,10 +236,9 @@ $(document).on('click','.write', function(e) {
 			<section class="breadcrumbs_block clearfix parallax">
 				<div class="container center">
 					<h2>
-						<b>COMMUNITY</b> BOARD
+						<b>커뮤니티</b> 게시판
 					</h2>
-					<br> <br>
-					<p>'커뮤니티게시판' 페이지 입니다.</p>
+				
 				</div>
 			</section>
 			<!-- //BREADCRUMBS -->
@@ -249,48 +248,49 @@ $(document).on('click','.write', function(e) {
 				<div class="container">
 					<table class="table table-hover" id="cmmtView">
 						<tr>
-						<th>글번호</th>
+						<th><i class="fa fa-folder-open-o"/>글번호</th>
 						<td>${cmmtVO.cmmt_num }</td>
-						
 						</tr>
 																		
 						<tr>
-						<th>제목</th>
+						<th><i class="fa fa-edit spaceLeft">제목</th>
 						<td>${cmmtVO.cmmt_title }</td>
-						
 						</tr>
 
 						<tr>
-						<th>조회수</th>
+						<th><i class="fa fa-eye-slash"/>조회수</th>
 						<td>${cmmtVO.cmmt_cnt }</td>
-						
 						</tr>
-
 						
-
 						<tr>
-						<th>내용</th>
+						<th><i class="fa fa-edit spaceLeft"/>내용</th>
 						<td>${cmmtVO.cmmt_content }</td>
-						
 						</tr>
 
 						<tr>
-						<th>작성자</th>
+						<th><i class="fa fa-user"/>작성자</th>
 						<td>${cmmtVO.mbr_id }</td>
-						
 						</tr>
 												
 						<tr>
-						<th>게시날짜</th>
+						<th><i class="fa fa-clock-o"/>게시날짜</th>
 						<td>${cmmtVO.cmmt_date }</td>
-						
 						</tr>
 						
 						<c:if test="${!empty cmmtVO.cmmt_pict_afat}">
 						<tr>
-						<th>사진첨부</th>
+						<th><i class="fa fa-image"/>사진첨부</th>
 						<td>
-						<img src="<%=request.getContextPath() %>/resources/upload/${cmmtVO.cmmt_pict_afat}" width="200pt"> 
+						<img src="<%=request.getContextPath() %>/resources/upload/${cmmtVO.cmmt_pict_afat}" width="200px"> 
+						
+						<%-- <a href="<%=request.getContextPath()%>/cmmtphotoDownload/${cmmtVO.cmmt_num}">  
+						<b style="color:#6495ed">파일다운로드</b></a>
+						 --%>
+						 
+						 <a href="<%=request.getContextPath()%>/cmmtphotoDownload/${cmmtVO.cmmt_num}">
+						 <b style="color:#6495ed">파일 다운로드</b>
+						 </a>
+							
 						</td>
 					
 						</tr>
@@ -303,8 +303,13 @@ $(document).on('click','.write', function(e) {
 							<div id="comment"></div> <input type="hidden"
 							value="${cmmtVO.cmmt_num }" id="cmmt_num" name="cmmt_num">
 							<textarea id="cmmtcmt_content" name="cmmtcmt_content"></textarea>
+							
 							<button type="button" id="insertCmmtCmt" class="btn" name="insertCmmtCmt"
-							 onclick="commm_go();"	style="background-color: black;">등록</button> 
+							 onclick="commm_go();"	
+							 style="padding:8px; background-color: gray; border: 1px solid gray; 
+							 border-radius: 6px; color:white;">
+							 <i class="fa fa-sign-in"></i>&nbsp;<b style="font-size:14px">등록</b>
+							 </button>
 							
 							</td>
 						</tr>
@@ -314,21 +319,37 @@ $(document).on('click','.write', function(e) {
 						<!-- 수정  -->
 						<button type="button" id="mod" class="btn"
 							onclick="goUpdate('${cmmtVO.cmmt_num}')"
-							style="background-color: black;">수정</button>
+						 style="padding:8px; background-color: gray; border: 1px solid gray; 
+				 		 border-radius: 6px; color:white;">
+				  		<i class="fa fa-exchange"></i>&nbsp;<b style="font-size:14px">수정</b>
+		    			</button>
+						
 						<!-- 삭제  -->
 						<button type="button" id="del" class="btn"
 							onclick="goDelete('${cmmtVO.cmmt_num}')"
-							style="background-color: black;">삭제</button>
+						    style="padding:8px; background-color: gray; border: 1px solid gray; 
+									 border-radius: 6px; color:white;">
+							 <i class="fa fa-cut"></i>&nbsp;<b style="font-size:14px">삭제</b>
+							 </button>
+						
 						<!-- 목록 -->
 						<button type="button" id="list" class="btn"
 							onclick="location.href='cmmtList'"
-							style="background-color: black;">목록</button>
-					</c:when>
+							     style="padding:8px; background-color: gray; border: 1px solid gray; 
+									 border-radius: 6px; color:white;">
+							 <i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
+							 </button>
+						
+						</c:when>
 
 					<c:otherwise>
 						<button type="button" id="list2" class="btn"
 							onclick="location.href='cmmtList'"
-							style="background-color: black;">목록</button>
+								   style="padding:8px; background-color: gray; border: 1px solid gray; 
+										 border-radius: 6px; color:white;">
+								 <i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
+								 </button>
+					
 					</c:otherwise>
 				</c:choose>
 				</div>

@@ -30,5 +30,7 @@ public interface CommunityDao {
 
 	public CommunityVO getCmmtVO(int cmmt_num) throws SQLException;
 
+	//파일다운로드 하기위한 String fileName 메소드 추가
+	String cmmtFileNameSearch(int cmmt_num) throws SQLException;
 	
 }
