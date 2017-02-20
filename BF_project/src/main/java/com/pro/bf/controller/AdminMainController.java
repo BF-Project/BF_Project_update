@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pro.bf.dto.NoticeVO;
 import com.pro.bf.serviceImpl.AdminServiceImpl;
 import com.pro.bf.serviceImpl.NoticeServiceImpl;
+import com.pro.bf.websocket.PushMessageHandler;
 
 @Controller
 @RequestMapping("admin")
@@ -45,10 +46,15 @@ public class AdminMainController {
 		return url;
 	}
 	
+	@Autowired
+	PushMessageHandler pushMessageHandler;
+	
 	@RequestMapping(value="exit")
 	public String AdminPageOut(HttpSession session, HttpServletRequest request){
 		session.removeAttribute("loginAdmin"); // 관리자 아이디로그인 정보 삭제
 		session.removeAttribute("adminName");
+		// 채팅에 필요한 admin 부분도 null처리해줘야 한다.
+		pushMessageHandler.goout();
 		return "redirect:/start";
 	}
 	

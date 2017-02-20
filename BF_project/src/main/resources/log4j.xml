@@ -10,27 +10,40 @@
 		</layout>
 	</appender>
 	
+	<!-- 
+		FATAL : 치명적 에러
+		ERROR : 일반 에러
+		WARN : 경고(프로그램은 작동하지만 주의가 요구될때)
+		INFO : 일반정보
+		DEBUG : 상세정보
+	 -->
+	
 	<!-- Application Loggers -->
 	<logger name="com.pro.bf">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="WARN" />
 	</logger>
+
+	<!-- chat DEBUG확인용 -->
+<!-- 	<logger name="org.springframework.web.socket"> -->
+<!-- 		<level value="DEBUG" /> -->
+<!-- 	</logger> -->
 
 	<!-- 추가 -->
 	<logger name="org.springframework.jdbc">
