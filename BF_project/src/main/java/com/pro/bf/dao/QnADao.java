@@ -24,4 +24,11 @@ public interface QnADao {
 	public void deleteQna(int qna_num)throws SQLException;//delete
 
 	QnAVO SearchQnaVo(int qna_num) throws SQLException;//비밀글
+	
+	int totalRecordforTitle(String search) throws SQLException;
+	int totalRecordforID(String search) throws SQLException;
+	
+	ArrayList<QnAVO> qnaListforTitle(String search, int startRow, int counts) throws SQLException;
+	ArrayList<QnAVO> qnaListforId(String search, int startRow, int counts) throws SQLException;
+	void qnaRespondUpdate(int qna_num, String qna_respond) throws SQLException;
 }

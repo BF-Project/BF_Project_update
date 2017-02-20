@@ -47,11 +47,11 @@ public class AdminMemberOperateController {
 				String comboSelectMember = request.getParameter("comboSelectMember"); // 초기에 null
 				String selectCombo = "";
 				if(!(comboSelectMember == null)){
-					if(comboSelectMember.equals("comboName")){
+					if(comboSelectMember.equals("comboName")||comboSelectMember.equals("NAME")){
 						selectCombo = "NAME";
-					}else if(comboSelectMember.equals("comboId")){
+					}else if(comboSelectMember.equals("comboId")||comboSelectMember.equals("ID")){
 						selectCombo = "ID";
-					}else if(comboSelectMember.equals("comboPhone")){
+					}else if(comboSelectMember.equals("comboPhone")||comboSelectMember.equals("PHONE")){
 						selectCombo = "PHONE";
 					}
 				}else if(comboSelectMember == null){
@@ -185,7 +185,7 @@ public class AdminMemberOperateController {
 	public String memberUpdate(HttpServletRequest request) throws SQLException {
 		String memberid = request.getParameter("memberid");
 		MbrVO memberVo = mbrService.MemberVoSearch(memberid);
-		request.setAttribute("memberVo", memberVo);
+		request.setAttribute("memberVo", memberVo); 
 		request.setAttribute("page", request.getParameter("page")); // page 번호를 계속 이어서 넘겨준다.
 		return "/admin/member/memberUpdate";
 	}

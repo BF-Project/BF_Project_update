@@ -21,6 +21,7 @@ public class QnAVO {
 	private String qna_pict_afat; // 파일첨부(사진이름)
 	private String mbr_id; // 회원이름(FK)
 	private String qna_secrit;//비밀글
-		
+	private String qna_respond_yn; // 답변여부(관리자)
+	private String qna_respond_content; // 답변내용(관리자)
 	
 }

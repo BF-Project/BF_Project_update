@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.pro.bf.dao.QnADao;
+import com.pro.bf.dto.MbrVO;
 import com.pro.bf.dto.QnAVO;
 
 public class QnADaoImpl implements QnADao {
@@ -12,7 +13,6 @@ public class QnADaoImpl implements QnADao {
 	private SqlMapClient client;
 	static int view_rows = 10; // 페이지의 개수
 	static int counts = 10; // 한 페이지에 나타낼 게시글 개수
-	
 	
 	public void setClient(SqlMapClient client) {
 		this.client = client;
@@ -82,8 +82,6 @@ public class QnADaoImpl implements QnADao {
 	@Override
 	public void deleteQna(int qna_num) throws SQLException {
 		client.delete("deleteQna",qna_num);		
-		
-	
 	}
 
 	@Override
@@ -92,4 +90,47 @@ public class QnADaoImpl implements QnADao {
 		return qnavo;
 		
 	}
+
+	@Override
+	public int totalRecordforTitle(String search) throws SQLException {
+		int total_pages = (Integer)client.queryForObject("totalRecordforTitleQNA", search);
+		return total_pages;
+	}
+
+	@Override
+	public int totalRecordforID(String search) throws SQLException {
+		int total_pages = (Integer)client.queryForObject("totalRecordforIDQNA", search);
+		return total_pages;
+	}
+
+	public int totalRecordforRespond(String search) throws SQLException{
+		int total_pages = (Integer)client.queryForObject("totalRecordforRespond", search);
+		return total_pages;
+	}
+	
+	@Override
+	public ArrayList<QnAVO> qnaListforTitle(String search, int startRow, int counts) throws SQLException {
+		ArrayList<QnAVO> qnaList = (ArrayList<QnAVO>) client.queryForList("qnaListforTitle", search, startRow, counts);
+		return qnaList;
+	}
+
+	@Override
+	public ArrayList<QnAVO> qnaListforId(String search, int startRow, int counts) throws SQLException {
+		ArrayList<QnAVO> qnaList = (ArrayList<QnAVO>) client.queryForList("qnaListforId", search, startRow, counts);
+		return qnaList;
+	}
+	
+	public ArrayList<QnAVO> qnaListforRespond(String search, int startRow, int counts) throws SQLException{
+		ArrayList<QnAVO> qnaList = (ArrayList<QnAVO>) client.queryForList("qnaListforRespond", search, startRow, counts);
+		return qnaList;
+	}
+
+	@Override
+	public void qnaRespondUpdate(int qna_num, String qna_respond) throws SQLException {
+		QnAVO qnaVo = new QnAVO();
+		qnaVo.setQna_num(qna_num);
+		qnaVo.setQna_respond_content(qna_respond);		
+		client.update("qnaRespondUpdate", qnaVo);
+	}
+
 }
