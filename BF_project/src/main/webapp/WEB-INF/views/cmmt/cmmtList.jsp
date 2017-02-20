@@ -21,44 +21,43 @@
 
 <style>
  	#writeBtn {
-		margin-left : 76%;
+		margin-left : 65%;
 		
 	}
 	
 	#paging {
 		margin-left : 48%;
 	}
-	
-	td, th {
-		text-align : center;
-	}
-	
+			
 	#cmmtList {
 		margin : auto;
 		width : 70%;
 	}
 	
 	/*추가 */
-		#cmmtcmtDetailView {
-			margin: auto;
-			width: 70%;
-			
-		}
-		th{
-			font-size: 16.5px;
-			width:130px;
-		}
-		td{
-			font-size: 14px;
-		}
+	#cmmtcmtDetailView {
+		margin: auto;
+		width: 85%;
+	}
+	
+	th{
+		font-size: 20px;
+		width:130px;
+		text-align : center;
+	}
+	
+	td{
+		font-size: 14px;
+		text-align : center;
+	}
 		
-		a{
+	a{
 		color:#999;
-		}
+	}
 		
-		.table>tbody>#hoverId:hover{ 
- 			background-color: #e8e8e8; 
- 		} 
+	.table>tbody>#hoverId:hover{ 
+ 		background-color: #e8e8e8; 
+ 	} 
 				
 </style>
 </head>
@@ -79,8 +78,6 @@
 					<h2>
 						<b>커뮤니티</b> 고객 게시판
 					</h2>
-					<br> <br>
-					<p>'커뮤니티 게시판' 페이지 입니다.</p>
 				</div>
 			</section>
 			
@@ -89,7 +86,7 @@
 			<form name="form1" method="post" >
 				<div class="container">
 					<table class="table table-hover" id="cmmtcmtDetailView">
-						<tr>
+						<tr style="font-size: 20px">
 							<th>글번호</th>
 							<th>제목</th>
 							<th>작성자</th>
@@ -123,10 +120,7 @@
 					
 					</table>
 
-					<div id="paging">
-						${paging }
-					</div>
-	<button type="button" id="writeBtn" class="btn" onclick="gowrite(this.form)" style="background-color:black;">글 작성</button>
+					<div id="paging">${paging}</div>
 		
 				</div>
 			</form>
@@ -135,16 +129,18 @@
 			<center>
 			<div id="searchsearch" style="margin-left: 40px">
 			<form method="post" action="search">
-			<input type="text" id="search" name="search" value="Search" style="font-size: 16px;" 
-				onFocus="if (this.value == 'Search') this.value = '';" onBlur="if (this.value == '') this.value = 'Search';" />
-				
+			<input type="text" id="search" name="search" value="TitleSearch" style="font-size: 16px;" 
+				onFocus="if (this.value == 'TitleSearch') this.value = '';" onBlur="if (this.value == '') this.value = 'TitleSearch';" />
+			
 			</form>
-			</div>
-		</center>
-			
-			<!-- <input type="button" value="글 작성" onclick="gowrite(this.form)"> -->
-				
-			
+		</div>
+	</center>
+			<button type="button" id="writeBtn" class="btn" onclick="gowrite(this.form)" style="padding:8px; background-color:gray;
+							border:1px solid gray; border-radius:6px; color:white;">
+							<i class="fa fa-pencil-square-o"></i>&nbsp;
+							<b style="font-size:14px"></b>글작성
+							</button>
+	
 		</div>
 	</div>
 </body>

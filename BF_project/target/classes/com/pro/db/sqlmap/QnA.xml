@@ -9,6 +9,7 @@
 	<!-- <typeAlias alias="qna" type="com.pro.bf.dto.QnAVO" /> -->
 	
 	<!-- Query 문 작성란 -->
+	
 	<!-- Q&A 리스트 -->
 	<select id="listQna" parameterClass="str" resultClass="qna">
 		select * from qna where mbr_id=#mbr_id# order by qna_num desc
@@ -51,6 +52,9 @@
 		select * from qna where qna_num=#qna_num#
 	</select>
 	
-	
+	<!--파일다운로드-->
+	<select id="qnaFileNameSearch" parameterClass="int" resultClass="str">
+		select qna_pict_afat from qna where qna_num=#qna_num#
+	</select>
 	
 </sqlMap>

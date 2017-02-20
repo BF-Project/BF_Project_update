@@ -1,9 +1,11 @@
 package com.pro.bf.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.pro.bf.daoImpl.FreeDaoImpl;
 import com.pro.bf.dto.FreeVO;
@@ -84,8 +87,12 @@ public class FreeController {
 	}
 
 	@RequestMapping(value = "/freeWriteForm", method = RequestMethod.POST)
-	public String freeWriteForm(@RequestParam("fre_title") String fre_title,
-			@RequestParam("fre_content") String fre_content, HttpSession session)
+	public String freeWriteForm(
+			@RequestParam("fre_title") String fre_title,
+			@RequestParam("fre_content") String fre_content, 
+			@RequestParam(value="file",defaultValue="")
+			MultipartFile filefile,
+			HttpSession session,HttpServletRequest request)
 			throws ServletException, IOException, SQLException {
 		String url = "redirect:freeList";
 
@@ -96,6 +103,19 @@ public class FreeController {
 		freeVO.setFre_content(fre_content);
 		freeVO.setMbr_id(loginUser);
 
+		//fileupload
+		session=request.getSession();
+		String savePath="resources/upload";
+		ServletContext context=session.getServletContext();
+		String uploadFilePath=context.getRealPath(savePath);
+		
+		if(!filefile.isEmpty()){
+			File file1=new File(uploadFilePath,System.currentTimeMillis()+filefile.getOriginalFilename());
+			filefile.transferTo(file1);
+			freeVO.setFre_pict_afat(file1.getName());
+		}
+			
+		
 		freeServiceImpl.insertFree(freeVO);
 
 		return url;
@@ -139,11 +159,33 @@ public class FreeController {
 	}
 
 	@RequestMapping(value = "/freeUpdateForm", method = RequestMethod.POST)
-	public String freeUpdateForm(@RequestParam("fre_num") int fre_num,
-			FreeVO freeVO, Model model) throws ServletException, IOException,
+	public String freeUpdateForm(
+			@RequestParam("fre_num") int fre_num,
+			@RequestParam("file")MultipartFile file,
+			@RequestParam("nofile")String nofile,
+			@RequestParam(value="fre_pict_afat",defaultValue="")String fre_pict_afat,
+			FreeVO freeVO, Model model,
+			HttpServletRequest request
+			) throws ServletException, IOException,
 			SQLException {
 		String url = "redirect:freeList";
-
+		
+		HttpSession session=request.getSession();
+		
+		//fileupload
+		String savePath="resources/upload";
+		ServletContext context=session.getServletContext();
+		String uploadFilePath=context.getRealPath(savePath);
+		
+		if(!file.isEmpty()){
+			File file1=new File(uploadFilePath,System.currentTimeMillis()+file.getOriginalFilename());
+			file.transferTo(file1);
+			
+			freeVO.setFre_pict_afat(file1.getName());
+		}else{
+			freeVO.setFre_pict_afat(nofile);
+		}
+		
 		freeDaoImpl.updateFree(freeVO);
 
 		model.addAttribute(fre_num);

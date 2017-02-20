@@ -16,4 +16,7 @@ public interface FreeDao {
 	public int updateFree(FreeVO freeVO) throws SQLException;
 	public int countFree(FreeVO freeVO) throws SQLException;
 	public int totalFree() throws SQLException;
+	//파일다운로드 하기위한 String fileName 메소드 추가
+	String freeFileNameSearch(int fre_num) throws SQLException;
+
 }

@@ -18,7 +18,7 @@
 	</select>
 	
 	<insert id="insertFree" parameterClass="free">
-		insert into free(fre_num, fre_title, fre_content, mbr_id) values(free_seq.nextval, #fre_title#, #fre_content#, #mbr_id#)
+		insert into free(fre_num, fre_title, fre_content, mbr_id,fre_pict_afat) values(free_seq.nextval, #fre_title#, #fre_content#, #mbr_id#,#fre_pict_afat#)
 	</insert>
 	
 	<select id="getFree" parameterClass="int" resultClass="free">
@@ -30,7 +30,7 @@
     </delete>
     
     <update id="updateFree" parameterClass="free">
-		update free set fre_content = #fre_content# where fre_num=#fre_num#
+		update free set fre_content = #fre_content#,fre_pict_afat=#fre_pict_afat# where fre_num=#fre_num#
 	</update>
 	
 	<update id="countFree" parameterClass="free">
@@ -46,9 +46,10 @@
 		select * from free where fre_title like '%'||#fre_title#||'%'
 	</select>
 	
-	<!-- <select id="articleSearch_seq" parameterClass="int" resultClass="article">
-    select * from notice_article where noar_seq like '%'||#noar_seq#||'%'
-    </select> -->
+	<select id="freeFileNameSearch" parameterClass="int" resultClass="str">
+		select fre_pict_afat from free where fre_num=#fre_num#
+	</select>
+	
 	
 	
 </sqlMap>

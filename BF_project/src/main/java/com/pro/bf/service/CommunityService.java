@@ -27,4 +27,7 @@ public interface CommunityService {
 	public CommunityVO getCmmtVO(int cmmt_num) throws SQLException;
 
 	public ArrayList<CommunityVO> listAllCmmt(int tpage,String search) throws SQLException;
+
+	//파일다운로드 하기위한 service에 메소드 추가
+	String cmmtFileNameSearch(int cmmt_num)throws SQLException;
 }
