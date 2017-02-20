@@ -53,6 +53,7 @@ public class CommunityController {
 		//페이징처리(전체페이지변수)
 		String tpage =request.getParameter("tpage");
 		String search=request.getParameter("search");
+		
 		if(search==null || search.equals(""))
 			search="";
 		
@@ -125,10 +126,10 @@ public class CommunityController {
 		}
 
 		@RequestMapping(value = "/cmmtWriteForm", method = RequestMethod.POST)
-		public String cmmtWrite(@RequestParam("cmmt_title") String cmmt_title,
-				
-				@RequestParam("cmmt_content") String cmmt_content, HttpSession session
-				,
+		public String cmmtWrite(
+				@RequestParam("cmmt_title") String cmmt_title,
+				@RequestParam("cmmt_content") String cmmt_content, 
+				HttpSession session,
 				@RequestParam(value="file",defaultValue="")
 				MultipartFile filefile, HttpServletRequest request
 				
@@ -178,7 +179,7 @@ public class CommunityController {
 			return url;
 		}
 
-		@RequestMapping(value = "/cmmtUpdateForm", method = RequestMethod.POST)
+		@RequestMapping(value ="/cmmtUpdateForm", method = RequestMethod.POST)
 		public String cmmtUpdateForm(
 				@RequestParam("cmmt_num") int cmmt_num,
 				@RequestParam("cmmt_title") String cmmt_title,
@@ -200,8 +201,6 @@ public class CommunityController {
 			cmmtVO.setCmmt_num(cmmt_num);
 
 			model.addAttribute(cmmt_num);
-
-			
 
 			HttpSession session = request.getSession();
 

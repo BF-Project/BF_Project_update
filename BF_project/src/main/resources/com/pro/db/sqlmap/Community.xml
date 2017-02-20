@@ -48,4 +48,10 @@
 		delete from community where cmmt_num=#cmmt_num#
     </delete>
 	
+	<select id="cmmtFileNameSearch" parameterClass="int" resultClass="str">
+		select cmmt_pict_afat from community where cmmt_num=#cmmt_num#
+	</select>
+	
+	
+	
 </sqlMap>

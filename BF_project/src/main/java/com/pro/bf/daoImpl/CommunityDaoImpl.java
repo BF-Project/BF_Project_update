@@ -97,6 +97,12 @@ public class CommunityDaoImpl implements CommunityDao{
 		return cmmtVO;
 	}
 
+	@Override
+	public String cmmtFileNameSearch(int cmmt_num) throws SQLException {
+		String fileName=(String) client.queryForObject("cmmtFileNameSearch", cmmt_num);
+		return fileName;
+	}
+
 	
 	
 }

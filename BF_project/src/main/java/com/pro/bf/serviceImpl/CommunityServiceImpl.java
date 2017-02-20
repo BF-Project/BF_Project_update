@@ -170,6 +170,13 @@ public class CommunityServiceImpl implements CommunityService{
 		
 	}
 
+	//파일 다운로드
+	@Override
+	public String cmmtFileNameSearch(int cmmt_num) throws SQLException {
+		String fileName=cmmtDaoImpl.cmmtFileNameSearch(cmmt_num);
+		return fileName;
+	}
+
 	
 
 	

@@ -14,19 +14,11 @@
 		document.free.action = "freeWrite";
 		document.free.submit();
 	}
-
-	/* function gosearch() {
-		if (document.free.keyWord.value == "") {
-			alert("검색어를 입력하세요.");
-			document.free.keyWord.focus();
-			return;
-		}
-
-		document.free.action = "freeList";
-		document.free.submit();
-	} */
 	
-	
+	function freeDetail(frenum){
+		location.href= "<%=request.getContextPath()%>/free/freeView?fre_num="+frenum;
+		
+	}
 </script>
 
 <style>
@@ -36,7 +28,7 @@
 }
 
 #writeBtn {
-	margin-left: 71%;
+	margin-left: 65%;
 }
 
 td, th {
@@ -64,12 +56,11 @@ td, th {
 			<section class="breadcrumbs_block clearfix parallax">
 				<div class="container center">
 					<h2>
-						<b>FREE</b> BOARD
+						<b>자유</b> 게시판
 					</h2>
-					<br> <br>
-					<p>'자유게시판' 페이지 입니다.</p>
 				</div>
 			</section>
+			
 			<!-- //BREADCRUMBS -->
 			<br>
 			<form name="free" method="post">
@@ -90,32 +81,27 @@ td, th {
 										There are no registered Free.</td>
 								</tr>
 							</c:when>
-							<%-- <c:when test="${!empty freeSearch }">
-								<c:forEach items="${freeSearch }" var="freeVO">
-									<tr>
-										<th>${freeVO.fre_num}</th>
-										<th><a href="freeView?fre_num=${freeVO.fre_num}">${freeVO.fre_title}</a></th>
-										<th>${freeVO.mbr_id}</th>
-										<th>${freeVO.fre_date}</th>
-										<th>${FreeVO.fre_cnt }</th>
-									</tr>
-								</c:forEach>
-							</c:when> --%>
+						
 							<c:otherwise>
 								<c:forEach items="${freeList }" var="freeVO">
-									<tr>
+									
+									<tr onclick="freeDetail('${freeVO.fre_num }')">
+									
 										<td>${freeVO.fre_num }</td>
-										<td><a href="freeView?fre_num=${freeVO.fre_num }">
-												${freeVO.fre_title }</a></td>
+										<td>${freeVO.fre_title }</td>
 										<td>${freeVO.mbr_id }</td>
 										<td>${freeVO.fre_date }</td>
 										<td>${freeVO.fre_cnt }</td>
 									</tr>
+									
 								</c:forEach>
 							</c:otherwise>
+							
 						</c:choose>
+						
 					</table>
 					<br>
+
 					<center>
 						<div>${paging }</div>
 					</center>
@@ -125,7 +111,7 @@ td, th {
 				</select>  -->
 					<!-- <input type="text" id="keyWord" name="keyWord">
 				 -->
-
+					<div style="margin-left: 48%;">${paging }</div>
 				</div>
 			</form>
 			<center>
@@ -135,13 +121,18 @@ td, th {
 							style="font-size: 16px;"
 							onFocus="if (this.value == 'Search') this.value = '';"
 							onBlur="if (this.value == '') this.value = 'Search';"/>
+
 					</form>
 				</div>
 			</center>
-			<button type="button" id="writeBtn" class="btn" onclick="gowrite()"
-				style="background-color: black; z-index:0;"><b style="font-size:14px">글작성</b>&nbsp;<i class="fa fa-edit spaceLeft"></i></button>
-			<!-- <input type="button" id="searchBtn" onclick="location.href='freeList'" value="목록"> -->
-			<br><br>
+
+				<button type="button" id="writeBtn" class="btn" onclick="gowrite()"
+					style="padding:8px; background-color:gray;
+					border:1px solid gray; border-radius:6px; color:white;">
+					<i class="fa fa-pencil-square-o"></i>&nbsp;
+					<b style="font-size:14px"></b>글작성
+				</button>
+
 		</div>
 	</div>
 

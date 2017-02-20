@@ -29,4 +29,6 @@ public interface QnAService {
 
 	public ArrayList<QnAVO> listAllQna(int tpage,String search) throws SQLException; // Q&A ALL 리스트
 	
+	//파일다운로드 하기위한 Service에 메소드 추가
+	String qnaFileNameSearch(int qna_num)throws SQLException;
 }
