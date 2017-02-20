@@ -9,7 +9,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml
 					 /WEB-INF/spring/jdbc-context.xml 
-					 /WEB-INF/spring/mail-context.xml					 
+					 /WEB-INF/spring/mail-context.xml	
+					  /WEB-INF/spring/websocket-config.xml				 
 		</param-value> 
 	</context-param>
 	
@@ -25,7 +26,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml
-						 /WEB-INF/spring/websocket-config.xml
+						
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

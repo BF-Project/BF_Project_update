@@ -1,15 +1,26 @@
 package com.pro.bf.websocket;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.xml.ws.spi.http.HttpContext;
+import javax.annotation.Resource;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import org.apache.poi.util.StringUtil;
+import org.springframework.util.StringUtils;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pro.bf.chatting.ChattingRoom;
 
 /**
  * @author 차승현<br>
@@ -18,81 +29,83 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
  */
 public class ChatWebSocketHandler extends TextWebSocketHandler{
 	
-	// users
-	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
-	String id[] = new String[100000];
+	@Resource(name="rooms")
+	private Map<String, ChattingRoom> rooms;
 
 	// 접속시
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		Map<String, Object> map = session.getAttributes();
-		id[Integer.parseInt(session.getId())] = (String)map.get("ChatLogin");
-		if(id[Integer.parseInt(session.getId())] == null){			
-			id[Integer.parseInt(session.getId())] = "admin";
+		// ChatLogin와 roomId를 받아올 수 있다. [ HandsShakeInterceptor를 통해 session 으로 ]
+		
+		Map<String, Object> map = session.getAttributes();		
+		String loginUser = (String)map.get("ChatLogin"); // 채팅방에 접속한 사람, 회원이든 관리자든 값이 들어온다.		
+		for(Entry<String, ChattingRoom> entry :rooms.entrySet()){ 
+			if(entry.getValue().getOwner().equals(loginUser)){
+				entry.getValue().enterRoom(loginUser, session);	// rooms의 모든 정보를 찾아 방을 개설한 owner과 현재 로그인한 loginUser와 같은 방을 user로 등록한다. ==> 내가 개설한 방
+			}
 		}
-		log("ID : "+id[Integer.parseInt(session.getId())]+" | IP : "+session.getRemoteAddress().getHostName()+" 연결 됨");		
-		users.put(id[Integer.parseInt(session.getId())], session); // id와 session을 Map에 담는다
+		
+		String roomId = (String)map.get("roomId"); // 채팅방의 roomId
+		if(!StringUtils.isEmpty(roomId)){
+			ChattingRoom room = rooms.get(roomId);
+			if(room!=null)
+				room.enterRoom(loginUser, session); // 해당 채팅방의 roomId가 없을경우 관리자라는 것
+		}
+		log("log >>> ID : "+loginUser+" | roomId : "+roomId+" [연결 됨]");	
 	}
 	
 	// 접속 해제시
 	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		log("ID : "+id[Integer.parseInt(session.getId())]+" | IP : "+session.getRemoteAddress().getHostName()+" 연결 종료됨");
-		users.remove(id[Integer.parseInt(session.getId())]); // 담아놨던 id와 Map에서 삭제
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {	
+		Map<String, Object> map = session.getAttributes();
+		String loginUser = (String)map.get("ChatLogin");
+		if(!loginUser.equals("admin")){
+			String roomId = null;
+			for(Entry<String, ChattingRoom> entry :rooms.entrySet()){ 
+				if(entry.getValue().getOwner().equals(loginUser)){
+					roomId = entry.getKey(); 
+				}
+			}
+			ChattingRoom chattingRoom = new ChattingRoom(loginUser);
+			chattingRoom.removeRoom(loginUser); // 유저 삭제
+			rooms.remove(roomId); // 방 삭제
+		}
+	}
+	
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	public static class ChatMessage{
+		private String message;
+		private String nickname;
+		private String roomId;
 	}
 	
 	// 메시지 발신 | 수신
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		String currentMyId = id[Integer.parseInt(session.getId())]; // 현재 내 id
-
-		// 관리자
-		String admin = null;
-		String adminNum = null;
-
-		// 현재 채팅하는 회원
-		String member = null;
-		String memberNum = null;
+		Map<String, Object> map = session.getAttributes();		
 		
-		System.out.println("채팅 접속자 수 : " + users.values().size() + "명");
+		String msgJSON = message.getPayload();
+		ObjectMapper mapper = new ObjectMapper();
+		ChatMessage chatMsg = mapper.readValue(msgJSON, ChatMessage.class);
+		chatMsg.getMessage();
+		chatMsg.getNickname();
+		String roomId = chatMsg.getRoomId();
+		ChattingRoom room = rooms.get(roomId);
+		String currentMyId = (String)map.get("ChatLogin"); // 채팅방에 접속한 사람, 회원이든 관리자든 값이 들어온다.	
 		
-		for(WebSocketSession s : users.values()){
-			if(id[Integer.parseInt(s.getId())] == "admin"){ // for문 s.getId() 에서 관리자 번호가 걸리면
-				admin = id[Integer.parseInt(s.getId())]; // 관리자 ID
-				adminNum = s.getId(); // 관리자 고유 번호
-				System.out.println("관리자 id : "+admin +" || "+"관리자 고유 번호 : "+adminNum);
-			}
+		if(room != null){
+			 Map<String, WebSocketSession> chatUsers = room.getUsers(); // 메시지 보내기
+			 for(Entry<String, WebSocketSession> entry:chatUsers.entrySet()){
+//				 if(!entry.getKey().equals(currentMyId)){
+					 entry.getValue().sendMessage(message);
+//				 }
+			 }
 		}
-			
-		for(WebSocketSession s : users.values()){
-			if(id[Integer.parseInt(s.getId())] == currentMyId){ // 현재 내 아이디와 | 전체 s.getId()중 1개가 같을 경우
-				if(!(currentMyId == "admin")){ // 현재 접속한 아이디와 내가 admin이라면 위에 admin과 adminNum을 사용하면 됨
-					member = id[Integer.parseInt(s.getId())];
-					memberNum = s.getId();
-					System.out.println("현재 접속한 회원 id : " + member + " || "+"접속한 회원 고유 번호 : " + memberNum);
-				}
-			}
-		}
-		
-		if(!(currentMyId=="admin")){ // 현재 컴퓨터의 접속자가 회원일때
-			if(adminNum==null){
-				// admin이 없고 회원만 접속해있을때...
-				users.get(member).sendMessage(message); // 회원이 자신이 보낸 글을 자신이 볼 수 있어야 한다.
-				// 그럼 여기서 admin에게 알림을 줘야하지! ☆★☆★☆★☆★☆★☆★☆
-				// 접속한 회원 본인의 고유번호와 message를 넘겨줘야한다.
-			}else{
-				// admin이 접속해 있을때
-				users.get(member).sendMessage(message);  
-				users.get(admin).sendMessage(message); // 관리자와 자신 모두 보임				
-			}			
-		}else if(currentMyId=="admin"){ // 현재 컴퓨터의 접속자가 admin일때
-			for(WebSocketSession s : users.values()){
-				s.sendMessage(message);	
-			}
-		}
-//			log(currentMyId+"이/가 || "+admin + "에게 발송 " + message.getPayload());
+		log(currentMyId+"이/가 발송 " + chatMsg.getMessage());
 	}
-
+	
 	// 익셉션
 	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {

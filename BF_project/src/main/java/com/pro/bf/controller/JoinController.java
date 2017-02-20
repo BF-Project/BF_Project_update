@@ -29,6 +29,7 @@ import com.pro.bf.dto.MbrVO;
 import com.pro.bf.serviceImpl.AddrServiceImpl;
 import com.pro.bf.serviceImpl.AdminServiceImpl;
 import com.pro.bf.serviceImpl.MbrServiceImpl;
+import com.pro.bf.websocket.PushMessageHandler;
 
 @Controller
 @RequestMapping(value="join")
@@ -142,6 +143,9 @@ public class JoinController {
 		return data; // 그냥 문자열로 리턴하면 WEB-INF/views/data.jsp로 가게되는 꼴... ResponseBody를 사용한다.(Spring에서)
 	}
 	
+	@Autowired
+	PushMessageHandler pushMessageHandler;
+	
 	@RequestMapping("login")
 	@ResponseBody
 	public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws SQLException{
@@ -175,6 +179,7 @@ public class JoinController {
 			if(!(adminLogin==null)){
 				data = "admin";
 				session.setAttribute("loginAdmin", adminLogin); // 로그인한 관리자 아아디 세션에 저장 --> 관리자 화면에서 이름을 표시해주기 위함
+				pushMessageHandler.gotowork(adminLogin); // 채팅..
 			}else{
 				data = "no";
 			}
