@@ -82,7 +82,7 @@ td, th {
 							<th>게시날짜</th>
 							<th>조회수</th>
 						</tr>
-
+    
 						<c:choose>
 							<c:when test="${freeListSize<=0 }">
 								<tr>
@@ -116,8 +116,9 @@ td, th {
 						</c:choose>
 					</table>
 					<br>
-					<div style="margin-left: 48%;">${paging }</div>
-
+					<center>
+						<div>${paging }</div>
+					</center>
 					<!-- <select name="keyField" id="combo">
 					<option value="fre_title">제목</option>
 					<option value="mbr_id">작성자</option>
@@ -128,7 +129,7 @@ td, th {
 				</div>
 			</form>
 			<center>
-				<div id="searchsearch">
+				<div id="searchsearch"> 
 					<form action="freeSearch" method="post">
 						<input type="text" id="keyWord" name="keyWord" value="Search"
 							style="font-size: 16px;"
@@ -138,7 +139,7 @@ td, th {
 				</div>
 			</center>
 			<button type="button" id="writeBtn" class="btn" onclick="gowrite()"
-				style="background-color: black;">글 작성</button>
+				style="background-color: black; z-index:0;"><b style="font-size:14px">글작성</b>&nbsp;<i class="fa fa-edit spaceLeft"></i></button>
 			<!-- <input type="button" id="searchBtn" onclick="location.href='freeList'" value="목록"> -->
 			<br><br>
 		</div>
