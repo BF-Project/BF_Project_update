@@ -33,4 +33,7 @@ public interface QnAService {
 	ArrayList<QnAVO> QnAList(int page, String search, String selectCombo) throws SQLException;
 	String pageNumber(int page, String search, String currentPage, String selectCombo) throws SQLException;
 	void qnaRespondUpdate(int qna_num, String qna_respond) throws SQLException;
+	
+	//파일다운로드 하기위한 Service에 메소드 추가
+	String qnaFileNameSearch(int qna_num)throws SQLException;
 }

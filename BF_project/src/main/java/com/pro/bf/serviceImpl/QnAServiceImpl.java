@@ -176,7 +176,6 @@ public class QnAServiceImpl implements QnAService{
 		return qnaVO;
 	}
 
-	
 	@Override
 	public ArrayList<QnAVO> QnAList(int page, String search, String selectCombo) throws SQLException { // 관리자 쪽 QnA 리스트 새로만든 메서드
 		if(search.equals("")){ // 검색어가 없을경우
@@ -271,5 +270,12 @@ public class QnAServiceImpl implements QnAService{
 	@Override
 	public void qnaRespondUpdate(int qna_num, String qna_respond) throws SQLException {
 		qnaDaoImpl.qnaRespondUpdate(qna_num, qna_respond);
+	}
+	
+	//파일다운로드
+	@Override
+	public String qnaFileNameSearch(int qna_num) throws SQLException {
+		String fileName=qnaDaoImpl.qnaFileNameSearch(qna_num);
+		return fileName;
 	}
 }

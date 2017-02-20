@@ -133,4 +133,8 @@ public class QnADaoImpl implements QnADao {
 		client.update("qnaRespondUpdate", qnaVo);
 	}
 
+	public String qnaFileNameSearch(int qna_num) throws SQLException {
+		String fileName=(String) client.queryForObject("qnaFileNameSearch", qna_num);
+		return fileName;
+	}
 }

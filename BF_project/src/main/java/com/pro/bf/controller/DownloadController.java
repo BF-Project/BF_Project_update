@@ -37,6 +37,7 @@ public class DownloadController implements ApplicationContextAware{
 		// jsp에서 받아온 key값(filekey)로 파일 이름을 찾아온다.
 		String fileName = noticeService.noticeFileNameSearch(Integer.parseInt(filekey));
 		File downloadFile = getFile(fileName, request);
+		//null일때
 		if(downloadFile == null){
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;

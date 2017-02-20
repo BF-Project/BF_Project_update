@@ -112,5 +112,11 @@ public class FreeServiceImpl implements FreeService {
 		return freTitle;
 	}
 
+	@Override
+	public String freeFileNameSearch(int fre_num) throws SQLException {
+		String fileName=freeDaoImpl.freeFileNameSearch(fre_num);
+		return fileName;
+	}
+
 
 }
