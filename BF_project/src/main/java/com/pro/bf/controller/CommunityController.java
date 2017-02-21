@@ -131,8 +131,8 @@ public class CommunityController {
 				@RequestParam("cmmt_content") String cmmt_content, 
 				HttpSession session,
 				@RequestParam(value="file",defaultValue="")
-				MultipartFile filefile, HttpServletRequest request
-				
+				MultipartFile filefile, HttpServletRequest request,
+				Model model
 				)
 				throws ServletException, IOException, SQLException {
 
@@ -157,6 +157,7 @@ public class CommunityController {
 				File file1=new File(uploadFilePath,System.currentTimeMillis()+filefile.getOriginalFilename());
 				filefile.transferTo(file1);
 				cmmtVO.setCmmt_pict_afat(file1.getName());
+				
 			}
 			
 			

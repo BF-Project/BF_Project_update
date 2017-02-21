@@ -54,7 +54,7 @@ function goList() {
  			border: 1px solid #1E82FF; 
  			border-bottom-color: #1E82FF; 
  			border-radius: .25em; 
- 			margin-right: 280px;
+ 			margin-right: 6%;
 		}
 		.file_input label input {
 		    position:absolute;
@@ -127,10 +127,14 @@ function goList() {
 		 		
 		
 		 		<div class="file_input" >
-					<label>
-					<i class="fa fa-photo"></i>&nbsp;사진첨부
-					<input type="file" name="file" >
-					</label>
+						<label>
+						<i class="fa fa-photo"></i>&nbsp;사진첨부
+						     <input type="file" name="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+						</label>
+						<input type="text" readonly="readonly" title="File Route" id="file_route">
+						
+					</div> 
+		 		
 				</center>		 			
 		
 				<div id="gobtn1">

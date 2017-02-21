@@ -212,7 +212,9 @@ $(document).on('click','.writeForm', function(e) {
 				+ aa[0].innerHTML
 				+'</textarea>'
 				+'&nbsp;'
-				+'<button type="button" id="'+result+'" class="btnn btn" style="background-color:black;">수정</button>'
+				+'<button type="button" id="'+result+'" class="btnn btn" '
+				+ 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
+				+ '<i class="fa fa-exchange"></i>수정 </button>'
 			);
     	}
     });
@@ -278,7 +280,7 @@ $(document).on('click','.btnn', function(e) {
 			<br>
 			<form name="free" method="post" action="freeView">
 				<div class="container">
-					<table class="table table-hover" id="freeView">
+					<table class="table" id="freeView">
 						<tr>
 							<th>제목</th>
 							<td>${freeVO.fre_title }</td>

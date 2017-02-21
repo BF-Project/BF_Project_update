@@ -56,6 +56,7 @@
 				}
 			})
 		}
+						
 	</script>
 </head>
 <body>
@@ -97,6 +98,7 @@
 										There are no registered Q&A.</td>
 								</tr>
 							</c:when>
+							
 							<c:otherwise>
 								<c:forEach items="${qnaList}" var="qnaVO">
 									<!-- //////////////////////////////////////////// -->
@@ -131,9 +133,15 @@
 										</tr>
 									</c:if>
 									<!-- //////////////////////////////////////////// -->
+									
 								</c:forEach>
 							</c:otherwise>
+												
 						</c:choose>
+						
+					
+						
+						
 					</table>
 
 					<div id="paging">

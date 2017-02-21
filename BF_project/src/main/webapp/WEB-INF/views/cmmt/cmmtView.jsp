@@ -175,7 +175,11 @@ $(document).on('click','.writeForm', function(e) {
                 	'<textarea id="mm" >'
                 	+ aa[0].innerHTML
                 	+'</textarea>'
-                	+'<button type="button" id="'+result+'" class="write">등록</button>'
+                	+'&nbsp;'
+                	+'<button type="button" id="'+result+'" class="btnn btn" '
+    				+ 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
+    				+ '<i class="fa fa-exchange"></i>수정 </button>'
+                
                 );
     	}
     });
@@ -246,7 +250,7 @@ $(document).on('click','.write', function(e) {
 						
 			<form name="formm" method="post" action="cmmtView">
 				<div class="container">
-					<table class="table table-hover" id="cmmtView">
+					<table class="table" id="cmmtView">
 						<tr>
 						<th><i class="fa fa-folder-open-o"/>글번호</th>
 						<td>${cmmtVO.cmmt_num }</td>
