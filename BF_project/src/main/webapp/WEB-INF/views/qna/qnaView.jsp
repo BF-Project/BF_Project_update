@@ -21,6 +21,30 @@
 		document.formm.action = "delete?qna_num=" + qna_num;
 		document.formm.submit();
 	}
+	
+	
+	/*답변내용  */
+	function qnaDetatil1(qnanum){
+		$.ajax({
+			url : "<%=request.getContextPath()%>/qna/qnaViewRespondYN",
+			type : "post",
+			dataType : "text",
+			data : ({
+				qna_num : qnanum
+			}),
+			success:function(data){
+				if(data=='yes'){
+					location.href='qnaView?qna_num='+qnanum;
+				}else{
+					alert('답변입니다.');
+				}
+			},
+			error:function(error){
+				alert('error');
+			}
+		})
+	}
+	
 </script>
 
 <style>
@@ -115,8 +139,58 @@ td{
 						
 						<tr>
 						<th>답변내용</th>
-						<td></td>
+						<td>RE:${qnaVO.qna_respond_content}</td>
 					</tr>
+				<!--답변내용받아오기-->
+						<c:choose>
+							<c:when test="${qnaListSize<=0}">
+								<tr>
+									<td width="100%" colspan="5" align="center" height="23">
+										There are no registered Q&A.</td>
+								</tr>
+							</c:when>
+							
+							<c:otherwise>
+								<c:forEach items="${qnaList}" var="qnaVO">
+									<!-- //////////////////////////////////////////// -->
+									<c:if test="${qnaVO.qna_respond_yn eq 'Y'}">
+										<c:if test="${qnaVO.mbr_id eq sessionScope.loginUser}">
+											<tr onclick="qnaDetatil1('${qnaVO.qna_num}')">
+												<td>${qnaVO.qna_num }</td>
+												<td>${qnaVO.qna_title}</td>
+												<td>${qnaVO.mbr_id }</td>
+												<td>${qnaVO.qna_date }</td>
+												<td>${qnaVO.qna_cnt }</td>
+												<td>${qnsVO.qna_content}</td>
+											</tr>
+										</c:if>
+										</c:if>
+									
+									<c:if test="${qnaVO.qna_respone_yn eq 'N'}">
+										<tr onclick="qnaDetatil1('${qnaVO.qna_num}')">
+											<td>${qnaVO.qna_num }</td>
+											<!-- 수정1. -->
+											<td>${qnaVO.qna_title }</td>
+											<td>${qnaVO.mbr_id }</td>
+											<td>${qnaVO.qna_date }</td>
+											<td>${qnaVO.qna_cnt }</td>
+											<td>${qnsVO.qna_content}</td>
+										</tr>
+									</c:if>
+									<!-- //////////////////////////////////////////// -->
+									
+								</c:forEach>
+							</c:otherwise>
+											
+						
+						</c:choose>
+					
+					
+					
+					
+					
+					
+
 					</table>
 					<br>
 					<c:choose>

@@ -213,8 +213,13 @@ $(document).on('click','.writeForm', function(e) {
 				+'</textarea>'
 				+'&nbsp;'
 				+'<button type="button" id="'+result+'" class="btnn btn" '
+<<<<<<< HEAD
 	            + 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
 	            + '<i class="fa fa-exchange"></i>수정 </button>'
+=======
+				+ 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
+				+ '<i class="fa fa-exchange"></i>수정 </button>'
+>>>>>>> refs/heads/kch
 			);
     	}
     });

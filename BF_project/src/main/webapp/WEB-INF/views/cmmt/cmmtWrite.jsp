@@ -94,30 +94,35 @@
 							id="comment" style="width: 50%; height: 300px;"></textarea>
 					</div>
 
-					<div class="file_input">
-						<label> <i class="fa fa-photo"></i>&nbsp;사진첨부 <input
-							type="file" name="file"
-							onchange="javascript:document.getElementById('file_route').value=this.value">
-						</label> <input type="text" readonly="readonly" title="File Route"
-							id="file_route">
-					</div>
-
-				</form>
-			</div>
-
-
-			<button type="button" id="writeBtn" class="btn" onclick="goList()"
-				style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
-				<i class="fa fa-sign-in"></i>&nbsp;<b style="font-size: 14px"></b>등록
-			</button>
-
-
-			<button type="button" class="btn" onclick="location.href='cmmtList'"
-				style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
-				<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size: 14px"></b>
-				목록
-			</button>
-
+				
+				 	<div class="file_input" >
+						<label>
+						<i class="fa fa-photo"></i>&nbsp;사진첨부
+						     <input type="file" name="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+						</label>
+						<input type="text" readonly="readonly" title="File Route" id="file_route">
+						
+					</div> 
+									
+			</form>
+		</div>
+		
+				
+				<button type="button" id="writeBtn" class="btn" onclick="goList()"
+				style="padding:8px; background-color:gray;
+				border:1px solid gray; border-radius:6px; color:white;">
+				<i class="fa fa-sign-in"></i>&nbsp;<b style="font-size:14px"></b>등록
+				</button>
+				
+					
+			<button type="button" class="btn" 
+				onclick="location.href='cmmtList'"
+				style="padding:8px; background-color:gray;
+				border:1px solid gray; border-radius:6px; color:white;">
+				<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px"></b>
+				목록</button>	
+				
+		
 
 		</div>
 	</div>

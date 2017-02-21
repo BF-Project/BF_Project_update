@@ -89,9 +89,11 @@
 	<bean id="touristServiceImpl" class="com.pro.bf.serviceImpl.TouristServiceImpl">
 		<property name="touristDAO" ref="touristDAOImpl"/>
 	</bean>
+	
 	<bean id="shopServiceImpl" class="com.pro.bf.serviceImpl.ShopServiceImpl">
 		<property name="shopDAO" ref="shopDAOImpl"/>
 	</bean>
 	<bean id="calculateScoreImpl" class="com.pro.bf.serviceImpl.CalculateScoreImpl"/>
-		
+
+
 </beans>

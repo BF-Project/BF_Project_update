@@ -50,13 +50,17 @@ td, th {
 				} else {
 					alert('비밀글입니다.');
 				}
+
 			},
 			error : function(error) {
 				alert('error');
 			}
 		})
 	}
-</script>
+
+						
+	</script>
+
 </head>
 <body>
 	<!-- PRELOADER -->
@@ -97,6 +101,7 @@ td, th {
 										There are no registered Q&A.</td>
 								</tr>
 							</c:when>
+							
 							<c:otherwise>
 								<c:forEach items="${qnaList}" var="qnaVO">
 									<!-- //////////////////////////////////////////// -->
@@ -132,9 +137,15 @@ td, th {
 										</tr>
 									</c:if>
 									<!-- //////////////////////////////////////////// -->
+									
 								</c:forEach>
 							</c:otherwise>
+												
 						</c:choose>
+						
+					
+						
+						
 					</table>
 
 					<div id="paging">${paging }</div>

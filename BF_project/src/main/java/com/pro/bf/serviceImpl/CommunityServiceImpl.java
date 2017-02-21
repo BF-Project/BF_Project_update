@@ -19,49 +19,51 @@ import com.pro.bf.service.CommunityService;
 public class CommunityServiceImpl implements CommunityService{
 
 	@Autowired
-	CommunityDaoImpl cmmtDaoImpl;
-
+	CommunityDaoImpl cmmtDAO;
+	public void setCmmtDaoImpl(CommunityDaoImpl cmmtDAO) {
+		this.cmmtDAO = cmmtDAO;
+	}
+	
 	static int view_rows = 10; // 페이지의 개수
 	static int counts = 10; // 한 페이지에 나타낼 게시글 개수
 	
-	public void setCmmtDaoImpl(CommunityDaoImpl cmmtDaoImpl) {
-		this.cmmtDaoImpl = cmmtDaoImpl;
-	}
+	
 
 	@Override
 	public ArrayList<CommunityVO> getCmmtList(int tpage,String search) throws SQLException {
-		ArrayList<CommunityVO> cmmtList=cmmtDaoImpl.listAllCmmt(tpage,search);
+		ArrayList<CommunityVO> cmmtList=cmmtDAO.listAllCmmt(tpage,search);
 		return cmmtList;
 	}
 
 		
 	@Override
 	public CommunityVO getCmmtDetail(String cmmt_num) throws SQLException {
-		CommunityVO cmmtVO=cmmtDaoImpl.getCmmt(Integer.parseInt(cmmt_num));
+		CommunityVO cmmtVO=cmmtDAO.getCmmt(Integer.parseInt(cmmt_num));
+		
 		return cmmtVO;
 	}
 
 	@Override
 	public void insertCmmt(CommunityVO cmmtVO) throws SQLException {
-		cmmtDaoImpl.insertCmmt(cmmtVO);
+		cmmtDAO.insertCmmt(cmmtVO);
 	}
 
 	@Override
 	public int updateCmmt(CommunityVO cmmtVO) throws SQLException {
-		int result=cmmtDaoImpl.updateCmmt(cmmtVO);
+		int result=cmmtDAO.updateCmmt(cmmtVO);
 		return result;
 	}
 
 	@Override
 	public void countCmmt(int cmmt_num) throws SQLException {
-		cmmtDaoImpl.countCmmt(cmmt_num);
+		cmmtDAO.countCmmt(cmmt_num);
 	}
 
 	@Override
 	public String pageNumber(int tpage,String search) throws SQLException {
 		String str="";
 		int page_count =0;
-		int total_pages=cmmtDaoImpl.totalCmmt(search);
+		int total_pages=cmmtDAO.totalCmmt(search);
 		page_count = total_pages / counts + 1;
 		
 		if(total_pages % counts == 0) {
@@ -122,7 +124,7 @@ public class CommunityServiceImpl implements CommunityService{
 	public ArrayList<CommunityVO> getCmmtList(String mbr_id,String admin_id) throws SQLException {
 		ArrayList<CommunityVO> cmmtList = null;
 		try {
-			cmmtList = cmmtDaoImpl.getCmmtList(mbr_id,admin_id);
+			cmmtList = cmmtDAO.getCmmtList(mbr_id,admin_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -132,7 +134,7 @@ public class CommunityServiceImpl implements CommunityService{
 	public CommunityVO getCmmtVO(int cmmt_num) throws SQLException {
 		CommunityVO cmmtVO = new CommunityVO();
 		try {
-			cmmtVO = cmmtDaoImpl.getCmmtVO(cmmt_num);
+			cmmtVO = cmmtDAO.getCmmtVO(cmmt_num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -142,7 +144,7 @@ public class CommunityServiceImpl implements CommunityService{
 
 	@Override
 	public void deleteCmmt(int cmmt_num) throws SQLException {
-		cmmtDaoImpl.deleteCmmt(cmmt_num);
+		cmmtDAO.deleteCmmt(cmmt_num);
 		
 	}
 
@@ -156,14 +158,14 @@ public class CommunityServiceImpl implements CommunityService{
 		int startRow = -1;
 		int endRow = -1;
 		
-		int totalRecord = cmmtDaoImpl.totalCmmt(search);
+		int totalRecord = cmmtDAO.totalCmmt(search);
 		
 		startRow = (tpage - 1) * counts ; //10
 		endRow = startRow + counts - 1; // 19
 		if (endRow > totalRecord) // 19>16
 			endRow = totalRecord; // 16
 		
-		ArrayList<CommunityVO> cmmtList=cmmtDaoImpl.listAllCmmt(tpage, search);
+		ArrayList<CommunityVO> cmmtList=cmmtDAO.listAllCmmt(tpage, search);
 		return cmmtList;
 		
 		
@@ -172,7 +174,7 @@ public class CommunityServiceImpl implements CommunityService{
 	//파일 다운로드
 	@Override
 	public String cmmtFileNameSearch(int cmmt_num) throws SQLException {
-		String fileName=cmmtDaoImpl.cmmtFileNameSearch(cmmt_num);
+		String fileName=cmmtDAO.cmmtFileNameSearch(cmmt_num);
 		return fileName;
 	}
 
