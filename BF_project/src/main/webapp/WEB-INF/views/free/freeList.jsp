@@ -28,7 +28,7 @@
 }
 
 #writeBtn {
-	margin-left: 65%;
+	margin-left: 72%;
 }
 
 td, th {
@@ -111,7 +111,6 @@ td, th {
 				</select>  -->
 					<!-- <input type="text" id="keyWord" name="keyWord">
 				 -->
-					<div style="margin-left: 48%;">${paging }</div>
 				</div>
 			</form>
 			<center>

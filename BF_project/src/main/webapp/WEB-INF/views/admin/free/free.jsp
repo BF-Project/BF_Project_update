@@ -10,6 +10,6 @@
 <title></title>
 </head>
 <body>
-
+<h1>관리자 자유게시판 페이지입니다.</h1>
 </body>
 </html>

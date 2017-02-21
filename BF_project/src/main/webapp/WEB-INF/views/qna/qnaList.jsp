@@ -18,45 +18,45 @@
 </script>
 
 <style>
- 	#writeBtn {
-		margin-left : 65%;
-	}
-	
-	#paging {
-		margin-left : 48%;
-	}
-	
-	td, th {
-		text-align : center;
-	}
-	
-	#qnaList {
-		margin : auto;
-		width : 85%;
-	}
+#writeBtn {
+	margin-left: 72%;
+}
+
+#paging {
+	margin-left: 48%;
+}
+
+td, th {
+	text-align: center;
+}
+
+#qnaList {
+	margin: auto;
+	width: 85%;
+}
 </style>
-	<script>
+<script>
 		function qnaDetatil(qnanum){
 			$.ajax({
 				url : "<%=request.getContextPath()%>/qna/qnaViewBeforYN",
-				type : "post",
-				dataType : "text",
-				data : ({
-					qna_num : qnanum
-				}),
-				success:function(data){
-					if(data=='yes'){
-						location.href='qnaView?qna_num='+qnanum;
-					}else{
-						alert('비밀글입니다.');
-					}
-				},
-				error:function(error){
-					alert('error');
+			type : "post",
+			dataType : "text",
+			data : ({
+				qna_num : qnanum
+			}),
+			success : function(data) {
+				if (data == 'yes') {
+					location.href = 'qnaView?qna_num=' + qnanum;
+				} else {
+					alert('비밀글입니다.');
 				}
-			})
-		}
-	</script>
+			},
+			error : function(error) {
+				alert('error');
+			}
+		})
+	}
+</script>
 </head>
 <body>
 	<!-- PRELOADER -->
@@ -104,7 +104,7 @@
 										<c:if test="${qnaVO.mbr_id eq sessionScope.loginUser}">
 											<tr onclick="qnaDetatil('${qnaVO.qna_num}')">
 												<td>${qnaVO.qna_num }</td>
-												<td>${qnaVO.qna_title} (비밀글)</td>
+												<td>${qnaVO.qna_title}(비밀글)</td>
 												<td>${qnaVO.mbr_id }</td>
 												<td>${qnaVO.qna_date }</td>
 												<td>${qnaVO.qna_cnt }</td>
@@ -113,7 +113,8 @@
 										<c:if test="${!(qnaVO.mbr_id eq sessionScope.loginUser)}">
 											<tr onclick="qnaDetatil('${qnaVO.qna_num}')">
 												<td>${qnaVO.qna_num }</td>
-												<td><b style="color:red"><ins>${qnaVO.qna_title} (비밀글)</ins></b></td>
+												<td><b style="color: red"><ins>${qnaVO.qna_title}
+															(비밀글)</ins></b></td>
 												<td>${qnaVO.mbr_id }</td>
 												<td>${qnaVO.qna_date }</td>
 												<td>${qnaVO.qna_cnt }</td>
@@ -136,30 +137,29 @@
 						</c:choose>
 					</table>
 
-					<div id="paging">
-						${paging }                 
-					</div>
-					
+					<div id="paging">${paging }</div>
+
 				</div>
-		</form>
-	
-	<!-- 검색 -->
-			<center>
-			<div id="searchsearch" style="margin-left: 40px">
-			<form method="post" action="search">
-			<input type="text" id="search" name="search" value="TitleSearch" style="font-size: 16px;" 
-				onFocus="if (this.value == 'TitleSearch') this.value = '';" onBlur="if (this.value == '') this.value = 'TitleSearch';" />
-				
 			</form>
-			</div>
-		</center>
-					<button type="button" id="writeBtn" class="btn" onclick="gowrite(this.form)" 
-						style="padding:8px; background-color:gray;
-							border:1px solid gray; border-radius:6px; color:white;">
-							<i class="fa fa-pencil-square-o"></i>&nbsp;
-							<b style="font-size:14px"></b>글작성
-					</button>
-					
+
+			<!-- 검색 -->
+			<center>
+				<div id="searchsearch" style="margin-left: 40px">
+					<form method="post" action="search">
+						<input type="text" id="search" name="search" value="TitleSearch"
+							style="font-size: 16px;"
+							onFocus="if (this.value == 'TitleSearch') this.value = '';"
+							onBlur="if (this.value == '') this.value = 'TitleSearch';" />
+
+					</form>
+				</div>
+			</center>
+			<button type="button" id="writeBtn" class="btn"
+				onclick="gowrite(this.form)"
+				style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
+				<i class="fa fa-pencil-square-o"></i>&nbsp; <b
+					style="font-size: 14px"></b>글작성
+			</button>
 		</div>
 	</div>
 </body>

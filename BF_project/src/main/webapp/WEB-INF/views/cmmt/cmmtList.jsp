@@ -14,51 +14,50 @@
 
 	function cmmtDetatil(cmmtnum){
 	
-		location.href="<%=request.getContextPath()%>/cmmt/cmmtView?cmmt_num="+cmmtnum;
-		
+		location.href="<%=request.getContextPath()%>/cmmt/cmmtView?cmmt_num="
+				+ cmmtnum;
+
 	}
 </script>
 
 <style>
- 	#writeBtn {
-		margin-left : 65%;
-		
-	}
-	
-	#paging {
-		margin-left : 48%;
-	}
-			
-	#cmmtList {
-		margin : auto;
-		width : 70%;
-	}
-	
-	/*추가 */
-	#cmmtcmtDetailView {
-		margin: auto;
-		width: 85%;
-	}
-	
-	th{
-		font-size: 20px;
-		width:130px;
-		text-align : center;
-	}
-	
-	td{
-		font-size: 14px;
-		text-align : center;
-	}
-		
-	a{
-		color:#999;
-	}
-		
-	.table>tbody>#hoverId:hover{ 
- 		background-color: #e8e8e8; 
- 	} 
-				
+#writeBtn {
+	margin-left: 72%;
+}
+
+#paging {
+	margin-left: 48%;
+}
+
+#cmmtList {
+	margin: auto;
+	width: 70%;
+}
+
+/*추가 */
+#cmmtcmtDetailView {
+	margin: auto;
+	width: 85%;
+}
+
+th {
+	font-size: 20px;
+	width: 130px;
+	text-align: center;
+}
+
+td {
+	font-size: 14px;
+	text-align: center;
+}
+
+a {
+	color: #999;
+}
+
+.table>tbody>#hoverId:hover {
+	background-color: #e8e8e8;
+}
 </style>
 </head>
 <body>
@@ -80,10 +79,10 @@
 					</h2>
 				</div>
 			</section>
-			
+
 			<!-- //BREADCRUMBS -->
 			<br>
-			<form name="form1" method="post" >
+			<form name="form1" method="post">
 				<div class="container">
 					<table class="table table-hover" id="cmmtcmtDetailView">
 						<tr style="font-size: 20px">
@@ -101,46 +100,49 @@
 										There are no registered Q&A.</td>
 								</tr>
 							</c:when>
-					
+
 							<c:otherwise>
 								<c:forEach items="${cmmtList}" var="cmmtVO">
-										<!-- 수정1. -->
-										<tr onclick="cmmtDetatil('${cmmtVO.cmmt_num}')">
+									<!-- 수정1. -->
+									<tr onclick="cmmtDetatil('${cmmtVO.cmmt_num}')">
 										<td>${cmmtVO.cmmt_num}</td>
 										<td>${cmmtVO.cmmt_title }</td>
 										<td>${cmmtVO.mbr_id }</td>
 										<td>${cmmtVO.cmmt_date }</td>
 										<td>${cmmtVO.cmmt_cnt }</td>
 									</tr>
-									
+
 								</c:forEach>
 							</c:otherwise>
 
 						</c:choose>
-					
+
 					</table>
 
 					<div id="paging">${paging}</div>
-		
+
 				</div>
 			</form>
-					
+
 			<!-- 검색 -->
 			<center>
-			<div id="searchsearch" style="margin-left: 40px">
-			<form method="post" action="search">
-			<input type="text" id="search" name="search" value="TitleSearch" style="font-size: 16px;" 
-				onFocus="if (this.value == 'TitleSearch') this.value = '';" onBlur="if (this.value == '') this.value = 'TitleSearch';" />
-			
-			</form>
-		</div>
-	</center>
-			<button type="button" id="writeBtn" class="btn" onclick="gowrite(this.form)" style="padding:8px; background-color:gray;
-							border:1px solid gray; border-radius:6px; color:white;">
-							<i class="fa fa-pencil-square-o"></i>&nbsp;
-							<b style="font-size:14px"></b>글작성
-							</button>
-	
+				<div id="searchsearch" style="margin-left: 40px">
+					<form method="post" action="search">
+						<input type="text" id="search" name="search" value="TitleSearch"
+							style="font-size: 16px;"
+							onFocus="if (this.value == 'TitleSearch') this.value = '';"
+							onBlur="if (this.value == '') this.value = 'TitleSearch';" />
+
+					</form>
+				</div>
+			</center>
+			<button type="button" id="writeBtn" class="btn"
+				onclick="gowrite(this.form)"
+				style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
+				<i class="fa fa-pencil-square-o"></i>&nbsp; <b
+					style="font-size: 14px"></b>글작성
+			</button>
+
 		</div>
 	</div>
 </body>

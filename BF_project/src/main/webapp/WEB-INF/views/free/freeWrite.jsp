@@ -23,7 +23,7 @@
 	}
 	
 	#writeBtn {
-		margin-left: 36.3%;
+		margin-left: 39.2%;
 	}
 	
 		.file_input label {
@@ -95,12 +95,13 @@
 						<textarea class="form-control" rows="5" name="fre_content" id="comment" style="width: 50%; height: 300px;"></textarea>
 					</div>
 	
-					<div class="file_input" >
-						<label>
-						<i class="fa fa-photo"></i>&nbsp;사진첨부
-						<input type="file" name="file" >
-						</label>
-					</div>		
+					<div class="file_input">
+						<label> <i class="fa fa-photo"></i>&nbsp;사진첨부 <input
+							type="file" name="file"
+							onchange="javascript:document.getElementById('file_route').value=this.value">
+						</label> <input type="text" readonly="readonly" title="File Route"
+							id="file_route">
+					</div>
 	
 				</form>
 			</div>

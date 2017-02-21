@@ -19,7 +19,7 @@ public class FreeServiceImpl implements FreeService {
 	}
 
 	static int view_rows = 10; // 페이지의 개수
-	static int counts = 10; // 한 페이지에 나타낼 게시글 개수
+	static int counts = 15; // 한 페이지에 나타낼 게시글 개수
 
 	@Override
 	public ArrayList<FreeVO> freeList(String mbr_id) throws SQLException {

@@ -30,7 +30,7 @@ public class CmmtCmtController {
 	@Autowired
 	CmmtCmtServiceImpl cmmtcmtServiceImpl;
 		
-	@RequestMapping(value = "/cmmtcmtList", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/cmmtcmtList")
 	@ResponseBody
 	public List<CmmtCmtVO> cmmtcmtList(@RequestBody Map<String, Object> jsonMap,
 			Model model, HttpServletResponse response) {

@@ -38,7 +38,6 @@ public class CommunityServiceImpl implements CommunityService{
 	@Override
 	public CommunityVO getCmmtDetail(String cmmt_num) throws SQLException {
 		CommunityVO cmmtVO=cmmtDaoImpl.getCmmt(Integer.parseInt(cmmt_num));
-		
 		return cmmtVO;
 	}
 

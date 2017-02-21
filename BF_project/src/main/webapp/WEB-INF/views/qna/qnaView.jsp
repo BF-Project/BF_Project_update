@@ -31,11 +31,11 @@
 
 #mod, del, list {
 	
-	margin-left : 58%;
+	margin-left : 69.2%;
 }
 
 #list2 {
-	margin-left : 500px;
+	margin-left : 80%;
 }
 th{
 	font-size:16.5px;
@@ -69,13 +69,11 @@ td{
 
 			<form name="formm" method="post" action="qnaView">
 				<div class="container" style="height: 700px">
-					<table class="table table-hover" id="qnaView1">
+					<table class="table" id="qnaView1">
 						<tr>
 							<th><i class="fa fa-folder-open-o"/>글번호</th>
 							<td>${qnaVO.qna_num}</td>
-													
 						</tr>
-						
 						
 						<tr>
 							<th>
@@ -107,22 +105,20 @@ td{
 							<th><i class="fa fa-image"/>사진첨부</th>
 						<td>
 							<img src="<%=request.getContextPath() %>/resources/upload/${qnaVO.qna_pict_afat}" width="200px">
-							
-							 <a href="<%=request.getContextPath()%>/qnaphotoDownload/${qnaVO.qna_num}">
-						 <b style="color:#6495ed">파일 다운로드</b>
-						 </a>
+							<a href="<%=request.getContextPath()%>/qnaphotoDownload/${qnaVO.qna_num}">
+							<b style="color:#6495ed">파일 다운로드</b>
+							</a>
 						</td>
 						
 						</tr>
 						</c:if>
 						
-						
 						<tr>
 						<th>답변내용</th>
 						<td></td>
 					</tr>
-					
 					</table>
+					<br>
 					<c:choose>
 					<c:when test="${qnaVO.mbr_id==sessionScope.loginUser }">
 						
@@ -158,14 +154,9 @@ td{
 								style="padding:8px; background-color: gray; border: 1px solid gray; 
 									border-radius: 6px; color:white;">
 								 <i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
-								 </button>
-								
-							
+						</button>
 					</c:otherwise>
-				
 				</c:choose>
-					
-					
 				</div>
 				<br>
 			</form>
