@@ -14,6 +14,7 @@
 </script>
 
 <style>
+<<<<<<< HEAD
 #gobtn1 {
 	margin-left: 40.3%;
 }
@@ -72,6 +73,7 @@
 	border: 0px;
 	/* 		    border:1px solid #777; */
 }
+
 </style>
 
 </head>
@@ -98,60 +100,65 @@
 			</section>
 			<!-- //BREADCRUMBS -->
 
-			<center>
-				<div class="container">
-					<form name="form2" method="post" id="cmmtUpdate"
-						action="cmmtUpdateForm" enctype="multipart/form-data">
+	
+	<center>		
+			<div class="container">
+				<form name="form2" method="post" id="cmmtUpdate"action="cmmtUpdateForm"  enctype="multipart/form-data">
+					
+					<input type="text" name="cmmt_num" hidden="hidden" value="${cmmtVO.cmmt_num}">
+					<div class="form-group">
+					<br>
+					<label for="usr" id="titletext1">제목</label><br> 
+					<input type="text"  id="titletext" class="form-control" name="cmmt_title" value="${cmmtVO.cmmt_title}" style="width:20% ;"> 
+					</div>		
+					
+					<div class="form-group">
+					<label id="content1">내용</label><br>
+					<textarea class="form-control" rows="8" cols="65" id="content2" name="cmmt_content" style="width:40%;" >${cmmtVO.cmmt_content}</textarea>
+					</div>		
+				
+				<!--사진수정  -->
+				<div class="form-group">
+				<input type="hidden" class="form-control" name="nofile" value="${cmmtVO.cmmt_pict_afat}">
+				<c:if test="${!empty cmmtVO.cmmt_pict_afat}">
+				<img src="<%=request.getContextPath() %>/upload/${cmmtVO.cmmt_pict_afat}" width="200pt" id="hideimg"> 
+				</c:if>
+		 		</div> 
+		 		
+		
+		 		<div class="file_input" >
+						<label>
+						<i class="fa fa-photo"></i>&nbsp;사진첨부
+						     <input type="file" name="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+						</label>
+						<input type="text" readonly="readonly" title="File Route" id="file_route">
+						
+					</div> 
+		 		
+				</center>		 			
+		
+				<div id="gobtn1">
+		 		<button type="button"class="btn" onclick="goList()" 
+		 		 style="padding:8px; background-color: gray; border: 1px solid gray; 
+				 border-radius: 6px; color:white;">
+				  <i class="fa fa-exchange"></i>&nbsp;<b style="font-size:14px">수정</b>
+		    	</button>
+					
+				<!-- 목록 -->
+				<button type="button" class="btn" onclick="location.href='cmmtList'" 
+					style="padding:8px; background-color: gray; border: 1px solid gray; 
+					border-radius: 6px; color:white;">
+				 <i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
+				 </button>
+				 
+				</div>
+		 	</div>
+		 	
+		</form>
 
-						<input type="text" name="cmmt_num" hidden="hidden"
-							value="${cmmtVO.cmmt_num}">
-						<div class="form-group">
-							<br> <label for="usr" id="titletext1">제목</label><br> <input
-								type="text" id="titletext" class="form-control"
-								name="cmmt_title" value="${cmmtVO.cmmt_title}"
-								style="width: 20%;">
-						</div>
-
-						<div class="form-group">
-							<label id="content1">내용</label><br>
-							<textarea class="form-control" rows="8" cols="65" id="content2"
-								name="cmmt_content" style="width: 32%; height: 300px;">${cmmtVO.cmmt_content}</textarea>
-						</div>
-
-						<!--사진수정  -->
-						<div class="form-group">
-							<input type="hidden" class="form-control" name="nofile"
-								value="${cmmtVO.cmmt_pict_afat}">
-							<c:if test="${!empty cmmtVO.cmmt_pict_afat}">
-								<img
-									src="<%=request.getContextPath() %>/upload/${cmmtVO.cmmt_pict_afat}"
-									width="200pt" id="hideimg">
-							</c:if>
-						</div>
-
-						<div class="file_input">
-							<label> <i class="fa fa-photo"></i>&nbsp;사진첨부 <input
-								type="file" name="file"
-								onchange="javascript:document.getElementById('file_route').value=this.value">
-							</label> <input type="text" readonly="readonly" title="File Route"
-								id="file_route">
-						</div>
-					</form>
-			</center>
 		</div>
 
-		<div id="gobtn1">
-			<button type="button" class="btn" onclick="goList()"
-				style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
-				<i class="fa fa-exchange"></i>&nbsp;<b style="font-size: 14px">수정</b>
-			</button>
-
-			<!-- 목록 -->
-			<button type="button" class="btn" onclick="location.href='cmmtList'"
-				style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
-				<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size: 14px">목록</b>
-			</button>
-		</div>
-	</div>
+		
+	
 	</div>
 </body>

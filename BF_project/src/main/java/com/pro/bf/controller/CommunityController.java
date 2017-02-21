@@ -117,16 +117,18 @@ public class CommunityController {
          return url;
       }
 
-      @RequestMapping(value = "/cmmtWriteForm", method = RequestMethod.POST)
-      public String cmmtWrite(
-            @RequestParam("cmmt_title") String cmmt_title,
-            @RequestParam("cmmt_content") String cmmt_content, 
-            HttpSession session,
-            @RequestParam(value="file",defaultValue="")
-            MultipartFile filefile, HttpServletRequest request,
-            Model model
-            )
-            throws ServletException, IOException, SQLException {
+
+		@RequestMapping(value = "/cmmtWriteForm", method = RequestMethod.POST)
+		public String cmmtWrite(
+				@RequestParam("cmmt_title") String cmmt_title,
+				@RequestParam("cmmt_content") String cmmt_content, 
+				HttpSession session,
+				@RequestParam(value="file",defaultValue="")
+				MultipartFile filefile, HttpServletRequest request,
+				Model model
+				)
+				throws ServletException, IOException, SQLException {
+
 
          String url = "redirect:cmmtList";
 
@@ -138,6 +140,7 @@ public class CommunityController {
          cmmtVO.setCmmt_content(cmmt_content);
          cmmtVO.setMbr_id(loginUser);
          
+
 
          //fileupload
           session=request.getSession();
@@ -157,6 +160,7 @@ public class CommunityController {
          
          return url;
       }
+
 
       @RequestMapping("/update")
       public String cmmtUpdate(String cmmt_num, Model model, HttpServletRequest request)

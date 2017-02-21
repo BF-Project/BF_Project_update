@@ -201,15 +201,18 @@ $(document).on('click','.writeForm', function(e) {
 			cmmtcmtList = jQuery.map(map, function(e){
 				return e;
 			});
-            $('.'+cmmtcmtList).html(
-            	'<textarea id="mm" style="width : 467px;">'
-            	+ aa[0].innerHTML
-            	+'</textarea>'
-            	+'&nbsp;'
-            	+'<button type="button" id="'+result+'" class="btnn btn"'
-                +'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
-                +'<i class="fa fa-exchange"></i>수정 </button>'
-            );
+
+                $('.'+cmmtcmtList).html(
+                	'<textarea id="mm" >'
+                	+ aa[0].innerHTML
+                	+'</textarea>'
+                	+'&nbsp;'
+                	+'<button type="button" id="'+result+'" class="btnn btn" '
+    				+ 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
+    				+ '<i class="fa fa-exchange"></i>수정 </button>'
+                
+                );
+
     	}
     });
 });

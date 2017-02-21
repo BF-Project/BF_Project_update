@@ -272,4 +272,28 @@ public class QnaController {
 			return readYN;
 		}
 	
+	
+	@RequestMapping("qnaViewRespondYN")
+	@ResponseBody // ~~~~~~~~~~~~~~~~~~~~~~
+	public String qnaViewBeforYN1(HttpServletRequest request, HttpSession session) throws NumberFormatException, SQLException{
+			String qna_num = request.getParameter("qna_num");
+			QnAVO qnaVo = qnaServiceImpl.SearchQnaVo(Integer.parseInt(qna_num));
+
+			String respondYN = qnaVo.getQna_respond_yn(); 
+			String writer = qnaVo.getMbr_id(); 
+			String readYN = "yes";
+			
+			if(!(respondYN.equals("N"))){
+			
+				if(writer.equals(session.getAttribute("loginUser"))){
+				
+					readYN = "yes";
+				}else{
+					readYN = "no";
+				}
+			}
+			return readYN;
+		}
+	
+	
 }
