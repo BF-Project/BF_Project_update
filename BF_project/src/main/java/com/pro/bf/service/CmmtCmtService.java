@@ -17,4 +17,6 @@ public interface CmmtCmtService {
 	public List<CmmtCmtVO> cmmtcmtListAn(int cmmtcmt_num) throws SQLException;
 	//댓글수정
 	public void updateCmmtcmt(CmmtCmtVO cmmtcmtVO) throws SQLException;
+//	public void updateCmmtcmt(int cmmtcmt_num) throws SQLException;
+
 }

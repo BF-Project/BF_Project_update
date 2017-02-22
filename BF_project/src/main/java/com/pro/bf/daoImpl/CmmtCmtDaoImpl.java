@@ -44,8 +44,9 @@ public class CmmtCmtDaoImpl implements CmmtCmtDao  {
 	//댓글수정
 	@Override
 	public void updateCmmtcmt(CmmtCmtVO cmmtcmtVO) throws SQLException {
+//		public void updateCmmtcmt(int cmmtcmt_num) throws SQLException {
 		client.update("updateCmmtcmt", cmmtcmtVO);
-		
+		//client.update("updateCmmtcmt", cmmtcmt_num);
 	}
 
 }

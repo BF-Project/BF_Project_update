@@ -31,14 +31,19 @@ $(document).ready(function() {
        type:'post',
        success : function(data){
        	  var loginUser = $('#loginUser').val();
+      
           $.each(data, function(i) {
              if(loginUser == data[i].mbr_id){
+           
              var date = new Date(data[i].cmmtcmt_date);
              var year = date.getFullYear();
              var month = (1 + date.getMonth());
+             
              month = month >= 10 ? month : '0' + month;
+             
              var day = date.getDate();
              day = day >= 10 ? day : '0' + day;
+             
              var fullD = year + '년' + month + '월' + day + '일';
              var cmmtcmtList = '<div id="'
 						+ data[i].cmmtcmt_num   
@@ -60,7 +65,7 @@ $(document).ready(function() {
 						+ data[i].cmmtcmt_num
 						+ '">'
 						+ data[i].cmmtcmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
           } else {
 				var date = new Date(data[i].cmmtcmt_date);
 				var year = date.getFullYear();
@@ -72,7 +77,7 @@ $(document).ready(function() {
 				var cmmtcmtList = '<div id="'
 								+ data[i].cmmtcmt_num   
 								+ '">작성자 : '
-								+ data[i].mbr_id
+								+ data[i].admin_id
 								+ '  /  ' + '작성 날짜 : '
 								+ fullD
 								+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -81,7 +86,7 @@ $(document).ready(function() {
 								+ data[i].cmmtcmt_num
 								+ '">'
 								+ data[i].cmmtcmt_content
-								+'</div></div><br><br>';
+								+'</div></div>';
           }
              $('div#comment').append(cmmtcmtList);
           });          
@@ -137,7 +142,7 @@ function commm_go() {
 						+ data[i].cmmtcmt_num
 						+ '">'
 						+ data[i].cmmtcmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
         	} else {
         		 var date = new Date(data[i].cmmtcmt_date);
                  var year = date.getFullYear();
@@ -149,7 +154,7 @@ function commm_go() {
                  var cmmtcmtList = '<div id="'
      						+ data[i].cmmtcmt_num   
      						+ '">작성자 : '
-     						+ data[i].mbr_id
+     						+ data[i].admin_id
      						+ '  /  ' + '작성 날짜 : '
      						+ fullD
      						+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -158,7 +163,7 @@ function commm_go() {
      						+ data[i].cmmtcmt_num
      						+ '">'
      						+ data[i].cmmtcmt_content
-     						+'</div></div><br><br>';
+     						+'</div></div>';
         	}
             $('div #comment').append(cmmtcmtList);
          });
@@ -177,11 +182,9 @@ $(document).on('click','.delete',function(e){
        data: {"result" : result},
        dataType:'json',
        type:'post',
-       success:function(map1){
-          freeMap = jQuery.map(map1 , function(a){
-             return a;
-          })
-          $('#'+freeMap).remove();
+       success:function(result){
+
+		$('#'+result).remove();
        }
     });
  });
@@ -335,7 +338,7 @@ $(document).on('click','.btnn', function(e) {
 							<td>
 								<div id="comment"></div> 
 								<input type="hidden" value="${cmmtVO.cmmt_num }" id="cmmt_num" name="cmmt_num">
-								<textarea id="cmmtcmt_content" name="cmmtcmt_content" style="width: 467px;"></textarea>
+								<textarea  id="cmmtcmt_content" name="cmmtcmt_content" style="width: 467px;"></textarea>
 
 								<button type="button" id="insertCmmtCmt" class="btn"
 									name="insertCmmtCmt" onclick="commm_go();"
