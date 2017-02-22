@@ -118,6 +118,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/wow-alert.css">
 <script src="<%=request.getContextPath()%>/resources/js/wow-alert.js"></script>
 
+
 <style>
 #logo {
 	vertical-align: middle;

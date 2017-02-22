@@ -93,5 +93,11 @@
 		<property name="shopDAO" ref="shopDAOImpl"/>
 	</bean>
 	<bean id="calculateScoreImpl" class="com.pro.bf.serviceImpl.CalculateScoreImpl"/>
+	<bean id="offlineServiceImpl" class="com.pro.bf.serviceImpl.OfflineServiceImpl">
+		<property name="offlineDAO" ref="offlineDAOImpl"/>
+	</bean>
+	<bean id="onlineServiceImpl" class="com.pro.bf.serviceImpl.OnlineServiceImpl">
+		<property name="onlineDAO" ref="OnlineDAOImpl"/>
+	</bean>
 		
 </beans>

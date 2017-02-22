@@ -18,5 +18,4 @@ public class AddrVO {
 	private int addr_zip_code; // 각 지역에 매긴 번호 
 	private String addr_bunji; // 번지
 	
-	
 }
