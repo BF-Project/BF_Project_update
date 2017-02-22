@@ -64,7 +64,7 @@ $(document).ready(function() {
 						+ data[i].cmt_num
 						+ '">'
 						+ data[i].cmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
         	 } else {
         		 var date = new Date(data[i].cmt_date);
                  var year = date.getFullYear();
@@ -76,7 +76,7 @@ $(document).ready(function() {
                  var cmtList = '<div id="'
     						+ data[i].cmt_num   
     						+ '">작성자 : '
-    						+ data[i].mbr_id
+    						+ data[i].admin_id
     						+ '  /  ' + '작성 날짜 : '
     						+ fullD
     						+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -85,7 +85,7 @@ $(document).ready(function() {
     						+ data[i].cmt_num
     						+ '">'
     						+ data[i].cmt_content
-    						+'</div></div><br><br>';
+    						+'</div></div>';
         	 }
              $('div#comment').append(cmtList);
           });          
@@ -141,7 +141,7 @@ function commm_go() {
 						+ data[i].cmt_num
 						+ '">'
 						+ data[i].cmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
         	} else {
         		 var date = new Date(data[i].cmt_date);
                  var year = date.getFullYear();
@@ -153,7 +153,7 @@ function commm_go() {
                  var cmtList = '<div id="'
      						+ data[i].cmt_num   
      						+ '">작성자 : '
-     						+ data[i].mbr_id
+     						+ data[i].admin_id
      						+ '  /  ' + '작성 날짜 : '
      						+ fullD
      						+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -162,7 +162,7 @@ function commm_go() {
      						+ data[i].cmt_num
      						+ '">'
      						+ data[i].cmt_content
-     						+'</div></div><br><br>';
+     						+'</div></div>';
         	}
             $('div #comment').append(cmtList);
          });
@@ -183,11 +183,9 @@ $(document).on('click','.delete',function(e){
 			},
 			dataType : 'json',
 			type : 'post',
-			success : function(map) {
-				cmtList = jQuery.map(map, function(a) {
-					return a;
-				});
-				$('#' + cmtList).remove();
+			success : function(cmtNum) {
+		
+				$('#' + cmtNum).remove();
 			}
 	});
 });
@@ -213,13 +211,11 @@ $(document).on('click','.writeForm', function(e) {
 				+'</textarea>'
 				+'&nbsp;'
 				+'<button type="button" id="'+result+'" class="btnn btn" '
-<<<<<<< HEAD
+
 	            + 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
 	            + '<i class="fa fa-exchange"></i>수정 </button>'
-=======
-				+ 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
-				+ '<i class="fa fa-exchange"></i>수정 </button>'
->>>>>>> refs/heads/kch
+
+			
 			);
     	}
     });
