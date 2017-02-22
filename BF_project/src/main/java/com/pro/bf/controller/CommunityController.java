@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pro.bf.dto.CommunityVO;
+import com.pro.bf.dto.MbrVO;
 import com.pro.bf.serviceImpl.CommunityServiceImpl;
+import com.pro.bf.serviceImpl.MbrServiceImpl;
 
 @Controller
 @RequestMapping(value="/cmmt")
@@ -28,7 +30,7 @@ public class CommunityController {
    //@Autowired설정
    @Autowired(required=false)
    CommunityServiceImpl cmmtServiceImpl;
-
+ 
    //set설정
    public void setCmmtServiceImpl(CommunityServiceImpl cmmtServiceImpl) {
       this.cmmtServiceImpl = cmmtServiceImpl;
@@ -257,9 +259,9 @@ public class CommunityController {
          request.setAttribute("paging", paging);
          return "/cmmt/cmmtList";
       }
-
-   
-
+ 	
+      
+      
 }
       
       

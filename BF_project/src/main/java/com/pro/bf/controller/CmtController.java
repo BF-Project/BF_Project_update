@@ -65,50 +65,27 @@ public class CmtController {
 		}
 		return cmtList;
 	}
-	
-/*	@RequestMapping(value="/cmtDelete",method=RequestMethod.POST)
-	@ResponseBody
-	public Map<String,Object> cmtDelete(Model model ,HttpServletRequest request){
-		//result가져온다
-		int cmtnum=Integer.parseInt(request.getParameter("result"));
-		System.out.println(cmtnum);
-		Map <String,Object> map1=new HashMap();
-		
-		List<CmtVO>listlist=null;
-		
-		try {
-			listlist=CmtServiceImpl.cmtListAn(cmtnum);
-			CmtServiceImpl.deleteCmt(cmtnum);
-			map1.put("listlist", listlist);
-			map1.put("cmtnum", cmtnum);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return map1;
-	}*/
 
 	@RequestMapping(value = "/cmtDelete", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> cmtDelete(Model model, HttpServletRequest request) {
+//	public Map<String, Object> cmtDelete(Model model, HttpServletRequest request) {
+	public int cmtDelete(Model model, HttpServletRequest request) {
+	
 		int cmtNum = Integer.parseInt(request.getParameter("result"));
-		System.out.println(cmtNum);
-		Map<String, Object> map = new HashMap();
+	//	Map<String, Object> map = new HashMap();
 
 		List<CmtVO> cmtList = null;
 
 		try {
-			cmtList = CmtServiceImpl.cmtAllList(cmtNum);
+	//		cmtList = CmtServiceImpl.cmtAllList(cmtNum);
 			CmtServiceImpl.deleteCmt(cmtNum);
-			map.put("cmtList", cmtList);
-			map.put("cmtNum", cmtNum);
+	//		map.put("cmtList", cmtList);
+	//		map.put("cmtNum", cmtNum);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return map;
+		return cmtNum;
 	}
 	
 	@RequestMapping(value = "/cmtWriteForm", method = RequestMethod.POST)
