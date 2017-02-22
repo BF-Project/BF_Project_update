@@ -16,7 +16,7 @@
 	</select>
  -->
 	<select id="cmtAllList" parameterClass="int" resultClass="cmt">
-		select * from cmt where fre_num=#fre_num# order by cmt_num asc
+		select * from cmt where fre_num=#fre_num# order by cmt_num desc
 	</select>
 
 	<insert id="insertCmt" parameterClass="cmt">
