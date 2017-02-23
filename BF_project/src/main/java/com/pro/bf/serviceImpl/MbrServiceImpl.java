@@ -42,13 +42,6 @@ public class MbrServiceImpl implements MbrService {
 		this.cmmtDAO = cmmtDAO;
 	}
 
-	@Autowired
-	private MbrDao mbrDAO;
-
-	public void setMbrDAO(MbrDao mbrDAO) {
-		this.mbrDAO = mbrDAO;
-	}
-
 	@Override
 	public void insertMember(MbrVO mbrVo) throws SQLException { // 회원가입
 		mbrDao.insertMember(mbrVo);

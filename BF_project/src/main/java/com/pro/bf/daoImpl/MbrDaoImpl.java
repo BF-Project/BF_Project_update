@@ -120,11 +120,12 @@ public class MbrDaoImpl implements MbrDao{
 		// 관리자가 수정할 수 있는 회원의 정보는  pw | name | phone | email | address  5개만  | id는 key값으로 사용
 		client.update("MemberUpdate",mbrvo);
 	}
-
+	
 	@Override
 	public String memberListCount() throws SQLException { // 회원들중 사용가능자 Y의 전체 수
 		int memberUseYCount = (int)client.queryForObject("memberUseYCount");
 		return memberUseYCount+"";
 	}
+
 
 }

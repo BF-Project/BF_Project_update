@@ -54,7 +54,8 @@
 			<div class="container" style="height:700px">
 				<table class="table" id="noticeDetailView">
 					<tr>
-						<th><i class="fa fa-folder-open-o"></i>&nbsp;&nbsp;글번호</th>
+						<th><i class="fa fa-folder-open-o"></i>
+						&nbsp;&nbsp;글번호</th>
 						<td style="width:590px">${noticeVo.notice_num}</td>
 						<th><i class="fa fa-eye-slash"></i>&nbsp;&nbsp;조회수</th>
 						<td>${noticeVo.notice_cnt}</td>
@@ -81,9 +82,11 @@
 									<img src="<%=request.getContextPath()%>/upload/${noticeVo.notice_pict_afat}" title="원본 크기로 보시려면 클릭하세요." style="width:200px; height:160px;"> 
 								</a>
 								&nbsp;&nbsp;
+								
 								<a href="<%=request.getContextPath()%>/photoDownLoad/${noticeVo.notice_num}">
 							    	<b style="color:#6495ed">파일 다운로드</b>
 							    </a>
+							
 							</td>
 							<!-- 이미지 클릭시 원본 크기로 보게하기위한 div -->
 							<div id="spot" style="visibility: hidden; position:absolute; bottom:14%; left:31%">

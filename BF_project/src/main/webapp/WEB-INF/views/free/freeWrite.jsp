@@ -9,11 +9,6 @@
 <meta charset="UTF-8">
 <title></title>
 
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
 <script>
 	function goList() {
 		document.free.action = "freeWriteForm";
@@ -28,8 +23,41 @@
 	}
 	
 	#writeBtn {
-		margin-left: 39.3%;
+		margin-left: 39.2%;
 	}
+	
+		.file_input label {
+		    display: inline-block; 
+ 			padding: .5em .75em; 
+ 			color: #1E82FF; 
+ 			font-size: inherit; 
+ 			line-height: normal; 
+ 			vertical-align: middle; 
+ 			background-color: #fdfdfd; 
+ 			cursor: pointer; 
+ 			border: 1px solid #1E82FF; 
+ 			border-bottom-color: #1E82FF; 
+ 			border-radius: .25em; 
+		}
+		.file_input label input {
+		    position:absolute;
+		    width:0;
+		    height:0;
+		    overflow:hidden;
+		}
+		.file_input input[type=text] {
+		    vertical-align:middle;
+		    display:inline-block;
+		    width:200px;
+		    height:26px;
+		    line-height:28px;
+		    font-size:15px;
+/* 		    color:#fdfdfd; */
+/* 		    padding:0; */
+ 		    border:0px; 
+/* 		    border:1px solid #777; */
+		}	
+	
 </style>
 
 </head>
@@ -42,7 +70,7 @@
 
 	<!-- //PRELOADER -->
 	<div class="preloader_hide">
-		<div class="qnaHeader">
+		<div class="freeHeader">
 
 			<!-- BREADCRUMBS -->
 			<section class="breadcrumbs_block clearfix parallax">
@@ -57,7 +85,7 @@
 			<!-- //BREADCRUMBS -->
 			<br>
 			<div class="container">
-				<form name="free" method="post" action="freeWriteForm" id="write">
+				<form name="free" method="post" action="freeWriteForm" id="write" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="usr">Title</label> 
 						<input type="text" name="fre_title" class="form-control" id="usr" style="width: 30%;">
@@ -66,14 +94,30 @@
 						<label for="comment">Comment</label>
 						<textarea class="form-control" rows="5" name="fre_content" id="comment" style="width: 50%; height: 300px;"></textarea>
 					</div>
+	
+					<div class="file_input">
+						<label> <i class="fa fa-photo"></i>&nbsp;사진첨부 <input
+							type="file" name="file"
+							onchange="javascript:document.getElementById('file_route').value=this.value">
+						</label> <input type="text" readonly="readonly" title="File Route"
+							id="file_route">
+					</div>
+	
 				</form>
 			</div>
 			<button type="button" id="writeBtn" class="btn" onclick="goList()"
-				style="background-color: black;">등록</button>
+				style="padding:8px; background-color:gray;
+				border:1px solid gray; border-radius:6px; color:white;">
+				<i class="fa fa-sign-in"></i>&nbsp;<b style="font-size:14px"></b>등록
+			</button>
 			
 			<button type="button" class="btn"
 				onclick="location.href='freeList'"
-				style="background-color: black;">목록</button>
+				style="padding:8px; background-color:gray;
+				border:1px solid gray; border-radius:6px; color:white;">
+				<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px"></b>
+			목록
+			</button>	
 		</div>
 	</div>
 </body>

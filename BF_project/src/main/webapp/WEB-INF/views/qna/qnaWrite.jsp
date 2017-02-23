@@ -3,18 +3,11 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
 <head>
-<meta charset="UTF-8">
-<title></title>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <!-- checkbox를 꾸미기 위함 -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+
 
 <script>
 	function goList() {
@@ -30,7 +23,7 @@
 }
 
 #writeBtn {
-	margin-left: 1100px;
+	margin-left: 39.2%;
 }
 
 
@@ -78,16 +71,50 @@
  	border-color: #000000; /* 검정 */
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1); }
 
+/*사진css*/
+.file_input label {
+		    display: inline-block; 
+ 			padding: .5em .75em; 
+ 			color: #1E82FF; 
+ 			font-size: inherit; 
+ 			line-height: normal; 
+ 			vertical-align: middle; 
+ 			background-color: #fdfdfd; 
+ 			cursor: pointer; 
+ 			border: 1px solid #1E82FF; 
+ 			border-bottom-color: #1E82FF; 
+ 			border-radius: .25em; 
+		}
+		.file_input label input {
+		    position:absolute;
+		    width:0;
+		    height:0;
+		    overflow:hidden;
+		}
+		.file_input input[type=text] {
+		    vertical-align:middle;
+		    display:inline-block;
+		    width:200px;
+		    height:26px;
+		    line-height:28px;
+		    font-size:15px;
+/* 		    color:#fdfdfd; */
+/* 		    padding:0; */
+ 		    border:0px; 
+/* 		    border:1px solid #777; */
+		}	
+	
+
 </style>
 
 </head>
 <body>
+	
 	<!-- PRELOADER -->
-	<img id="preloader"
+		<img id="preloader"
 		src="<%=request.getContextPath()%>/resources/images/preloader.gif"
 		alt="" />
-	<!-- 로딩 이미지 -->
-
+	
 	<!-- //PRELOADER -->
 	<div class="preloader_hide">
 		<div class="qnaHeader">
@@ -99,16 +126,15 @@
 						<b>Q & A</b> 고객 게시판
 					</h2>
 					<br> <br>
-					<p>'Q & A 게시판' 페이지 입니다.</p>
 				</div>
 			</section>
+
 			<!-- //BREADCRUMBS -->
 			<br>
 			<div class="container">
 				<form name="form2" method="post" action="qnaWriteForm" id="write" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="usr">Title</label> 
-															
 						<input type="text" name="qna_title" class="form-control" id="usr" style="width: 30%;">
 					</div>
 								
@@ -121,18 +147,29 @@
 					<input type="checkbox" id="agree-all" name="qnasecrit" value="Y"/>비밀글
 					<label for="agree-all"></label>
 				</div>
-								
+						
+					<div class="file_input" >
+						<label>
+						<i class="fa fa-photo"></i>&nbsp;사진첨부
+						<input type="file" name="file" >
+						</label>
+					</div>
 				</form>
 			</div>
-				
-						
+									
 			<button type="button" id="writeBtn" class="btn" onclick="goList()"
-				style="color: white; background-color: black;">등록</button>
+				style="padding:8px; background-color:gray;
+				border:1px solid gray; border-radius:6px; color:white;">
+				<i class="fa fa-sign-in"></i>&nbsp;<b style="font-size:14px"></b>등록
+			</button>
+			
 			<button type="button" class="btn"
 				onclick="location.href='qnaList'"
-				style="color: white; background-color: black;">목록</button>
+				style="padding:8px; background-color:gray;
+				border:1px solid gray; border-radius:6px; color:white;">
+				<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px"></b>
+				목록</button>
 		</div>
 	</div>
-
 </body>
 </html>

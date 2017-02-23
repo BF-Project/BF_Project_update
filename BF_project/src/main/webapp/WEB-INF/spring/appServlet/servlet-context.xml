@@ -67,11 +67,4 @@
 		</interceptor>
 	</interceptors>
 
-	<!-- chat을 할때 loginUser session값을 WebSocketHandler에 전달하기 위한 interceptor -->	
-	<websocket:handlers>
-		<websocket:mapping path="/chat**" handler="chatWebSocketHandler" /> 
-		<websocket:handshake-interceptors>
-			<beans:bean class="com.pro.bf.interceptor.HandshakeInterceptor" />
-		</websocket:handshake-interceptors>		
-	</websocket:handlers>
 </beans:beans>

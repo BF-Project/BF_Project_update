@@ -86,13 +86,16 @@
 				style="padding:8px; position:relative; z-index:100">
 					<i class="fa fa-times spaceLeft"></i>&nbsp;<b style="font-size:14px">취소</b>
 				</button>
+				
 				<!-- MultipartFile 사용하여 파일 업로드 -->
 				<div class="file_input" style="margin-left: -325px; margin-top: -36px">
 				    <label>
 				        <i class="fa fa-photo"></i>&nbsp;사진첨부
 				        <input type="file" name="fileUpload" onchange="javascript:document.getElementById('file_route').value=this.value">
 				    </label>
+
 				    <input type="text" readonly="readonly" title="File Route" id="file_route">
+
 				</div>
 				<input type="hidden" id="page" name="page" value="${page}">
 			</form>

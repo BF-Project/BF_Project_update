@@ -40,8 +40,8 @@
     
     <!-- Morris Charts JavaScript -->
     <script src="<%=request.getContextPath()%>/resources/admin/js/plugins/raphael.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/admin/js/plugins/morris.min.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/admin/js/plugins/morris-data.js"></script>
+<%--     <script src="<%=request.getContextPath()%>/resources/admin/js/plugins/morris.min.js"></script> --%> <!-- chart -->
+<%--     <script src="<%=request.getContextPath()%>/resources/admin/js/plugins/morris-data.js"></script> --%> <!-- chart -->
     
     <!-- alert창 꾸미기 -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/wow-alert.css">
@@ -49,12 +49,113 @@
     
     <!-- 실시간 1:1 메시지 -->
     <script>
-    	function adminAdvice(){
-    		var url = '<%=request.getContextPath()%>/admin/chat'
-			window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=550, height=600, top=200, left=1200");
+    	var messageListCount = 0;
+    	var strArray = "";
+    	var pupupWin;
+    	var pupupArray = new Array();
+    	
+    	function adminAdvice(roomId){
+    		var url = '<%=request.getContextPath()%>/admin/chat?roomId='+roomId+'&userName='+$('.messageUser').prop("id");
+    		pupupWin = window.open(url, roomId, "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=480, height=620, top=200, left=1200"); // 이 팝업창의 이름은 roomId == strArray[0]
+    		pupupArray.push(pupupWin)
+//     		alert("현재 팝업 배열에 저장된 리스트 : " + pupupArray);
     	}
+    	
+    	$(function(){
+    		$('#insertMessage').on("click", ".messageBtn",function(){
+				adminAdvice($(this).prop("id"));
+// 				alert($(this).prop("id"));
+// 				alert($('.messageUser').prop("id"));
+					$(this).remove();
+					messageListCount -= 1;
+					if(messageListCount >= 1){
+						$("#messageOnView").css('visibility', 'visible');
+					}else{
+						$("#messageOnView").css('visibility', 'hidden');
+					}
+// 					alert(messageListCount);
+			});
+    		
+    		var wsocket2 = new WebSocket("ws:/"+document.domain+":8181${pageContext.request.contextPath}/pushMessage");
+			wsocket2.onopen = function(){
+// 				alert("푸쉬 메시지 핸들러 연결");
+			};
+// 			wsocket2.onerror = function(){
+// 				alert("error  " + JSON.stringify(arguments));
+// 			};
+// 			wsocket2.onclose = function(){
+// 				alert("close  " + JSON.stringify(arguments));
+// 			};
+			wsocket2.onmessage = function onMessage(evt){
+				var data = evt.data;
+// 				alert("상담 요청 들어왔습니다.");
+				
+				var string = data; // data는 회원의 roomId와 owner를 받아온다.
+				strArray = string.split(','); // strArray[0] ==> 해당 방번호  strArray[1] ==> 방주인
+				
+				var now = new Date();
+				var nowTime = now.getFullYear()+"년 "+(now.getMonth()+1)+"월 "+now.getDate()+"일 "+now.getHours()+"시 "+now.getMinutes()+"분 "; // +now.getSeconds()+"초" 
+
+				var obj;
+				var nObjCount = pupupArray.length;
+				var begin = 'no';
+				for(var i=0; i<nObjCount; i++){
+					obj = pupupArray[i]
+					if(strArray[0] == obj.name){
+						// 있다는 건데
+						begin = 'yes';
+// 						alert(strArray[0]+'========='+obj.name);
+					}
+				}
+				
+				if(begin != 'yes'){
+					var html= " ";
+						html+='	<li class="message-preview">                                                       	 ';          
+						html+='		<a href="#" class="messageBtn" id="'+strArray[0]+'">                             ';          
+						html+='			<div class="media">                                                          ';          
+						html+='				<span class="pull-left">                                                 ';          
+						html+='					<img class="media-object" src="http://placehold.it/50x50" alt="">    ';          
+						html+='				</span>                                                                  ';          
+						html+='				<div class="media-body">                                                 ';          
+						html+='					<h5 class="media-heading">                                           ';          
+						html+='						<strong class="messageUser" id="'+strArray[1]+'">'+strArray[1]+'님의 실시간 상담요청</strong>            		 ';          
+						html+='					</h5>                                                                ';          
+						html+='					<p class="small text-muted">                                         ';          
+						html+='						<i class="fa fa-clock-o">                                        ';          
+						html+='						</i>'+nowTime+'                                        			 ';          
+						html+='				</div>                                                                   ';          
+						html+='			</div>                                                                       ';          
+						html+='		</a>                                                                             ';          
+						html+='	</li>                                                                            	 ';
+						
+					$('#insertMessage').append(html);
+					messageListCount += 1;
+					if(messageListCount >= 1){
+						$("#messageOnView").css('visibility', 'visible');
+					}else{
+						$("#messageOnView").css('visibility', 'hidden');
+					}
+// 					alert(messageListCount);
+				}
+				
+			};
+   		});
     </script>
-    
+
+	<style>
+		#messageOnView{
+			-webkit-animation: blink 2.5s linear infinite
+		}
+		
+		@-webkit-keyframes blink {
+		    0% {background-color: red;}
+		    33% {background-color: yellow;}
+		    66% {background-color: blue;}
+		    100% {background-color: green;}
+		/*    from { background-color: red;}
+		    to {background-color: green;}  */
+		}
+	</style>
     <decorator:head />
     
 <title>'성공하는 사람들' 관리자 화면</title>
@@ -68,129 +169,26 @@
 			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Administrator screen</a>
 		</div>
+		
 		<!-- 상단메뉴 -->
+		
 		<ul class="nav navbar-right top-nav" style="margin-top: 10px; margin-bottom: 15px;">
-			
-			<!-- message 확인용 -->
-				<a href="#" onclick="adminAdvice()" class="dropdown-toggle"	data-toggle="dropdown" style="position:absolute; margin-right: 1000px; margin-top: 80px">
-					<i class="fa fa-envelope"></i>
-					<b class="caret"></b>
-				</a>
-			<!-- message 확인용 -->
-			
+			<li class="dropdwon" style="margin-top: 14px">
+				<span class="label label-danger" style="position:relative; margin-left: 1000px; padding:5px; visibility:hidden" id="messageOnView"> <!-- visible -->
+					<i class="fa fa-bell"></i>&nbsp;메시지를 확인하세요.
+				</span>
+			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
 					<i class="fa fa-envelope"></i>
 					<b class="caret"></b>
 				</a>
-				<ul class="dropdown-menu message-dropdown">
-					<li class="message-preview">
-						<a href="#">
-							<div class="media">
-								<span class="pull-left">
-									<img class="media-object" src="http://placehold.it/50x50" alt="">
-								</span>
-								<div class="media-body">
-									<h5 class="media-heading">
-										<strong>John Smith</strong>
-									</h5>
-									<p class="small text-muted">
-										<i class="fa fa-clock-o">
-										</i> Yesterday at 4:32 PM
-									</p>
-									<p>Lorem ipsum dolor sit amet, consectetur...</p>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li class="message-preview">
-						<a href="#">
-							<div class="media">
-								<span class="pull-left">
-									<img class="media-object" src="http://placehold.it/50x50" alt="">
-								</span>
-								<div class="media-body">
-									<h5 class="media-heading">
-										<strong>John Smith</strong>
-									</h5>
-									<p class="small text-muted">
-										<i class="fa fa-clock-o">
-										</i> Yesterday at 4:32 PM
-									</p>
-									<p>Lorem ipsum dolor sit amet, consectetur...</p>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li class="message-preview">
-						<a href="#">
-							<div class="media">
-								<span class="pull-left"> 
-									<img class="media-object" src="http://placehold.it/50x50" alt="">
-								</span>
-								<div class="media-body">
-									<h5 class="media-heading">
-										<strong>John Smith</strong>
-									</h5>
-									<p class="small text-muted">
-										<i class="fa fa-clock-o">
-										</i> Yesterday at 4:32 PM
-									</p>
-									<p>Lorem ipsum dolor sit amet, consectetur...</p>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li class="message-footer">
-						<a href="#">Read All New Messages</a>
-					</li>
+				<ul class="dropdown-menu message-dropdown" id="insertMessage">
+					<!-- messge가 오면 li로 리스트가 만들어지는 공간 -->
+					<!-- messge가 오면 li로 리스트가 만들어지는 공간 -->
 				</ul>
 			</li>
 			
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
-					<i class="fa fa-bell">
-					</i>
-					<b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu alert-dropdown">
-					<li>
-						<a href="#">Alert Name
-							<span class="label label-default">Alert Badge</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">Alert Name
-							<span class="label label-primary">Alert Badge</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">Alert Name
-							<span class="label label-success">Alert Badge</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">Alert Name
-							<span class="label label-info">Alert Badge</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">Alert Name
-							<span class="label label-warning">Alert Badge</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">Alert Name
-							<span class="label label-danger">Alert Badge</span>
-						</a>
-					</li>
-					<li class="divider">
-					</li>
-					<li>
-						<a href="#">View All</a>
-					</li>
-				</ul>
-			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
 					<i class="fa fa-user"> </i>
@@ -225,8 +223,8 @@
 						<i class="fa fa-fw fa-table"></i> 게시판 X<i class="fa fa-fw fa-caret-down"></i>
 					</a>
 					<ul id="demo" class="collapse">
-						<li><a href="#"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/free"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/free"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/cmmt"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
 						<li><a href="#"><i class="fa fa-tag"></i>&nbsp;&nbsp;Q & A 게시판</a></li>
 					</ul>
 				</li>

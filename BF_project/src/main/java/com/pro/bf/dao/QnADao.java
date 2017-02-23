@@ -19,9 +19,14 @@ public interface QnADao {
 	
 	public int countQna(QnAVO qnaVO) throws SQLException; // 조회수
 
+	
 	public int totalQna(String search) throws SQLException;//검색
 
 	public void deleteQna(int qna_num)throws SQLException;//delete
 
 	QnAVO SearchQnaVo(int qna_num) throws SQLException;//비밀글
+	
+	//파일 다운로드 하기위한 String fileName 메소드 추가
+	String qnaFileNameSearch(int qna_num)throws SQLException;
 }
+

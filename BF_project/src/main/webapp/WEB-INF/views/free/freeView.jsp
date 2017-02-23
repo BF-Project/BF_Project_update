@@ -9,14 +9,6 @@
 <meta charset="UTF-8">
 <title></title>
 
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
 <script>
    function goUpdate(fre_num) {
       document.free.action = "update";
@@ -44,8 +36,8 @@ $(document).ready(function() {
        success : function(data){
     	  var loginUser = $('#loginUser').val();
           $.each(data, function(i) {
-        	 if(loginUser == data[i].mbr_id){
              var date = new Date(data[i].cmt_date);
+        	 if(loginUser == data[i].mbr_id){
              var year = date.getFullYear();
              var month = (1 + date.getMonth());
              month = month >= 10 ? month : '0' + month;
@@ -72,7 +64,7 @@ $(document).ready(function() {
 						+ data[i].cmt_num
 						+ '">'
 						+ data[i].cmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
         	 } else {
         		 var date = new Date(data[i].cmt_date);
                  var year = date.getFullYear();
@@ -84,28 +76,28 @@ $(document).ready(function() {
                  var cmtList = '<div id="'
     						+ data[i].cmt_num   
     						+ '">작성자 : '
-    						+ data[i].mbr_id
+    						+ data[i].admin_id
     						+ '  /  ' + '작성 날짜 : '
     						+ fullD
-    						+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+    						+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
     						+'&nbsp;&nbsp;'
     						+ '<div class="'
     						+ data[i].cmt_num
     						+ '">'
     						+ data[i].cmt_content
-    						+'</div></div><br><br>';
+    						+'</div></div>';
         	 }
              $('div#comment').append(cmtList);
           });          
        },
        error:function(error){
-       alert(error);   
+		   alert(error);   
        }
     });
 });
 
 function commm_go() {
-   var fre_num = $('#fre_num').val();
+    var fre_num = $('#fre_num').val();
     var cmt_content = $('#cmt_content').val();
     var dataWrite = {
        'fre_num' : fre_num,
@@ -149,7 +141,7 @@ function commm_go() {
 						+ data[i].cmt_num
 						+ '">'
 						+ data[i].cmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
         	} else {
         		 var date = new Date(data[i].cmt_date);
                  var year = date.getFullYear();
@@ -161,7 +153,7 @@ function commm_go() {
                  var cmtList = '<div id="'
      						+ data[i].cmt_num   
      						+ '">작성자 : '
-     						+ data[i].mbr_id
+     						+ data[i].admin_id
      						+ '  /  ' + '작성 날짜 : '
      						+ fullD
      						+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -170,7 +162,7 @@ function commm_go() {
      						+ data[i].cmt_num
      						+ '">'
      						+ data[i].cmt_content
-     						+'</div></div><br><br>';
+     						+'</div></div>';
         	}
             $('div #comment').append(cmtList);
          });
@@ -191,11 +183,9 @@ $(document).on('click','.delete',function(e){
 			},
 			dataType : 'json',
 			type : 'post',
-			success : function(map) {
-				cmtList = jQuery.map(map, function(a) {
-					return a;
-				});
-				$('#' + cmtList).remove();
+			success : function(cmtNum) {
+		
+				$('#' + cmtNum).remove();
 			}
 	});
 });
@@ -220,7 +210,11 @@ $(document).on('click','.writeForm', function(e) {
 				+ aa[0].innerHTML
 				+'</textarea>'
 				+'&nbsp;'
-				+'<button type="button" id="'+result+'" class="btnn btn" style="background-color:black;">수정</button>'
+				+'<button type="button" id="'+result+'" class="btnn btn" '
+
+	            + 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
+	            + '<i class="fa fa-exchange"></i>수정 </button>'
+			
 			);
     	}
     });
@@ -253,7 +247,7 @@ $(document).on('click','.btnn', function(e) {
 }
 
 #mod, del, list {
-	margin-left: 58%;
+	margin-left: 61.2%;
 }
 
 #cmt_content {
@@ -277,46 +271,77 @@ $(document).on('click','.btnn', function(e) {
 			<section class="breadcrumbs_block clearfix parallax">
 				<div class="container center">
 					<h2>
-						<b>FREE</b> BOARD
+						<b>자유</b> 게시판
 					</h2>
-					<br> <br>
-					<p>'자유게시판' 페이지 입니다.</p>
+						<p>'자유게시판' 페이지 입니다.</p>
 				</div>
 			</section>
 			<!-- //BREADCRUMBS -->
 			<br>
 			<form name="free" method="post" action="freeView">
 				<div class="container">
-					<table class="table table-hover" id="freeView">
+					<table class="table" id="freeView">
 						<tr>
-							<th>제목</th>
+							<th><i class="fa fa-folder-open-o"/>글번호</th>
+							<td>${freeVO.fre_num }</td>
+						</tr>
+						
+						<tr>
+							<th><i class="fa fa-edit spaceLeft">제목</th>
 							<td>${freeVO.fre_title }</td>
 						</tr>
 
 						<tr>
-							<th>내용</th>
+							<th><i class="fa fa-eye-slash"/>조회수</th>
+							<td>${freeVO.fre_cnt }</td>
+						</tr>
+						
+						<tr>
+							<th><i class="fa fa-edit spaceLeft"/>내용</th>
 							<td>${freeVO.fre_content }</td>
 						</tr>
 
 						<tr>
-							<th>작성자</th>
+							<th><i class="fa fa-user"/>작성자</th>
 							<td>${freeVO.mbr_id }</td>
 						</tr>
 
 						<tr>
-							<th>게시날짜</th>
+							<th><i class="fa fa-clock-o"/>게시날짜</th>
 							<td>${freeVO.fre_date }</td>
 						</tr>
 
+						<c:if test="${!empty freeVO.fre_pict_afat}">
 						<tr>
-							<th>댓글</th>
+						<th><i class="fa fa-image"/>사진첨부</th>
+						<td>
+						<img src="<%=request.getContextPath() %>/resources/upload/${freeVO.fre_pict_afat}" width="200px"> 
+						
+						<%-- <a href="<%=request.getContextPath()%>/cmmtphotoDownload/${cmmtVO.cmmt_num}">  
+						<b style="color:#6495ed">파일다운로드</b></a>
+						 --%>
+						 
+						 <a href="<%=request.getContextPath()%>/freephotoDownload/${freeVO.fre_num}">
+						 <b style="color:#6495ed">파일 다운로드</b>
+						 </a>
+							
+						</td>
+					
+						</tr>
+						</c:if>
+
+						<tr>
+							<th><i class="fa fa-link"/>댓글</th>
 							<td>
 								<div id="comment"></div> <input type="hidden"
 								value="${freeVO.fre_num }" id="fre_num" name="fre_num">
 								<textarea id="cmt_content" name="cmt_content"></textarea>
 								<button type="button" id="insertCmt" class="btn"
 									name="insertCmt" onclick="commm_go();"
-									style="background-color: black;">등록</button>
+									style="padding:8px; background-color: gray; border: 1px solid gray; 
+									border-radius: 6px; color:white;">
+									<i class="fa fa-sign-in"></i>&nbsp;<b style="font-size:14px">등록</b>
+								</button>
 							</td>
 						</tr>
 					</table>
@@ -327,34 +352,44 @@ $(document).on('click','.btnn', function(e) {
 						<!-- 수정  -->
 						<button type="button" id="mod" class="btn"
 							onclick="goUpdate('${freeVO.fre_num}')"
-							style="background-color: black;">수정</button>
+					 		style="padding:8px; background-color: gray; border: 1px solid gray; 
+				 		 	border-radius: 6px; color:white;">
+				  		<i class="fa fa-exchange"></i>&nbsp;<b style="font-size:14px">수정</b>
+		    			</button>
+						
 						<!-- 삭제  -->
 						<button type="button" id="del" class="btn"
-							onclick="goDelete('${freeVO.fre_num}')"
-							style="background-color: black;">삭제</button>
+							 onclick="goDelete('${freeVO.fre_num}')"
+							 style="padding:8px; background-color: gray; border: 1px solid gray; 
+							 border-radius: 6px; color:white;">
+							 <i class="fa fa-cut"></i>&nbsp;<b style="font-size:14px">삭제</b>
+					   </button>
+						
 						<!-- 목록 -->
 						<button type="button" id="list" class="btn"
 							onclick="location.href='freeList'"
-							style="background-color: black;">목록</button>
-							<br><br>
-					</c:when>
+							style="padding:8px; background-color: gray; border: 1px solid gray; 
+							border-radius: 6px; color:white;">
+							<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
+						</button>
+						</c:when>
 
 					<c:otherwise>
 						<button type="button" id="list2" class="btn"
-							onclick="location.href='freeList'"
-							style="background-color: black; margin-left:67%;">목록</button>
-							<br><br>
+								onclick="location.href='freeList'"
+							    style="padding:8px; background-color: gray; border: 1px solid gray; 
+								border-radius: 6px; color:white; margin-left:68%;">
+								<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
+						</button>
+
 					</c:otherwise>
 				</c:choose>
 
 				<input type="hidden" value="${loginUser }" id="loginUser">
-
-
-
 			</form>
 		</div>
 	</div>
-
+	<br>
 
 </body>
 </html>
