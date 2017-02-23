@@ -97,6 +97,7 @@ $(document).ready(function() {
     });
 });
 
+/*  */
 function commm_go() {
     var fre_num = $('#fre_num').val();
     var cmt_content = $('#cmt_content').val();
@@ -174,6 +175,7 @@ function commm_go() {
    });
 }
 
+/* 자유게시판 댓글 삭제 */
 $(document).on('click','.delete',function(e){
     e.preventDefault();
     var result = $(this).attr('id');
@@ -191,6 +193,7 @@ $(document).on('click','.delete',function(e){
 	});
 });
 
+/* 자유게시판 댓글 등록 */
 $(document).on('click','.writeForm', function(e) {
 	e.preventDefault();
     var result = $(this).attr('id');
