@@ -31,6 +31,7 @@
 	
 	<script>
 		var wsocket;
+		var outCount = 0;
 		
 		// 1:1 상담창이 로드되자마자 실행됨 | 접속
 		(function() {
@@ -93,16 +94,27 @@
 			$('#exitBtn').click(function(){disconnect();}); // 닫기 
 		});
 		
-		// 닫기
+		// 닫기 관리자
 		function disconnect(){
+			outCount = 1;
+			$(function(){
+				send();
+			})
 			wsocket.close();
 		}
 		
 		// 메시지 보내기
 		function send(){
-			var nickname = $('#nickname').val();
-			var msg = $('#message').val();
-			var msgObj = {};
+			if(outCount==1){
+				var nickname = $('#nickname').val();
+				var msg = "채팅방에서 나가셨습니다.";
+				var msgObj = {};
+			}else{
+				var nickname = $('#nickname').val();
+				var msg = $('#message').val();
+				var msgObj = {};
+			}
+			outCount = 0 ; // 값 초기화
 			msgObj.message = msg;
 			msgObj.nickname = nickname;
 			var roomId = "${room.roomId}";
