@@ -159,7 +159,7 @@
 			    	}
 			    },
 			    error:function(error){
-			    	alert('error');
+			    	alert('선택한 게시글이 없습니다.');
 			    }
 		    })
 		}
@@ -197,6 +197,11 @@
 				<br><br>        
 				<h1><b>Q & A 리스트</b></h1>
 				<br>
+					<div style="position:absolute; left:240px; top:90px; text-align:left; line-height:30px;">
+						<span style="font-size: 25px;"><b><i class="fa fa-star"></i>&nbsp;바로가기</b></span><br>
+						<a href="<%=request.getContextPath()%>/admin/FreeList" style="font-size:17px;">&nbsp;<i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a><br>
+						<a href="<%=request.getContextPath()%>/admin/CommunityList" style="font-size:17px;">&nbsp;<i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a>						
+					</div>
 				<div class="table-responsive">
 				
 				<!-- list -->
@@ -217,7 +222,7 @@
 							<th style="text-align:center; width:110px">조회수</th>
 							<th style="text-align:center; width:110px">답변여부</th>
 						</tr>					
-					<thead>
+					</thead>
 						<c:choose>
 							<c:when test="${qnaListSize<=0}">
 								<tbody>

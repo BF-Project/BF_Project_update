@@ -178,8 +178,96 @@ public class CommunityServiceImpl implements CommunityService{
 		return fileName;
 	}
 
+	///////////////////////////////////////////////////////////////////////////////////////////
 	
+	static int counts2 = 15; // 한 페이지에 나타낼 게시글 개수
+	static int view_rows2 = 5; // 페이지의 개수
+	
+	@Override
+	public ArrayList<CommunityVO> communityList(int page, String search, String selectCombo) throws SQLException {
+		if(search.equals("")){ // 검색어가 없을경우
+			search = "%";
+		}
+		
+		int startRow = -1; 
+		int endRow = -1; 
+		int totalRecord = totalRecord(search, selectCombo); // 커뮤니티게시글 전체 개수 | selectCombo --> 선택한 것으로
+		
+		startRow = (page-1) * counts2; 
+		endRow = startRow + counts2 - 1;  
+		if(endRow > totalRecord)
+			endRow = totalRecord;
+				
+		ArrayList<CommunityVO> communityList = null;
+		if(selectCombo.equals("first")){ // 초기값
+			communityList = cmmtDAO.communityListForFirst(search, startRow, counts2); // Title로 검색한다.
+		}else if(selectCombo.equals("ID")){
+			communityList = cmmtDAO.communityListForIDIDID(search, startRow, counts2); // mbr_id로 검색한다.
+		}
+		
+		return communityList;
+	}
 
+	public int totalRecord(String search, String selectCombo) throws SQLException{
+		int total_pages = 0; // 개수 초기값
+		if(selectCombo.equals("first")){ // first ==> 초기값
+			total_pages = cmmtDAO.totalCommunityList(search); // 제목으로 찾으나..order by는 num으로 
+		}else if(selectCombo.equals("ID")){
+			total_pages = cmmtDAO.communityListforID(search);
+		}
+		return total_pages;
+	}
+
+	@Override
+	public String pageNumber2(int page, String search, String currentPage, String selectCombo) throws SQLException {
+		String str = "";
+		int total_pages = totalRecord(search, selectCombo); // 커뮤니티 전체 개수
+		int page_count = total_pages / counts2 + 1; // 페이지 개수
+		
+		if(total_pages % counts2 == 0){
+			page_count--;
+		}
+		if(page < 1){
+			page = 1;
+		}
+		int start_page = page - (page % view_rows2) + 1;
+		for(int i=page_count; i>=1; i--){
+			if(page % 5 == 0){
+				int a = page / 5;
+				if(a==1){
+					start_page = 1;
+				}else{
+					start_page = a + (4*(a-1));
+				}
+			}
+		}
+		int end_page = start_page + (view_rows2 - 1);
+		
+		if(end_page > page_count){
+			end_page = page_count;
+		}
+		
+		if(start_page > view_rows2){
+			str += "<a href='"+currentPage+"?page=1&search="+search+"&comboSelectCommunity="+selectCombo+"'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='"+currentPage+"?page="+(start_page-1)+"&search=" + search + "&comboSelectCommunity="+selectCombo+"'>&lt;</a>&nbsp;&nbsp;";			
+		}
+		
+		for(int i = start_page; i<=end_page; i++){
+			if(i==page){
+				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
+			}else{
+				str += "<a href='"+currentPage+"?page="+i+"&search="+search+"&comboSelectCommunity="+selectCombo+"'>["+i+"]</a>&nbsp;&nbsp;";
+			}
+		}
+		if(page_count > end_page){
+			str += "<a href='"+currentPage+"?page="+(end_page+1)+"&search=" + search + "&comboSelectCommunity="+selectCombo+"'>&gt;</a>&nbsp;&nbsp;";
+			str += "<a href='"+currentPage+"?page="+page_count+"&search="+search+"&comboSelectCommunity="+selectCombo+"'>&gt;&gt; </a>&nbsp;&nbsp;";
+		}
+		return str;
+	}
+	
+	
+	
 	
 		
 }
