@@ -27,8 +27,6 @@ public class CmtDaoImpl implements CmtDao {
 	public void intsertCmt(CmtVO cmtVO) throws SQLException {
 		client.insert("insertCmt", cmtVO);
 	}
-
-
 	
 	@Override
 	public void updateCmt(CmtVO cmtVO) throws SQLException {

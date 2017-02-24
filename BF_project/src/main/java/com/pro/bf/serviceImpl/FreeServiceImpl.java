@@ -19,7 +19,7 @@ public class FreeServiceImpl implements FreeService {
 	}
 
 	static int view_rows = 10; // 페이지의 개수
-	static int counts = 10; // 한 페이지에 나타낼 게시글 개수
+	static int counts = 15; // 한 페이지에 나타낼 게시글 개수
 
 	@Override
 	public ArrayList<FreeVO> freeList(String mbr_id) throws SQLException {
@@ -65,17 +65,22 @@ public class FreeServiceImpl implements FreeService {
 		}else{
 			total_pages = freeDaoImpl.freSearch(classify).size();
 		}
-		int page_count = total_pages / counts + 1;
+		int page_count = total_pages / counts;
 
-		if (total_pages % counts == 0) {
-			page_count--;
+		if (total_pages % counts != 0) {
+			page_count++;
 		}
-
+		
+		/*int page = tpage;
+		if(tpage % view_rows == 0) {
+			page--;
+		}*/
+		
 		if (tpage < 1) {
 			tpage = 1;
 		}
 
-		int start_page = tpage - (tpage % view_rows) + 1;
+		int start_page = tpage - (tpage % view_rows) +1;
 		int end_page = start_page + (counts - 1);
 
 		if (end_page > page_count) {
@@ -91,16 +96,13 @@ public class FreeServiceImpl implements FreeService {
 			if (i == tpage) {
 				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
 			} else {
-				str += "<a href='freeList?tpage=" + i + "'>[" + i
-						+ "]</a>&nbsp;&nbsp;";
+				str += "<a href='freeList?tpage=" + i + "'>[" + i + "]</a>&nbsp;&nbsp;";
 			}
 		}
 
 		if (page_count > end_page) {
-			str += "<a href='freeList?tpage=" + (end_page + 1)
-					+ "'> &gt; </a>&nbsp;&nbsp;";
-			str += "<a href='freeList?tpage=" + page_count
-					+ "'> &gt; &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='freeList?tpage=" + (end_page + 1) + "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='freeList?tpage=" + page_count + "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 
 		return str;

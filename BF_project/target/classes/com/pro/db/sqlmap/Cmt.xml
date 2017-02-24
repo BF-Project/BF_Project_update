@@ -10,14 +10,13 @@
 
 	<!-- Query 문 작성란 -->
 
-	<select id="cmtList" parameterClass="int" resultClass="cmt">
+	<!-- <select id="cmtList" parameterClass="int" resultClass="cmt">
 		select *
-		from cmt where fre_num=#fre_num# order by cmt_num desc
-		</select>
-
+		from cmt where fre_num=#fre_num# order by cmt_num asc
+	</select>
+ -->
 	<select id="cmtAllList" parameterClass="int" resultClass="cmt">
-		select * from cmt where fre_num=#fre_num# order by cmt_num desc
-
+		select * from cmt where fre_num=#fre_num# order by cmt_num asc
 	</select>
 
 	<insert id="insertCmt" parameterClass="cmt">

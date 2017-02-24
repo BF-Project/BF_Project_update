@@ -28,7 +28,7 @@
 }
 
 #writeBtn {
-	margin-left: 65%;
+	margin-left: 72%;
 }
 
 td, th {
@@ -73,7 +73,7 @@ td, th {
 							<th>게시날짜</th>
 							<th>조회수</th>
 						</tr>
-
+    
 						<c:choose>
 							<c:when test="${freeListSize<=0 }">
 								<tr>
@@ -101,14 +101,20 @@ td, th {
 						
 					</table>
 					<br>
-					<div style="margin-left: 48%;">${paging }</div>
 
-				
-
+					<center>
+						<div>${paging }</div>
+					</center>
+					<!-- <select name="keyField" id="combo">
+					<option value="fre_title">제목</option>
+					<option value="mbr_id">작성자</option>
+				</select>  -->
+					<!-- <input type="text" id="keyWord" name="keyWord">
+				 -->
 				</div>
 			</form>
 			<center>
-				<div id="searchsearch">
+				<div id="searchsearch"> 
 					<form action="freeSearch" method="post">
 						<input type="text" id="keyWord" name="keyWord" value="Search"
 							style="font-size: 16px;"
@@ -118,12 +124,14 @@ td, th {
 					</form>
 				</div>
 			</center>
+
 				<button type="button" id="writeBtn" class="btn" onclick="gowrite()"
 					style="padding:8px; background-color:gray;
 					border:1px solid gray; border-radius:6px; color:white;">
 					<i class="fa fa-pencil-square-o"></i>&nbsp;
 					<b style="font-size:14px"></b>글작성
 				</button>
+
 		</div>
 	</div>
 

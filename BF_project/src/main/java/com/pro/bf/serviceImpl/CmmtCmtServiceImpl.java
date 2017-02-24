@@ -56,7 +56,9 @@ public class CmmtCmtServiceImpl implements CmmtCmtService {
 	//댓글수정
 	@Override
 	public void updateCmmtcmt(CmmtCmtVO cmmtcmtVO) throws SQLException {
-		cmmtcmtDAOImpl.updateCmmtcmt(cmmtcmtVO);
+	//public void updateCmmtcmt(int cmmtcmt_num) throws SQLException {
+	cmmtcmtDAOImpl.updateCmmtcmt(cmmtcmtVO);
+	//cmmtcmtDAOImpl.updateCmmtcmt(cmmtcmt_num);
 	}
 
 

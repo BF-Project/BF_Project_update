@@ -23,7 +23,7 @@
 }
 
 #writeBtn {
-	margin-left: 40.9%;
+	margin-left: 39.2%;
 }
 
 
@@ -153,8 +153,7 @@
 						<i class="fa fa-photo"></i>&nbsp;사진첨부
 						<input type="file" name="file" >
 						</label>
-					</div>	
-						
+					</div>
 				</form>
 			</div>
 									
@@ -172,6 +171,5 @@
 				목록</button>
 		</div>
 	</div>
-
 </body>
 </html>

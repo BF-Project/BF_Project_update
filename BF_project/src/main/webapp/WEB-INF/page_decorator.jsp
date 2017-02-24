@@ -546,7 +546,11 @@ select {
 								<!-- c 태그 사용해서 회원 로그인 일때 / 아닐때 -->
 								<c:choose>
 									<c:when test="${!empty sessionScope.loginUser}">
+								
 										<li><a href="#" style="font-size: 14px">내 정보</a></li>
+										<%-- <li><a href="<%=request.getContextPath()%>/mypage/mypageView" style="font-size: 14px">내 정보</a></li> --%>
+									
+									
 									</c:when>
 									<c:otherwise>
 										<li><a href="<%=request.getContextPath()%>/join/joinForm" style="font-size: 14px">회원가입</a></li>

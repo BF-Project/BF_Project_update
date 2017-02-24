@@ -6,75 +6,74 @@
 <head>
 
 <script>
-function goList() {
-	document.form2.action = "cmmtUpdateForm";
-	document.form2.method = "post";
-	document.form2.submit();
-}
+	function goList() {
+		document.form2.action = "cmmtUpdateForm";
+		document.form2.method = "post";
+		document.form2.submit();
+	}
 </script>
 
 <style>
- 	#gobtn1{ 
- 		margin-left: 37.5%; 
-	
- 	}
-	
-	#titletext{
-		margin-right: 135px;
-	}
-	
-	#titletext1{
-		margin-right: 341px;
-	}
-	#content1{
-		margin-right: 320px;
-	
-	}
-	#content2{
-		margin-left: 100px;
-	
-	}
-	#hideimg{
-		margin-right: 165px;
-		
-	}
-	#file{
-		margin-right: 120px;
-	}
-	
-	.file_input label {
-		    display: inline-block; 
- 			padding: .5em .75em; 
- 			color: #1E82FF; 
- 			font-size: inherit; 
- 			line-height: normal; 
- 			vertical-align: middle; 
- 			background-color: #fdfdfd; 
- 			cursor: pointer; 
- 			border: 1px solid #1E82FF; 
- 			border-bottom-color: #1E82FF; 
- 			border-radius: .25em; 
- 			margin-right: 280px;
-		}
-		.file_input label input {
-		    position:absolute;
-		    width:0;
-		    height:0;
-		    overflow:hidden;
-		}
-		.file_input input[type=text] {
-		    vertical-align:middle;
-		    display:inline-block;
-		    width:200px;
-		    height:26px;
-		    line-height:28px;
-		    font-size:15px;
-/* 		    color:#fdfdfd; */
-/* 		    padding:0; */
- 		    border:0px; 
-/* 		    border:1px solid #777; */
-		}	
-	
+<<<<<<< HEAD
+#gobtn1 {
+	margin-left: 40.3%;
+}
+
+#titletext {
+	margin-right: 135px;
+}
+
+#titletext1 {
+	margin-right: 341px;
+}
+
+#content1 {
+	margin-right: 320px;
+}
+
+#hideimg {
+	margin-right: 165px;
+}
+
+#file {
+	margin-right: 120px;
+}
+
+.file_input label {
+	display: inline-block;
+	padding: .5em .75em;
+	color: #1E82FF;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #1E82FF;
+	border-bottom-color: #1E82FF;
+	border-radius: .25em;
+	margin-right: 6%;
+}
+
+.file_input label input {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.file_input input[type=text] {
+	vertical-align: middle;
+	display: inline-block;
+	width: 200px;
+	height: 26px;
+	line-height: 28px;
+	font-size: 15px;
+	/* 		    color:#fdfdfd; */
+	/* 		    padding:0; */
+	border: 0px;
+	/* 		    border:1px solid #777; */
+}
+
 </style>
 
 </head>
@@ -93,13 +92,14 @@ function goList() {
 			<!-- BREADCRUMBS -->
 			<section class="breadcrumbs_block clearfix parallax">
 				<div class="container center">
-					<h2>  
-						<b>커뮤니티</b>  게시판
+					<h2>
+						<b>커뮤니티</b> 게시판
 					</h2>
-						<p>'커뮤니티 게시판 수정 '페이지 입니다.</p>
+					<p>'커뮤니티 게시판 수정 '페이지 입니다.</p>
 				</div>
 			</section>
 			<!-- //BREADCRUMBS -->
+
 	
 	<center>		
 			<div class="container">
@@ -127,10 +127,14 @@ function goList() {
 		 		
 		
 		 		<div class="file_input" >
-					<label>
-					<i class="fa fa-photo"></i>&nbsp;사진첨부
-					<input type="file" name="file" >
-					</label>
+						<label>
+						<i class="fa fa-photo"></i>&nbsp;사진첨부
+						     <input type="file" name="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+						</label>
+						<input type="text" readonly="readonly" title="File Route" id="file_route">
+						
+					</div> 
+		 		
 				</center>		 			
 		
 				<div id="gobtn1">
@@ -151,7 +155,10 @@ function goList() {
 		 	</div>
 		 	
 		</form>
+
 		</div>
-			</div>
+
+		
+	
+	</div>
 </body>
-			

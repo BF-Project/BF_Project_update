@@ -36,8 +36,8 @@ $(document).ready(function() {
        success : function(data){
     	  var loginUser = $('#loginUser').val();
           $.each(data, function(i) {
-        	 if(loginUser == data[i].mbr_id){
              var date = new Date(data[i].cmt_date);
+        	 if(loginUser == data[i].mbr_id){
              var year = date.getFullYear();
              var month = (1 + date.getMonth());
              month = month >= 10 ? month : '0' + month;
@@ -64,7 +64,7 @@ $(document).ready(function() {
 						+ data[i].cmt_num
 						+ '">'
 						+ data[i].cmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
         	 } else {
         		 var date = new Date(data[i].cmt_date);
                  var year = date.getFullYear();
@@ -76,28 +76,28 @@ $(document).ready(function() {
                  var cmtList = '<div id="'
     						+ data[i].cmt_num   
     						+ '">작성자 : '
-    						+ data[i].mbr_id
+    						+ data[i].admin_id
     						+ '  /  ' + '작성 날짜 : '
     						+ fullD
-    						+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+    						+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
     						+'&nbsp;&nbsp;'
     						+ '<div class="'
     						+ data[i].cmt_num
     						+ '">'
     						+ data[i].cmt_content
-    						+'</div></div><br><br>';
+    						+'</div></div>';
         	 }
              $('div#comment').append(cmtList);
           });          
        },
        error:function(error){
-       alert(error);   
+		   alert(error);   
        }
     });
 });
 
 function commm_go() {
-   var fre_num = $('#fre_num').val();
+    var fre_num = $('#fre_num').val();
     var cmt_content = $('#cmt_content').val();
     var dataWrite = {
        'fre_num' : fre_num,
@@ -141,7 +141,7 @@ function commm_go() {
 						+ data[i].cmt_num
 						+ '">'
 						+ data[i].cmt_content
-						+'</div></div><br><br>';
+						+'</div></div>';
         	} else {
         		 var date = new Date(data[i].cmt_date);
                  var year = date.getFullYear();
@@ -153,7 +153,7 @@ function commm_go() {
                  var cmtList = '<div id="'
      						+ data[i].cmt_num   
      						+ '">작성자 : '
-     						+ data[i].mbr_id
+     						+ data[i].admin_id
      						+ '  /  ' + '작성 날짜 : '
      						+ fullD
      						+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -162,7 +162,7 @@ function commm_go() {
      						+ data[i].cmt_num
      						+ '">'
      						+ data[i].cmt_content
-     						+'</div></div><br><br>';
+     						+'</div></div>';
         	}
             $('div #comment').append(cmtList);
          });
@@ -183,11 +183,9 @@ $(document).on('click','.delete',function(e){
 			},
 			dataType : 'json',
 			type : 'post',
-			success : function(map) {
-				cmtList = jQuery.map(map, function(a) {
-					return a;
-				});
-				$('#' + cmtList).remove();
+			success : function(cmtNum) {
+		
+				$('#' + cmtNum).remove();
 			}
 	});
 });
@@ -212,7 +210,11 @@ $(document).on('click','.writeForm', function(e) {
 				+ aa[0].innerHTML
 				+'</textarea>'
 				+'&nbsp;'
-				+'<button type="button" id="'+result+'" class="btnn btn" style="background-color:black;">수정</button>'
+				+'<button type="button" id="'+result+'" class="btnn btn" '
+
+	            + 'style="padding:8px; background-color: gray; border: 1px solid gray; font-size:14px; border-radius: 6px; color:white;">'
+	            + '<i class="fa fa-exchange"></i>수정 </button>'
+			
 			);
     	}
     });
@@ -245,7 +247,7 @@ $(document).on('click','.btnn', function(e) {
 }
 
 #mod, del, list {
-	margin-left: 58%;
+	margin-left: 61.2%;
 }
 
 #cmt_content {
@@ -278,24 +280,34 @@ $(document).on('click','.btnn', function(e) {
 			<br>
 			<form name="free" method="post" action="freeView">
 				<div class="container">
-					<table class="table table-hover" id="freeView">
+					<table class="table" id="freeView">
 						<tr>
-							<th>제목</th>
+							<th><i class="fa fa-folder-open-o"/>글번호</th>
+							<td>${freeVO.fre_num }</td>
+						</tr>
+						
+						<tr>
+							<th><i class="fa fa-edit spaceLeft">제목</th>
 							<td>${freeVO.fre_title }</td>
 						</tr>
 
 						<tr>
-							<th>내용</th>
+							<th><i class="fa fa-eye-slash"/>조회수</th>
+							<td>${freeVO.fre_cnt }</td>
+						</tr>
+						
+						<tr>
+							<th><i class="fa fa-edit spaceLeft"/>내용</th>
 							<td>${freeVO.fre_content }</td>
 						</tr>
 
 						<tr>
-							<th>작성자</th>
+							<th><i class="fa fa-user"/>작성자</th>
 							<td>${freeVO.mbr_id }</td>
 						</tr>
 
 						<tr>
-							<th>게시날짜</th>
+							<th><i class="fa fa-clock-o"/>게시날짜</th>
 							<td>${freeVO.fre_date }</td>
 						</tr>
 
@@ -319,19 +331,17 @@ $(document).on('click','.btnn', function(e) {
 						</c:if>
 
 						<tr>
-							<th>댓글</th>
+							<th><i class="fa fa-link"/>댓글</th>
 							<td>
 								<div id="comment"></div> <input type="hidden"
 								value="${freeVO.fre_num }" id="fre_num" name="fre_num">
 								<textarea id="cmt_content" name="cmt_content"></textarea>
 								<button type="button" id="insertCmt" class="btn"
 									name="insertCmt" onclick="commm_go();"
-						
 									style="padding:8px; background-color: gray; border: 1px solid gray; 
 									border-radius: 6px; color:white;">
 									<i class="fa fa-sign-in"></i>&nbsp;<b style="font-size:14px">등록</b>
 								</button>
-												
 							</td>
 						</tr>
 					</table>
@@ -368,7 +378,7 @@ $(document).on('click','.btnn', function(e) {
 						<button type="button" id="list2" class="btn"
 								onclick="location.href='freeList'"
 							    style="padding:8px; background-color: gray; border: 1px solid gray; 
-								border-radius: 6px; color:white;">
+								border-radius: 6px; color:white; margin-left:68%;">
 								<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size:14px">목록</b>
 						</button>
 
@@ -376,13 +386,10 @@ $(document).on('click','.btnn', function(e) {
 				</c:choose>
 
 				<input type="hidden" value="${loginUser }" id="loginUser">
-
-
-
 			</form>
 		</div>
 	</div>
-
+	<br>
 
 </body>
 </html>

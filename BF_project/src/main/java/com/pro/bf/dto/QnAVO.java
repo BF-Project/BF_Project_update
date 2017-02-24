@@ -23,5 +23,4 @@ public class QnAVO {
 	private String qna_secrit;//비밀글
 	private String qna_respond_yn; // 답변여부(관리자)
 	private String qna_respond_content; // 답변내용(관리자)
-	
 }

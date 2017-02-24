@@ -30,17 +30,14 @@ public class CmmtCmtController {
 	@Autowired
 	CmmtCmtServiceImpl cmmtcmtServiceImpl;
 		
-	@RequestMapping(value = "/cmmtcmtList", method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/cmmtcmtList")
 	@ResponseBody
 	public List<CmmtCmtVO> cmmtcmtList(@RequestBody Map<String, Object> jsonMap,
 			Model model, HttpServletResponse response) {
-		
-		
+				
 		List<CmmtCmtVO> cmmtcmtList1 =  new ArrayList<CmmtCmtVO>();
-		
 		String cmmtcmtnum = (String) jsonMap.get("cmmt_num");
-		
-		
+				
 		try {
 			cmmtcmtList1 = cmmtcmtServiceImpl.cmmtcmtAllList(Integer.parseInt(cmmtcmtnum));
 		} catch (NumberFormatException e) {
@@ -50,11 +47,6 @@ public class CmmtCmtController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*
-		 * List<CmtVO> tempList=new ArrayList<CmtVO>(); CmtVO cmt=new CmtVO();
-		 * cmt.setMbr_id("test"); cmt.setCmt_date(new Date(2017,2,3));
-		 * cmt.setCmt_content("어쩌구 저쩌구"); tempList.add(cmt);
-		 */
 		return cmmtcmtList1;
 	}
 
@@ -98,26 +90,16 @@ public class CmmtCmtController {
 	
 	@RequestMapping(value="/cmmtcmtDelete",method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> cmmtcmtDelete(Model model ,HttpServletRequest request){
-		//result가져온다
+	public int cmmtcmtDelete(Model model ,HttpServletRequest request){
+		
+	//result가져온다
 		int cmmtcmtnum=Integer.parseInt(request.getParameter("result"));
-		
-		Map <String,Object> map1=new HashMap();
-		
-		List<CmmtCmtVO>listlist=null;
-		
 		try {
-			listlist=cmmtcmtServiceImpl.cmmtcmtListAn(cmmtcmtnum);
 			cmmtcmtServiceImpl.deleteCmmtcmt(cmmtcmtnum);
-			map1.put("listlist", listlist);
-			map1.put("cmmtcmtnum", cmmtcmtnum);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		return map1;
+		return cmmtcmtnum;
 	}
 	
 	//댓글수정
