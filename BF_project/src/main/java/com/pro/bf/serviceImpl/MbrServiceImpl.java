@@ -192,21 +192,21 @@ public class MbrServiceImpl implements MbrService {
 		}
 		
 		if(start_page > view_rows){
-			str += "<a href='"+currentPage+"?page=1&search="+search+"'>&lt;&lt;</a>&nbsp;&nbsp;";
-			str += "<a href='"+currentPage+"?page="+(start_page-1)+"&search=" + search + "'>&lt;</a>&nbsp;&nbsp;";			
+			str += "<a href='"+currentPage+"?page=1&search="+search+"&comboSelectMember="+selectCombo+"'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='"+currentPage+"?page="+(start_page-1)+"&search=" + search + "&comboSelectMember="+selectCombo+"'>&lt;</a>&nbsp;&nbsp;";			
 		}
 		
 		for(int i = start_page; i<=end_page; i++){
 			if(i==page){
 				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
 			}else{
-				str += "<a href='"+currentPage+"?page="+i+"&search="+search+"'>["+i+"]</a>&nbsp;&nbsp;";
+				str += "<a href='"+currentPage+"?page="+i+"&search="+search+"&comboSelectMember="+selectCombo+"'>["+i+"]</a>&nbsp;&nbsp;";
 			}
 		}
 		
 		if(page_count > end_page){
-			str += "<a href='"+currentPage+"?page="+(end_page+1)+"&search=" + search + "'>&gt;</a>&nbsp;&nbsp;";
-			str += "<a href='"+currentPage+"?page="+page_count+"&search="+search+"'>&gt;&gt; </a>&nbsp;&nbsp;";
+			str += "<a href='"+currentPage+"?page="+(end_page+1)+"&search=" + search + "&comboSelectMember="+selectCombo+"'>&gt;</a>&nbsp;&nbsp;";
+			str += "<a href='"+currentPage+"?page="+page_count+"&search="+search+"&comboSelectMember="+selectCombo+"'>&gt;&gt; </a>&nbsp;&nbsp;";
 		}
 
 		return str;

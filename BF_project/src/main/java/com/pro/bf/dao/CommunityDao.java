@@ -33,4 +33,8 @@ public interface CommunityDao {
 	//파일다운로드 하기위한 String fileName 메소드 추가
 	String cmmtFileNameSearch(int cmmt_num) throws SQLException;
 	
+	int totalCommunityList(String search) throws SQLException;
+	int communityListforID(String search) throws SQLException;
+	ArrayList<CommunityVO> communityListForFirst(String search, int startRow, int counts2) throws SQLException;
+	ArrayList<CommunityVO> communityListForIDIDID(String search, int startRow, int counts2) throws SQLException;
 }

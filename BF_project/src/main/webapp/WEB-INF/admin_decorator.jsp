@@ -56,7 +56,7 @@
     	
     	function adminAdvice(roomId){
     		var url = '<%=request.getContextPath()%>/admin/chat?roomId='+roomId+'&userName='+$('.messageUser').prop("id");
-    		pupupWin = window.open(url, roomId, "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=480, height=620, top=200, left=1200"); // 이 팝업창의 이름은 roomId == strArray[0]
+    		pupupWin = window.open(url, roomId, "toolbar=no, menubar=no, location=no, scrollbars=yes, resizable=no, width=480, height=620, top=200, left=1200"); // 이 팝업창의 이름은 roomId == strArray[0]
     		pupupArray.push(pupupWin)
 //     		alert("현재 팝업 배열에 저장된 리스트 : " + pupupArray);
     	}
@@ -173,10 +173,10 @@
 		<!-- 상단메뉴 -->
 		
 		<ul class="nav navbar-right top-nav" style="margin-top: 10px; margin-bottom: 15px;">
-			<li class="dropdwon" style="margin-top: 14px">
-				<span class="label label-danger" style="position:relative; margin-left: 1000px; padding:5px; visibility:hidden" id="messageOnView"> <!-- visible -->
+			<li class="dropdwon" style="margin-top: 14px;">
+				<a href="#" class="dropdown-toggle"	data-toggle="dropdown" id="messageOnView" style="padding:1px; font-size: 15px; color:white; font-weight:bold; visibility:hidden;">
 					<i class="fa fa-bell"></i>&nbsp;메시지를 확인하세요.
-				</span>
+				</a>
 			</li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle"	data-toggle="dropdown">
@@ -223,9 +223,20 @@
 						<i class="fa fa-fw fa-table"></i> 게시판 X<i class="fa fa-fw fa-caret-down"></i>
 					</a>
 					<ul id="demo" class="collapse">
+<<<<<<< HEAD
+<<<<<<< HEAD
+						<li><a href="#"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/free"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
+=======
+						<li class="ggggOne"><a href="<%=request.getContextPath()%>/admin/FreeList"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
+						<li class="ggggTwo"><a href="<%=request.getContextPath()%>/admin/CommunityList"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
+>>>>>>> refs/heads/csh
+						<li class="ggggThree"><a href="<%=request.getContextPath()%>/admin/QnAList"><i class="fa fa-tag"></i>&nbsp;&nbsp;Q & A 게시판</a></li>
+=======
 						<li><a href="<%=request.getContextPath()%>/admin/free"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/cmmt"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
 						<li><a href="#"><i class="fa fa-tag"></i>&nbsp;&nbsp;Q & A 게시판</a></li>
+>>>>>>> branch 'master' of https://github.com/BF-Project/BF_Project_update.git
 					</ul>
 				</li>
 				<li class="eeee" style="font-size: 16px; margin-top: 8px"><a href="#">

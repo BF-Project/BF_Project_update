@@ -170,11 +170,11 @@
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">수정완료</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 						</button>				
-						<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/memberUpdateView?page=${page}&memberid=${memberVo.mbr_id}'" 
+						<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/memberUpdateView?page=${page}&memberid=${memberVo.mbr_id}&comboSelectMember=${param.comboSelectMember}'" 
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">정보 복구하기</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 						</button>						
-						<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/admin/memberDetail?page=${page}&member_select_Id=${memberVo.mbr_id}'" 
+						<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/admin/memberDetail?page=${page}&member_select_Id=${memberVo.mbr_id}&comboSelectMember=${param.comboSelectMember}'" 
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">취소</b>&nbsp;<i class="fa fa-times spaceLeft"></i>
 						</button>

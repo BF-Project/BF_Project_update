@@ -47,12 +47,12 @@
 	<bean id="shopDAOImpl" class="com.pro.bf.daoImpl.ShopDaoImpl" p:client-ref="client" />
 	<bean id="touristDAOImpl" class="com.pro.bf.daoImpl.TouristDaoImpl" p:client-ref="client" />
 
-	<bean id="qnAServiceImpl" class="com.pro.bf.serviceImpl.QnAServiceImpl">
-		<property name="qnaDaoImpl" ref="qnaDAOImpl" />
-	</bean> 
   	<!-- <bean id="mbrServiceImpl" class="com.pro.bf.serviceImpl.MbrServiceImpl" p:mbrDAO-ref="mbrDAOImpl" /> -->
 	
 	<!-- Service -->
+	<bean id="qnAServiceImpl" class="com.pro.bf.serviceImpl.QnAServiceImpl">
+		<property name="qnaDaoImpl" ref="qnaDAOImpl" />
+	</bean> 
 	<bean id="addrServiceImpl" class="com.pro.bf.serviceImpl.AddrServiceImpl">
 		<property name="addressDAO" ref="addressDAOImpl" />
 	</bean>
