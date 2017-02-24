@@ -223,20 +223,9 @@
 						<i class="fa fa-fw fa-table"></i> 게시판 X<i class="fa fa-fw fa-caret-down"></i>
 					</a>
 					<ul id="demo" class="collapse">
-<<<<<<< HEAD
-<<<<<<< HEAD
-						<li><a href="#"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/free"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
-=======
 						<li class="ggggOne"><a href="<%=request.getContextPath()%>/admin/FreeList"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
 						<li class="ggggTwo"><a href="<%=request.getContextPath()%>/admin/CommunityList"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
->>>>>>> refs/heads/csh
 						<li class="ggggThree"><a href="<%=request.getContextPath()%>/admin/QnAList"><i class="fa fa-tag"></i>&nbsp;&nbsp;Q & A 게시판</a></li>
-=======
-						<li><a href="<%=request.getContextPath()%>/admin/free"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/cmmt"><i class="fa fa-tag"></i>&nbsp;&nbsp;커뮤니티 게시판</a></li>
-						<li><a href="#"><i class="fa fa-tag"></i>&nbsp;&nbsp;Q & A 게시판</a></li>
->>>>>>> branch 'master' of https://github.com/BF-Project/BF_Project_update.git
 					</ul>
 				</li>
 				<li class="eeee" style="font-size: 16px; margin-top: 8px"><a href="#">
