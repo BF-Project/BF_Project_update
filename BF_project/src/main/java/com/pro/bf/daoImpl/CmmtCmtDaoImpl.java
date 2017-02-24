@@ -48,4 +48,9 @@ public class CmmtCmtDaoImpl implements CmmtCmtDao  {
 		
 	}
 
+	@Override
+	public void insertCmmtcmtAdmin(CmmtCmtVO cmmtcmtVO) throws SQLException { /// 관리자 댓글 등록
+		client.insert("insertCmmtcmtAdmin", cmmtcmtVO);
+	}
+
 }

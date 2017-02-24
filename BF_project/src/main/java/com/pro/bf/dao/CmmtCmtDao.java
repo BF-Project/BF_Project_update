@@ -17,4 +17,7 @@ public interface CmmtCmtDao {
 	public List<CmmtCmtVO> cmmtcmtListAn(int cmmtcmt_num)throws SQLException;
 	//댓글 수정
 	public void updateCmmtcmt(CmmtCmtVO cmmtcmtVO) throws SQLException;
+	
+	// 관리자 댓글 등록
+	void insertCmmtcmtAdmin(CmmtCmtVO cmmtcmtVO) throws SQLException;
 }

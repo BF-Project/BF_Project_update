@@ -20,7 +20,7 @@
 
 <script>
 $(document).ready(function() {
-    var cmmt_num = $('#cmmt_num').val();
+    var cmmt_num = $('#cmmt_num').val();  
     var data ={'cmmt_num' : cmmt_num};
     
     $.ajax({

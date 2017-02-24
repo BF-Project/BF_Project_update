@@ -103,6 +103,32 @@ public class CommunityDaoImpl implements CommunityDao{
 		return fileName;
 	}
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@Override
+	public int totalCommunityList(String search) throws SQLException {
+		int total_pages = (int) client.queryForObject("TotalCommunityList", search);
+		return total_pages;
+	}
+
+	@Override
+	public ArrayList<CommunityVO> communityListForFirst(String search, int startRow, int counts2) throws SQLException {
+		ArrayList<CommunityVO> communityList = (ArrayList<CommunityVO>) client.queryForList("communityListForTitle", search, startRow, counts2);
+		return communityList;
+	}
+
+	@Override
+	public int communityListforID(String search) throws SQLException {
+		int total_pages = (int) client.queryForObject("communityListforID", search);
+		return total_pages;
+	}
+
+	@Override
+	public ArrayList<CommunityVO> communityListForIDIDID(String search,	int startRow, int counts2) throws SQLException {
+		ArrayList<CommunityVO> communityList = (ArrayList<CommunityVO>) client.queryForList("communityListForIDIDID", search, startRow, counts2);
+		return communityList;
+	}
+
 	
 	
 }

@@ -127,8 +127,12 @@ public class adminQnAController {
 	public String QnaRespond(String qnaNumNum, String qnaRespond, HttpSession session) throws NumberFormatException, SQLException{
 		System.out.println(qnaNumNum);
 		System.out.println(qnaRespond);
-		qnaService.qnaRespondUpdate(Integer.parseInt(qnaNumNum), qnaRespond);
-		session.setAttribute("respondComplete", "yes");
-		return "yes";
+		if(qnaRespond.equals("")||qnaRespond==null){
+			return "no";
+		}else{
+			qnaService.qnaRespondUpdate(Integer.parseInt(qnaNumNum), qnaRespond);
+			session.setAttribute("respondComplete", "yes");
+			return "yes";
+		}
 	}
 }

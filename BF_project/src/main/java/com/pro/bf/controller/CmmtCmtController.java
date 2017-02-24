@@ -109,8 +109,8 @@ public class CmmtCmtController {
 		try {
 			listlist=cmmtcmtServiceImpl.cmmtcmtListAn(cmmtcmtnum);
 			cmmtcmtServiceImpl.deleteCmmtcmt(cmmtcmtnum);
-			map1.put("listlist", listlist);
-			map1.put("cmmtcmtnum", cmmtcmtnum);
+			map1.put("listlist", listlist); // null
+			map1.put("cmmtcmtnum", cmmtcmtnum); // 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

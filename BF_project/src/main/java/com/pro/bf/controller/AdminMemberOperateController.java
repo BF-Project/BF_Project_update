@@ -53,6 +53,8 @@ public class AdminMemberOperateController {
 						selectCombo = "ID";
 					}else if(comboSelectMember.equals("comboPhone")||comboSelectMember.equals("PHONE")){
 						selectCombo = "PHONE";
+					}else{
+						selectCombo = "NAME";
 					}
 				}else if(comboSelectMember == null){
 					selectCombo = "NAME";
