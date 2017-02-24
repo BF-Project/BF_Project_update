@@ -525,7 +525,7 @@ select {
 									<ul>
 										<li><a href="javascript:void(0);" style="font-size: 13px">전문가
 												컨설팅</a></li>
-										<li><a href="javascript:void(0);" style="font-size: 13px">지역추천</a></li>
+										<li><a href="<%=request.getContextPath()%>/consulting/recommend" style="font-size: 13px">지역추천</a></li>
 										<li><a href="javascript:void(0);" style="font-size: 13px">홈페이지
 												제작(templates)</a></li>
 									</ul></li>

@@ -21,5 +21,9 @@
 	<select id="lentCount" resultClass="str">
 		select count(*) from lent
 	</select>
+	
+	<select id="lentRecList" parameterClass='str' resultClass="str">
+		select lent_price2, lent_addr from lent where <![CDATA[lent_price2<1000000000]]> order by lent_price2 desc
+	</select>
 		
 </sqlMap>

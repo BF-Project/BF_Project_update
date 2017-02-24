@@ -55,6 +55,13 @@ public class LentServiceImpl implements LentService{
 		System.out.println("lent score : "+score);
 		return score;
 	}
+
+	@Override
+	public List<String> lentRecList(String asset) throws SQLException {
+		List<String> lentRecList = new ArrayList<String>();
+		lentRecList = lentDao.lentRecList(asset);
+		return lentRecList;
+	}
 	
 	
 }

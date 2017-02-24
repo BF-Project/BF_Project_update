@@ -36,5 +36,12 @@ public class LentDaoImpl implements LentDao{
 		lentList = client.queryForList("lentList");
 		return lentList;
 	}
+
+	@Override
+	public List<String> lentRecList(String asset) throws SQLException {
+		List<String> lentRecList = new ArrayList<String>();
+		lentRecList = client.queryForList("lentRecList",asset);
+		return lentRecList;
+	}
 	
 }

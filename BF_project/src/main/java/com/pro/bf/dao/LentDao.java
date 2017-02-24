@@ -8,4 +8,5 @@ public interface LentDao {
 	int totalLent(String dong) throws SQLException;
 	int count() throws SQLException;
 	List<String> lentList() throws SQLException;
+	List<String> lentRecList(String asset) throws SQLException;
 }
