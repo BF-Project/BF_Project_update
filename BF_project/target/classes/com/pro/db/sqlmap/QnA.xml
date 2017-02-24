@@ -52,9 +52,35 @@
 		select * from qna where qna_num=#qna_num#
 	</select>
 	
+	<select id="totalRecordforTitleQNA" parameterClass="str" resultClass="int">
+		select count(*) from qna where qna_title like '%'||#search#||'%'
+	</select>
+	
+	<select id="totalRecordforIDQNA" parameterClass="str" resultClass="int">
+		select count(*) from qna where mbr_id like '%'||#search#||'%'
+	</select>
 	<!--파일다운로드-->
 	<select id="qnaFileNameSearch" parameterClass="int" resultClass="str">
 		select qna_pict_afat from qna where qna_num=#qna_num#
 	</select>
 	
+	<select id="totalRecordforRespond" parameterClass="str" resultClass="int">
+		select count(*) from qna where qna_title like '%'||#search#||'%'
+	</select>
+	
+	<select id="qnaListforTitle" parameterClass="str" resultClass="qna">
+		select * from qna where qna_title like '%'||#search#||'%' order by qna_respond_yn, qna_title, qna_date desc
+	</select>
+	
+	<select id="qnaListforId" parameterClass="str" resultClass="qna">
+		select * from qna where mbr_id like '%'||#search#||'%' order by qna_respond_yn, mbr_id, qna_title, qna_date desc
+	</select>
+	
+	<select id="qnaListforRespond" parameterClass="str" resultClass="qna">
+		select * from qna where qna_title like '%'||#search#||'%' order by qna_respond_yn, qna_date desc
+	</select>
+	
+	<update id="qnaRespondUpdate" parameterClass="qna">
+		update qna set qna_respond_yn='Y', qna_respond_content=#qna_respond_content# where qna_num=#qna_num#
+	</update>
 </sqlMap>

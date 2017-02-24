@@ -13,6 +13,23 @@
 	<link href="<%=request.getContextPath()%>/resources/admin/css/fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	<script>
+		var i=0
+		window.document.onkeydown = protectKey;
+		function protectKey(){
+			//새로고침을 막는 스크립트.. F5 번키..
+			if(event.keyCode == 116){
+				event.keyCode = 0;
+			    return false;
+			}
+			//CTRL + N 즉 새로 고침을 막는 스크립트....
+			else if ((event.keyCode == 78) && (event.ctrlKey == true)){
+		        event.keyCode = 0;
+		        return false;
+			}
+		}
+	</script>
+	
+	<script>
 		var wsocket;
 		var count = 0;
 		

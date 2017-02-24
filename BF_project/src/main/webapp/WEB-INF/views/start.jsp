@@ -17,7 +17,7 @@
 				if(data=='yes'){
 					// 접속이 가능함
 					var url = '<%=request.getContextPath()%>/chat'
-					clip = window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=480, height=620, top=200, left=1200");
+					clip = window.open(url, "_blank_1", "toolbar=no, location=no, menubar=no, scrollbars=yes, resizable=no, width=480, height=620, top=200, left=1200");
 				}else{
 					alert('로그인이 필요한 서비스입니다. 로그인 후 이용해 주세요.');
 				}
