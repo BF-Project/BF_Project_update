@@ -153,9 +153,8 @@ th, td {
  <section class="breadcrumbs_block clearfix parallax">
 				<div class="container center">
 					<h2>
-						<b>SIMULATOR</b>
+						SIMULATOR
 					</h2>
-					<br> <br>
 					<p>창업할 지역을 선택해 주세요</p>
 				</div>
 </section> 
