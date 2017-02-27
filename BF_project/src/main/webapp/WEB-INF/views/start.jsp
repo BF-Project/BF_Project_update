@@ -162,7 +162,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site.jpg"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>가운데에 있는 상형문자는 성공하는 사람들의 앞자를 따서 "성사"라는 로고를 만들었고, 창업자에게 조금이나마 도움을 주고 창업 성공률을 높여주기 위한 시스템 입니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -172,7 +172,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site1.jpg"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>핵심 시스템으로써 창업자가 저희가 원하는 특정정보를 입력하면 시스템에서 정보에 맞게 예상 월매출, 예상 순이익 등 시뮬레이션을 하여 창업자에게 적절한 유용한 정보를 제공해 주는 것입니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -182,7 +182,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site3.png"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>커뮤니티를 활성화 하여 창업자간의 정보공유를 할 수 있도록 해주는 게시판입니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -192,7 +192,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site2.png"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>시뮬레이션 한 결과를 가지고 전문가와 컨설팅이 가능하도록 연결을 해주는 것입니다.</span></td>
 								</tr>
 							</table>
 						</div>						

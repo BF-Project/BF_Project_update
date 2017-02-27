@@ -4,11 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pro.bf.daoImpl.FreeDaoImpl;
 import com.pro.bf.dto.FreeVO;
 import com.pro.bf.service.FreeService;
 
+@Service
 public class FreeServiceImpl implements FreeService {
 
 	@Autowired
