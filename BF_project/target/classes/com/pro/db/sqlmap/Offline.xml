@@ -9,5 +9,10 @@
 	<!-- <typeAlias alias="offline" type="com.pro.bf.dtd.OfflineVO" /> -->
 	
 	<!-- Query 문 작성란 -->
+	
+	<insert id="insertOffData" parameterClass="offline">
+		insert into offline_(off_kind, off_num, off_asst, mbr_id, off_dtailaddr, flo_score, lent_score, pop_score, shop_score, tour_score, sales, benefit) 
+		values(#off_kind#, offline_seq.nextval, #off_asst#, #mbr_id#, #off_datailAddr#, #flo_score#, #lent_score#, #pop_score#, #shop_score#, #tour_score#, #sales#, #benefit#)
+	</insert>
 		
 </sqlMap>

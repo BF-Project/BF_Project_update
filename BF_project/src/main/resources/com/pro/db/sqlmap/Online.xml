@@ -9,5 +9,8 @@
 	<!-- <typeAlias alias="online" type="com.pro.bf.dtd.OnlineVO" /> -->
 	
 	<!-- Query 문 작성란 -->
-		
+	<insert id="insertOlData" parameterClass="online">
+		insert into online_(ole_num, mbr_id, ole_asst, ole_copt_cnc_sts, ole_cstm_ast_sts, ole_item_orgt_sts, ole_mkt_sts, ole_pdt_prdt_sts, ole_pdt_sts, ole_sitemap_sts, ole_pfbl_sts, sales, benefit) 
+		values(online_seq.nextval, #mbr_id#, #ole_asst#, #ole_copt_cnc_sts#, #ole_cstm_ast_sts#, #ole_item_orgt_sts#, #ole_mkt_sts#, #ole_pdt_prdt_sts#, #ole_pdt_sts#, #ole_siteMap_sts#, #ole_pfbl_sts#, #sales#, #benefit#)
+	</insert>
 </sqlMap>

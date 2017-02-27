@@ -6,6 +6,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/sweetalert.css">
+<script src="<%=request.getContextPath()%>/resources/js/sweetalert.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/sweetalert-dev.js"></script>
 <style>
 /*시뮬레이터 CSS*/
  	 .layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}
@@ -142,7 +145,7 @@ th, td {
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fusioncharts.powercharts.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=B3S2a2PwxQRRyezwDNUx&amp;submodules=panorama"></script>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=OBqzAkYxvc_WcR797zlN&amp;submodules=panorama"></script>
     
   <script>
         var HOME_PATH = '<%=request.getContextPath()%>/resources';
@@ -150,9 +153,8 @@ th, td {
  <section class="breadcrumbs_block clearfix parallax">
 				<div class="container center">
 					<h2>
-						<b>SIMULATOR</b>
+						SIMULATOR
 					</h2>
-					<br> <br>
 					<p>창업할 지역을 선택해 주세요</p>
 				</div>
 </section> 
@@ -270,9 +272,53 @@ function layer_open(el){
 
 	temp.find('a.cbtn').click(function(e){
 		if(bg){
-			$('.layer').fadeOut(); //'bg' 클래스가 존재하면 레이어를 사라지게 한다. 
+			$('.layer').fadeOut(); //'bg' 클래스가 존재하면 레이어를 사라지게 한다.
+			
 		}else{
-			temp.fadeOut();
+			if(cnt==1){
+				temp.fadeOut();
+				$('#layer3').fadeOut();		
+			}else{
+				/* clearInterval(setTest);
+				swal({
+					  title: "Are you sure?",
+					  text: "진행중인 시뮬레이션이 있습니다. 정말로 종료하시겠습니까?",
+					  type: "warning",
+					  showCancelButton: true,
+					  confirmButtonColor: "#DD6B55",
+					  confirmButtonText: "Yes",
+					  cancelButtonText: "No",
+					  closeOnConfirm: false,
+					  closeOnCancel: false
+					},
+					function(isConfirm){
+					  if (isConfirm) {
+						    clearInterval(setTest);
+							cnt=0;
+							temp.fadeOut();
+							$('#layer3').fadeOut();
+					    swal("종료!", "진행중인 시뮬레이션이 종료되었습니다", "success");
+					  } else {
+					    swal("취소!", "취소되었습니다", "error");
+					  }
+					}); */
+				
+				
+				
+				/* if(confirm("시뮬레이터가 실행중입니다. 정말 종료하시겠습니까?")){
+					clearInterval(setTest);
+					clearInterval(id);
+					cnt=0;
+					width=0;
+					temp.fadeOut();
+					$('#layer3').fadeOut();
+				}else{
+				
+				} */
+				
+				location.href="<%=request.getContextPath()%>/simulator/main";
+					
+			}
 		}
 		e.preventDefault();
 		document.frm.reset();
@@ -320,6 +366,9 @@ var flowage = 0;
 var expenditure = 0;
 var benefit = 0;
 var restart = 0;
+var totalScore = 0;
+var id = 0;
+var width = 0;
 
 function interval(){
 	salesAccount=0;
@@ -330,14 +379,19 @@ function interval(){
 	}else if($("select[name=startPeriod]").val()>=$("select[name=endPeriod]").val()){
 		alert('영업기간을 정확히 입력해주세요');
 		return;
+	}else if($('#asset').val()==''){
+		alert('보유창업자산을 입력해 주세요');
+		return;
 	}else{
 		layer_open2('layer3');	
 		setTest = setInterval("start()",2000);
 	}
 	
+	$('#start').attr("disabled", true);
+	
 	var elem = document.getElementById("myBar");   
-	  var width = 0;
-	  var id = setInterval(frame, 1000);
+	  width = 0;
+	  id = setInterval(frame, 1000);
 	  function frame() {
 	    if (width >= 100) {
 	      clearInterval(id);
@@ -362,6 +416,7 @@ function start(){
 			"startPeriod":$("select[name=startPeriod]").val(),
 			"endPeriod":$("select[name=endPeriod]").val(),
 			"addrDetail":$('#addrDetail').val(),
+			"asset":$('#asset').val(),
 			"kind":$("select[name=kind]").val(),
 			"marketing":$('input:radio[name="marketing"]:checked').val(),
 			"prodManage":$('input:radio[name="prodManage"]:checked').val(),
@@ -370,7 +425,7 @@ function start(){
 			"prodDirect":$('input:radio[name="prodDirect"]:checked').val(),
 			"cooperation":$('input:radio[name="cooperation"]:checked').val(),
 			"itemCreativity":$('input:radio[name="itemCreativity"]:checked').val(),
-			"customerManage":$('input:radio[name="customerManage"]:checked').val()
+			"customerManage":$('input:radio[name="customerManage"]:checked').val(),
 			
 		},
 		success:function(data){
@@ -381,6 +436,7 @@ function start(){
 				lent = 0;
 				flowage = 0;
 				salesAccount = salesAccount*1 + data[0]*term;
+				totalScore = Math.floor(data[1]);
 			}else{
 				population = data[0];
 				tourist = data[1];
@@ -388,6 +444,7 @@ function start(){
 				lent = data[3];
 				flowage = data[4];
 				salesAccount = salesAccount*1 + data[5]*term;
+				totalScore = Math.floor(data[6]);
 			}
 			expenditure = Math.floor((salesAccount*(Math.random()*7+73)/100)/1000)*1000;
 			benefit = Math.floor((salesAccount*1 - expenditure*1)/1000)*1000;
@@ -411,18 +468,66 @@ function start(){
 		FusionCharts5();
 	}
 	
-	
 	if(cnt==10){		
 		FusionCharts2();
 		clearInterval(setTest);
 		//salesAccount = 0;
-		cnt=0;
+		$('#start').attr("disabled", false);
+		insertData();
 		alert("시뮬레이션이 끝났습니다");
+		
+		var surplus = Math.floor(($('#asset').val()*10000)/(benefit/term));
+		document.getElementById('summary').innerHTML = "<h3>SUMMARY</h3>"+term+"개월간 예상총매출 : <b>"+Math.floor(salesAccount/10000)+"</b> 만원<br>"
+														+term+"개월간 순지출 : <b>"+Math.floor(expenditure/10000)+"</b> 만원<br>"
+														+term+"개월간 순이익 : <b>"+Math.floor(benefit/10000)+"</b> 만원<br>종합점수 : <b>"
+														+totalScore+"</b> 점<br>예상흑자전환시기 : <b>"+surplus+"</b> 개월후";
+		cnt=0;
 	}
 	
 	//alert(salesAccount);
 	cnt++;
 	//alert(cnt);		
+}
+
+
+function insertData(){
+	
+	$.ajax({
+		url:"insert",
+		type:"post",
+		data:{"radio":$('input:radio[name="radio"]:checked').val(),
+			"addr":$('#address').val(),
+			"startPeriod":$("select[name=startPeriod]").val(),
+			"endPeriod":$("select[name=endPeriod]").val(),
+			"addrDetail":$('#addrDetail').val(),
+			"asset":$('#asset').val(),
+			"kind":$("select[name=kind]").val(),
+			"marketing":$('input:radio[name="marketing"]:checked').val(),
+			"prodManage":$('input:radio[name="prodManage"]:checked').val(),
+			"benefit":$('input:radio[name="benefit"]:checked').val(),
+			"sitemap":$('input:radio[name="sitemap"]:checked').val(),
+			"prodDirect":$('input:radio[name="prodDirect"]:checked').val(),
+			"cooperation":$('input:radio[name="cooperation"]:checked').val(),
+			"itemCreativity":$('input:radio[name="itemCreativity"]:checked').val(),
+			"customerManage":$('input:radio[name="customerManage"]:checked').val(),
+			"cnt":cnt,
+			"salesAccount":salesAccount,
+			"benefit2":benefit,
+			"populationScore":population, 
+			"touristScore":tourist, 
+			"shopScore":shop, 
+			"lentScore":lent,
+			"flowageScore":flowage
+			
+		},
+		success:function(data){
+			//alert("통신성공!!!!!")
+		},
+		error:function(){
+			alert("통신실패!!!!!!!!!!!");
+		}
+
+	});
 }
 
 
@@ -874,8 +979,8 @@ function changeOption2(){
 				<td><input type="text" id="addrDetail"></td>
 			</tr>
 			<tr>
-				<td style="text-align:center;">보유자산 :</td>
-				<td colspan="2"><input type="text" id="asset"></td>
+				<td style="text-align:center;">예상창업자금 :</td>
+				<td colspan="2"><input type="text" id="asset">&nbsp;만원</td>
 			</tr>
 
 			<tr>
@@ -952,7 +1057,7 @@ function changeOption2(){
 			<tr class="onlineOption">
 				<td style="text-align:center;">아이템독창성 : </td>
 				<td><input type="radio" name="itemCreativity" id="itemCreativity1" value="high" checked/><label for="itemCreativity1" style="color:black;"><span></span>상</label>&nbsp;&nbsp;
-				<input type="radio" name="itemCreativity" id="itemCreativity2" value="mid"><label for="itemCreativity2" style="color:black;"><span></span>중</label>
+				<input type="radio" name="itemCreativity" id="itemCreativity2" value="mid"><label for="itemCreativity2" style="color:black;"><span></span>중</label>&nbsp;&nbsp;
 				<input type="radio" name="itemCreativity" id="itemCreativity3" value="low"><label for="itemCreativity3" style="color:black;"><span></span>하</label></td>
 			</tr>
 			<tr class="onlineOption">
@@ -972,7 +1077,7 @@ function changeOption2(){
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3" style="text-align:center;"><input class="button" type="button" value="START" onclick="interval();"/>&nbsp;&nbsp;&nbsp;&nbsp;<input class="button" type="reset" value="RESET"/></td>
+				<td colspan="3" style="text-align:center;"><input class="button" id="start" type="button" value="START" onclick="interval();"/>&nbsp;&nbsp;&nbsp;&nbsp;<input class="button" type="reset" value="RESET"/></td>
 			</tr>
 			
 		</table>
@@ -988,7 +1093,7 @@ function changeOption2(){
 	</div>
 <!-- </div> -->
 
-<div id="layer3" class="pop-layer2">
+<div id="layer3" class="pop-layer2">                                        
 		<div class="pop-container">
 			<div class="pop-conts">
 			
@@ -999,7 +1104,7 @@ function changeOption2(){
 					</tr>
 					<tr>
 						<td><div id="chart-container3" style="text-align:center;">잠시만 기다려 주세요</div></td>
-						<td><div id="chart-container4" style="text-align:center;">잠시만 기다려 주세요</div></td>
+						<td><div id="summary" style="text-align:center;">잠시만 기다려 주세요</div></td>
 					</tr>
 				
 				</table>
