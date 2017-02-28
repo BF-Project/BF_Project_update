@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.pro.bf.dao.CmtDao;
 import com.pro.bf.dto.CmtVO;
@@ -28,6 +30,10 @@ public class CmtDaoImpl implements CmtDao {
 		client.insert("insertCmt", cmtVO);
 	}
 	
+	public void adminInsertCmt(CmtVO cmtVO) throws SQLException{
+		client.insert("insertCmtAdmin", cmtVO);
+	}
+	
 	@Override
 	public void updateCmt(CmtVO cmtVO) throws SQLException {
 		client.update("updateCmt", cmtVO);
@@ -46,6 +52,14 @@ public class CmtDaoImpl implements CmtDao {
 		List<CmtVO> cmtList = client.queryForList("cmtListAn", cmt_num);
 		return cmtList;
 	}
-	
 
+	@Override
+	public String cmtContentSearch(int result) throws SQLException {
+		String cmtContent = (String) client.queryForObject("cmtContentSearch", result);
+		return cmtContent;
+	}
+	
+	public void cmtContentUpdate(CmtVO cmtVo) throws SQLException{
+		client.update("cmtContentUpdate", cmtVo);
+	}
 }

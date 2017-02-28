@@ -19,4 +19,9 @@ public interface FreeDao {
 	//파일다운로드 하기위한 String fileName 메소드 추가
 	String freeFileNameSearch(int fre_num) throws SQLException;
 
+	// ADMIN
+	int totalFreeList(String search) throws SQLException;
+	int freeListforID(String search) throws SQLException;
+	ArrayList<FreeVO> freeListForFirst(String search, int startRow, int counts2) throws SQLException;
+	ArrayList<FreeVO> freeListForIDIDID(String search, int startRow, int counts2) throws SQLException;	
 }

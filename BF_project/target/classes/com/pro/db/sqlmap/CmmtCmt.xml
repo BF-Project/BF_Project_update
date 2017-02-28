@@ -38,5 +38,13 @@
 	<update id="updateCmmtcmt" parameterClass="cmmtcmt">
 		update cmmtcmt set cmmtcmt_content=#cmmtcmt_content# where cmmtcmt_num=#cmmtcmt_num#		
 	</update>
+	
+	<select id="searchContent" parameterClass="int" resultClass="str">
+		select cmmtcmt_content from cmmtcmt where cmmtcmt_num=#result#
+	</select>
+	
+	<update id="cmmtCommentUpdate" parameterClass="cmmtcmt">
+		update cmmtcmt set cmmtcmt_content = #cmmtcmt_content# where cmmtcmt_num=#cmmtcmt_num#
+	</update>
 </sqlMap>
      

@@ -53,12 +53,28 @@ public class FreeDownloadController implements ApplicationContextAware {
 		}
 	return new ModelAndView("download","downloadFile",downloadFile);
 	// DownloadView클래스를 download 라는 이름으로 bean등록해놔야함
-			// --> DownloadView 클래스로 리턴된다. // downloadFile를 model에 담아서 간다.
+	// --> DownloadView 클래스로 리턴된다. // downloadFile를 model에 담아서 간다.
 	}
 	
 	private File getFile(String fileName, HttpServletRequest request) {
 		String fileSite=request.getSession().getServletContext().getRealPath("resources/upload");//배포폴더
 		return new File(fileSite,fileName);
 	}
-			
+	
+	
+	@RequestMapping("AdminfreephotoDownload/{fileKey}")
+	public ModelAndView download2(@PathVariable String fileKey, HttpServletResponse response,HttpServletRequest request)
+			throws IOException,NumberFormatException,SQLException{
+		//jsp에서 받아온 key값(filekey)로 파일 이름을 찾아온다.		
+		String fileName=freeServiceImpl.freeFileNameSearch(Integer.parseInt(fileKey));
+		File downloadFile =getFile(fileName,request);
+		//null일때
+		if(downloadFile==null){
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return null;
+		}
+		return new ModelAndView("download","downloadFile",downloadFile);
+		// DownloadView클래스를 download 라는 이름으로 bean등록해놔야함
+		// --> DownloadView 클래스로 리턴된다. // downloadFile를 model에 담아서 간다.
+	}
 }

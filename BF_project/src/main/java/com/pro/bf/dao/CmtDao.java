@@ -20,4 +20,6 @@ public interface CmtDao {
 	public int deleteCmt(int cmt_num)throws SQLException;
 	//댓글 리스트 (게시글번호)
 	public List<CmtVO> cmtListAn(int cmt_num)throws SQLException;
+	
+	String cmtContentSearch(int result) throws SQLException;
 }

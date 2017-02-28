@@ -267,7 +267,7 @@ public class CommunityServiceImpl implements CommunityService{
 	}
 	
 	
-	
-	
-		
+	public void plusView(int cmmtNum) throws SQLException{
+		cmmtDAO.plusView(cmmtNum);
+	}		
 }
