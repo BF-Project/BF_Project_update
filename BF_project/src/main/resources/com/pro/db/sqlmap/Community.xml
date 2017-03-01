@@ -67,4 +67,8 @@
 	<select id="communityListForIDIDID" parameterClass="str" resultClass="cmmt">
 		select * from community where mbr_id like '%'||#search#||'%' order by cmmt_num desc
 	</select>
+	
+	<update id="plusView" parameterClass="int">
+		update community set cmmt_cnt = cmmt_cnt + 1 where cmmt_num = #cmmtNum#
+	</update>
 </sqlMap>

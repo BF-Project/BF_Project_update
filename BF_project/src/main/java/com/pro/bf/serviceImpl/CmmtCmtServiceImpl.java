@@ -66,6 +66,14 @@ public class CmmtCmtServiceImpl implements CmmtCmtService {
 	}
 
 
+	public String searchContent(int result) throws SQLException{
+		String cmtContent = cmmtcmtDAOImpl.searchContent(result);
+		return cmtContent;
+	}
+	
+	public void cmmtCommentUpdate(CmmtCmtVO cmmtcmtVo) throws SQLException{
+		cmmtcmtDAOImpl.cmmtCommentUpdate(cmmtcmtVo);
+	}
 	
 	
 }

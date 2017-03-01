@@ -103,6 +103,10 @@ public class AdminCommunityController {
 		// VO정보를 가져옴
 		CommunityVO cmmtVo = cmmtService.getCmmtVO(Integer.parseInt(cmmtNum));
 		model.addAttribute("cmmtVo",cmmtVo);		
+		
+		// 조회수 증가
+		cmmtService.plusView(Integer.parseInt(cmmtNum));
+		
 		return "/admin/community/communityDetail";
 	}
 	
@@ -140,5 +144,32 @@ public class AdminCommunityController {
 	public String cmmtcmtDelete(String result) throws NumberFormatException, SQLException{
 		cmmtcmtService.deleteCmmtcmt(Integer.parseInt(result)); // 삭제한다.		
 		return result;
+	}
+	
+	@RequestMapping("communityOneDelete")
+	@ResponseBody
+	public String communityOneDelete(String cmt_num) throws NumberFormatException, SQLException{
+		cmmtService.deleteCmmt(Integer.parseInt(cmt_num));
+		return null;
+	}
+	
+	@RequestMapping("communityCommentCancel")
+	@ResponseBody
+	public Map<String, String> communityCommentCancel(String result) throws NumberFormatException, SQLException{
+		// 해당 키값의 content를 받아온다. 댓글
+		String cmtContent = cmmtcmtService.searchContent(Integer.parseInt(result));
+		Map<String, String> content = new HashMap<String, String>();
+		content.put("content", cmtContent);
+		return content;
+	}
+	
+	@RequestMapping("communityCommentUpdate")
+	@ResponseBody
+	public Map<String, String> communityCommentUpdate(CmmtCmtVO cmmtcmtVo) throws SQLException{
+		// 수정
+		cmmtcmtService.cmmtCommentUpdate(cmmtcmtVo);
+		Map<String, String> content = new HashMap<String, String>();
+		content.put("content", cmmtcmtVo.getCmmtcmt_content());
+		return content;
 	}
 }

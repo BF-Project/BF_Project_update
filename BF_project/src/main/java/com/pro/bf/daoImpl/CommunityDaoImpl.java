@@ -130,5 +130,9 @@ public class CommunityDaoImpl implements CommunityDao{
 	}
 
 	
+	public void plusView(int cmmtNum) throws SQLException{
+		client.update("plusView", cmmtNum);
+	}
+	
 	
 }

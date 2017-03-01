@@ -54,4 +54,12 @@ public class CmmtCmtDaoImpl implements CmmtCmtDao  {
 		client.insert("insertCmmtcmtAdmin", cmmtcmtVO);
 	}
 
+	public String searchContent(int result) throws SQLException{
+		String cmtContent = (String) client.queryForObject("searchContent", result);
+		return cmtContent;
+	}
+	
+	public void cmmtCommentUpdate(CmmtCmtVO cmmtcmtVo) throws SQLException{
+		client.update("cmmtCommentUpdate",cmmtcmtVo);
+	}
 }

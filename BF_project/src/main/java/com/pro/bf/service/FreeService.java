@@ -3,6 +3,7 @@ package com.pro.bf.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.pro.bf.dto.CommunityVO;
 import com.pro.bf.dto.FreeVO;
 
 public interface FreeService {
@@ -18,4 +19,7 @@ public interface FreeService {
 	//파일다운로드 하기위한 service에 메소드 추가
 	String freeFileNameSearch(int fre_num)throws SQLException;
 	
+	// ADMIN
+	ArrayList<FreeVO> FreeList(int page, String search, String selectCombo) throws SQLException;
+	String pageNumber2(int page, String search, String currentPage, String selectCombo) throws SQLException;
 }

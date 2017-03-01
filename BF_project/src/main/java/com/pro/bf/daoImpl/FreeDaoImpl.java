@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.pro.bf.dao.FreeDao;
+import com.pro.bf.dto.CommunityVO;
 import com.pro.bf.dto.FreeVO;
 
 public class FreeDaoImpl implements FreeDao{
@@ -79,4 +80,30 @@ public class FreeDaoImpl implements FreeDao{
 		return fileName;
 	}
 	
+	@Override
+	public int totalFreeList(String search) throws SQLException {
+		int total_pages = (int) client.queryForObject("TotalFreeList", search);
+		return total_pages;
+	}
+	
+	@Override
+	public int freeListforID(String search) throws SQLException {
+		int total_pages = (int) client.queryForObject("freeListforID", search);
+		return total_pages;
+	}
+	
+	@Override
+	public ArrayList<FreeVO> freeListForFirst(String search, int startRow, int counts2) throws SQLException {
+		ArrayList<FreeVO> freeList = (ArrayList<FreeVO>) client.queryForList("FreeListForTitle", search, startRow, counts2);
+		return freeList;
+	}
+	@Override
+	public ArrayList<FreeVO> freeListForIDIDID(String search, int startRow,	int counts2) throws SQLException {
+		ArrayList<FreeVO> freeList = (ArrayList<FreeVO>)client.queryForList("freeListForIDIDID", search, startRow, counts2);
+		return freeList;
+	}
+	
+	public void viewCountUp(int freeNum) throws SQLException{
+		client.update("viewCountUp",freeNum);
+	}
 }
