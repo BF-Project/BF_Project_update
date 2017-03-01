@@ -14,7 +14,7 @@
 </script>
 
 <style>
-<<<<<<< HEAD
+
 #gobtn1 {
 	margin-left: 40.3%;
 }

@@ -18,10 +18,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.pro.bf.dto.AddrVO;
 import com.pro.bf.dto.EmailVO;
@@ -256,4 +258,54 @@ public class JoinController {
 		}
 		return data;
 	}
+	
+	//회원정보폼으로 이동
+	@RequestMapping(value="mypage", method=RequestMethod.GET)
+	public String mypage(Model model,HttpSession session) throws SQLException{
+		String url = "join/mypage";
+		MbrVO mbrvo=null;
+		String mbrid=(String)session.getAttribute("loginUser");
+	
+		try{
+			mbrvo=mbrService.MemberVoSearch(mbrid);
+		}		
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		model.addAttribute("MbrVO",mbrvo);
+		return url;
+	}
+
+	@RequestMapping("memberUpdateView")
+	public String memberUpdate(HttpServletRequest request) throws SQLException {
+		String memberid = request.getParameter("memberid");
+		MbrVO memberVo = mbrService.MemberVoSearch(memberid);
+		request.setAttribute("memberVo", memberVo);
+//		request.setAttribute("tpage", request.getParameter("tpage")); // page 번호를 계속 이어서 넘겨준다.
+		return "/join/memberdetailUpdate";
+	}
+	
+	
+	@RequestMapping("memberUpdateGoGo")
+	public String memberUpdateGoGo(HttpServletRequest request, MbrVO mbrvo, HttpSession session) throws SQLException{
+		// 관리자가 수정할 수 있는 회원의 정보는  pw | name | phone | email | address  5개만  | id는 key값으로 사용
+		// mbrvo 에 정보다 다 담아짐
+		mbrService.memberUpdate(mbrvo);
+		session.setAttribute("memberUpdateYY", mbrvo.getMbr_id());
+		return "redirect:/join/memberDetail?"+"&member_select_Id="+mbrvo.getMbr_id();
+
+	}
+	
+	@RequestMapping("memberDetail")
+	public String memberDetail(HttpServletRequest request) throws SQLException{
+		String memberId = request.getParameter("member_select_Id");
+		MbrVO memberVo = mbrService.MemberVoSearch(memberId);		
+		//
+		request.setAttribute("memberVo", memberVo); // Vo정보를 jsp에 넘겨준다.
+		//request.setAttribute("tpage", request.getParameter("tpage")); // 현재 page를 jsp에 넘겨준다.
+		return "/join/mypage";
+	}
+	
+	
+	
 }

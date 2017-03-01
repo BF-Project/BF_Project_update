@@ -547,8 +547,8 @@ select {
 								<c:choose>
 									<c:when test="${!empty sessionScope.loginUser}">
 								
-										<li><a href="#" style="font-size: 14px">내 정보</a></li>
-										<%-- <li><a href="<%=request.getContextPath()%>/mypage/mypageView" style="font-size: 14px">내 정보</a></li> --%>
+										<!--<li><a href="#" style="font-size: 14px">내 정보</a></li> -->
+										<li><a href="<%=request.getContextPath()%>/join/mypage" style="font-size: 14px">내 정보</a></li>
 									
 									
 									</c:when>
