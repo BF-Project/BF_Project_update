@@ -116,10 +116,10 @@ td, th {
 			<center>
 				<div id="searchsearch"> 
 					<form action="freeSearch" method="post">
-						<input type="text" id="keyWord" name="keyWord" value="Search"
+						<input type="text" id="keyWord" name="keyWord" value="TitleSearch"
 							style="font-size: 16px;"
-							onFocus="if (this.value == 'Search') this.value = '';"
-							onBlur="if (this.value == '') this.value = 'Search';"/>
+							onFocus="if (this.value == 'TitleSearch') this.value = '';"
+							onBlur="if (this.value == '') this.value = 'TitleSearch';"/>
 
 					</form>
 				</div>
