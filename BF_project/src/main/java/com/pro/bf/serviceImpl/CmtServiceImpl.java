@@ -32,7 +32,11 @@ public class CmtServiceImpl implements CmtService {
 
 	@Override
 	public void insertCmt(CmtVO cmtVO) throws SQLException {
-		cmtDaoImpl.intsertCmt(cmtVO);
+		if(cmtVO.getMbr_id()==null || cmtVO.getMbr_id().trim().equals("")){
+			cmtDaoImpl.adminInsertCmt(cmtVO);// 관리자가 댓글 달기
+		}else{
+			cmtDaoImpl.intsertCmt(cmtVO); // 회원이 댓글 달기
+		}
 
 	}
 
@@ -56,7 +60,16 @@ public class CmtServiceImpl implements CmtService {
 		return cmtList;
 	}
 
-	
-	
 
+
+
+	@Override
+	public String searchContent(int result) throws SQLException {
+		String cmtContent = cmtDaoImpl.cmtContentSearch(result);
+		return cmtContent;
+	}
+
+	public void cmtContentUpdate(CmtVO cmtVo) throws SQLException{
+		cmtDaoImpl.cmtContentUpdate(cmtVo);
+	}
 }

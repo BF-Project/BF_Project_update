@@ -6,15 +6,7 @@
 <sqlMap namespace="Cmt">
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
-	<!-- <typeAlias alias="cmt" type="com.pro.bf.dto.CmtVO" /> -->
-
-	<!-- Query 문 작성란 -->
-
-	<!-- <select id="cmtList" parameterClass="int" resultClass="cmt">
-		select *
-		from cmt where fre_num=#fre_num# order by cmt_num asc
-	</select>
- -->
+		
 	<select id="cmtAllList" parameterClass="int" resultClass="cmt">
 		select * from cmt where fre_num=#fre_num# order by cmt_num desc
 	</select>
@@ -25,13 +17,15 @@
 		#mbr_id#, #fre_num#)
 	</insert>
 
+	<insert id="insertCmtAdmin" parameterClass="cmt">
+		insert into cmt(cmt_num, cmt_content, admin_id, fre_num)
+		values(cmt_seq.nextval, #cmt_content#, #admin_id#, #fre_num#)
+	</insert>
 
 	<update id="updateCmt" parameterClass="cmt">
 		update cmt set cmt_content = #cmt_content# where cmt_num=#cmt_num#
 	</update>
-
-
-		
+	
 	<delete id="deleteCmt" parameterClass="int">
 		delete from cmt where cmt_num=#cmt_num#
 	</delete>
@@ -40,4 +34,12 @@
 		select * from cmt where cmt_num=#cmt_num#
 	</select>
 
+	<select id="cmtContentSearch" parameterClass="int" resultClass="str">
+		select cmt_content from cmt where cmt_num=#result#
+	</select>
+	
+	<update id="cmtContentUpdate" parameterClass="cmt">
+		update cmt set cmt_content = #cmt_content# where cmt_num=#cmt_num#
+	</update>
+	
 </sqlMap>

@@ -220,7 +220,7 @@
 				</li>
 				<li class="gggg" style="font-size: 16px; margin-top: 8px">
 					<a href="javascript:;" data-toggle="collapse" data-target="#demo">
-						<i class="fa fa-fw fa-table"></i> 게시판 X<i class="fa fa-fw fa-caret-down"></i>
+						<i class="fa fa-fw fa-table"></i> 게시판 <i class="fa fa-fw fa-caret-down"></i>
 					</a>
 					<ul id="demo" class="collapse">
 						<li class="ggggOne"><a href="<%=request.getContextPath()%>/admin/FreeList"><i class="fa fa-tag"></i>&nbsp;&nbsp;자유 게시판</a></li>
