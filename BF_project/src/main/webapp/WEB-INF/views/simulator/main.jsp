@@ -480,7 +480,7 @@ function start(){
 		document.getElementById('summary').innerHTML = "<h3>SUMMARY</h3>"+term+"개월간 예상총매출 : <b>"+Math.floor(salesAccount/10000)+"</b> 만원<br>"
 														+term+"개월간 순지출 : <b>"+Math.floor(expenditure/10000)+"</b> 만원<br>"
 														+term+"개월간 순이익 : <b>"+Math.floor(benefit/10000)+"</b> 만원<br>종합점수 : <b>"
-														+totalScore+"</b> 점<br>예상흑자전환시기 : <b>"+surplus+"</b> 개월후";
+														+totalScore+"</b> 점<br>손익분기점 : <b>"+surplus+"</b> 개월후";
 		cnt=0;
 	}
 	

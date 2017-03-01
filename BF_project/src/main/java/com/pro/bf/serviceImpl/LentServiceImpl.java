@@ -58,9 +58,9 @@ public class LentServiceImpl implements LentService{
 	}
 
 	@Override
-	public List<LentVO> lentRecList(String asset) throws SQLException {
+	public List<LentVO> lentRecList(String asset, String addr) throws SQLException {
 		List<LentVO> lentRecList = new ArrayList<LentVO>();
-		lentRecList = lentDao.lentRecList(asset);
+		lentRecList = lentDao.lentRecList(asset, addr);
 		return lentRecList;	
 	}
 	

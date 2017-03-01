@@ -30,11 +30,11 @@ public class ConsultingController {
 	
 	@ResponseBody
 	@RequestMapping(value="recommend", method = RequestMethod.POST)
-	public Map<String,List> execRecommend(String asset){
+	public Map<String,List> execRecommend(String asset, String addr){
 		List<LentVO> lentRecList = new ArrayList<LentVO>();
 		try {
 			System.out.println(asset+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-			lentRecList = lentService.lentRecList(asset+"0000");
+			lentRecList = lentService.lentRecList(asset+"0000",addr);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class ConsultingController {
 			data.put("addr", lentRecList.get(i).getLent_dong()+" "+lentRecList.get(i).getLent_firstzip()+"-"+lentRecList.get(i).getSecondzip());*/
 					
 			System.out.println(lentRecList.get(i).getLent_price2());
-			System.out.println(lentRecList.get(i).getLent_dong()+" "+lentRecList.get(i).getLent_firstzip()+"-"+lentRecList.get(i).getSecondzip());
+			System.out.println(lentRecList.get(i).getLent_dong()+" "+lentRecList.get(i).getLent_firstzip()+"-"+lentRecList.get(i).getLent_secondzip());
 		}
 		
 		

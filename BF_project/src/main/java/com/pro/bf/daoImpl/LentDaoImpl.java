@@ -2,7 +2,9 @@ package com.pro.bf.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.pro.bf.dao.LentDao;
@@ -39,9 +41,12 @@ public class LentDaoImpl implements LentDao{
 	}
 
 	@Override
-	public List<LentVO> lentRecList(String asset) throws SQLException {
+	public List<LentVO> lentRecList(String asset, String addr) throws SQLException {
 		List<LentVO> lentRecList = new ArrayList<LentVO>();
-		lentRecList = client.queryForList("lentRecList",asset);
+		Map<String, String> data = new HashMap<String,String>();
+		data.put("asset",asset);
+		data.put("addr",addr);
+		lentRecList = client.queryForList("lentRecList",data);
 		return lentRecList;
 	}
 	

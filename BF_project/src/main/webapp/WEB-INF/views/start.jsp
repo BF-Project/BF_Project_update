@@ -162,7 +162,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site.jpg"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>성사는 성공하는 사람들의 줄임말로 현재 창업을 준비하고 있는 사람들에게 유용한 정보를 제공하기 위해 만든 서비스입니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -172,7 +172,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site1.jpg"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>성사에서는 창업자에게 가상의 영업을 해 볼 수 있는 기회를 제공합니다. 시뮬레이터는 창업자의 보유자금, 업종, 설문조사 등을 토대로 사용자에게 예상매출, 예상순이익, 손익분기점 등의 정보를 제공합니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -182,7 +182,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site3.png"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>성사에서는 사용자들간에 창업정보를 공유할 수 있는 커뮤니티를 이용할 수 있습니다. 커뮤니티에서는 게시글과 댓글을 통해 자유롭게 소툥이 가능합니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -192,7 +192,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site2.png"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>We tried to make very high-quality product and so our code is very neat and clean. Whatever anyone could improve and modify the template to your liking.</span></td>
+									<td><span>성사에서는 컨설팅을 통해 전문가와 상담을 할 수 있습니다. 사용자는 관리자와 실시간대화 및 전문가와의 메일링 서비스를 할 수 있으며 원하는 창업지역의 추천 또한 받을 수 있습니다.</span></td>
 								</tr>
 							</table>
 						</div>						
