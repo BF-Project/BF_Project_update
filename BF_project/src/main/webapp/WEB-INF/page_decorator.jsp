@@ -523,7 +523,7 @@ select {
 								<li class="sub-menu"><a href="javascript:void(0);"
 									style="font-size: 14px">컨설팅</a>
 									<ul>
-										<li><a href="<%=request.getContextPath()%>/consult/consult" style="font-size: 13px">전문가 컨설팅</a></li>
+										<li><a href="<%=request.getContextPath()%>/consulting/consult" style="font-size: 13px">전문가 컨설팅</a></li>
 										<li><a href="<%=request.getContextPath()%>/consulting/recommend" style="font-size: 13px">지역추천</a></li>
 										<li><a href="javascript:void(0);" style="font-size: 13px">홈페이지제작(templates)</a></li>
 									</ul></li>

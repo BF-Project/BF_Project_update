@@ -27,5 +27,5 @@
 		<property name="host" value="smtp.gmail.com" />
     	<property name="port" value="465" />
 	</bean>
-
+	
 </beans>
