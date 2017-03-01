@@ -527,7 +527,7 @@ select {
 										<li><a href="<%=request.getContextPath()%>/consulting/recommend" style="font-size: 13px">지역추천</a></li>
 										<!-- <li><a href="javascript:void(0);" style="font-size: 13px">홈페이지
 												제작(templates)</a></li> -->
-
+									</ul></li>
 								<li class="scroll_btn"><a
 									href="<%=request.getContextPath()%>/simulator/main"
 									style="font-size: 14px">시뮬레이터</a></li>
