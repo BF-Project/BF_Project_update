@@ -72,7 +72,7 @@ public class AdminCommunityController {
 		request.setAttribute("paging", paging);
 		int CommunityListSize = 0;
 		if(!(communityList.size()==0))
-			CommunityListSize = communityList.size();
+			CommunityListSize = communityList.size();	
 		request.setAttribute("CommunityListSize", CommunityListSize); // 커뮤니티게시판 개수
 		request.setAttribute("communityList", communityList);
 		
