@@ -181,11 +181,11 @@
 							</button>
 						</c:otherwise>
 					</c:choose>
-					<button type="button" class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/admin/memberUpdateView?page=${page}&memberid=${memberVo.mbr_id}'"
+					<button type="button" class="btn btn-info" onclick="location.href='<%=request.getContextPath()%>/admin/memberUpdateView?page=${page}&memberid=${memberVo.mbr_id}&comboSelectMember=${param.comboSelectMember}'"
 						style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 							<b style="font-size:14px">정보 수정하기</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 					</button>						
-					<button type="button" class="btn btn-default" onclick="location.href='memberOperate?page=${page}'" 
+					<button type="button" class="btn btn-default" onclick="location.href='memberOperate?page=${page}&comboSelectMember=${param.comboSelectMember}'" 
 						style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 							<b style="font-size:14px">목록</b>&nbsp;<i class="fa fa-list-ul"></i>
 					</button>

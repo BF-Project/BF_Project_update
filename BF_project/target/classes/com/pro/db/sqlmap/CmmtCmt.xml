@@ -9,13 +9,19 @@
 	<!-- <typeAlias alias="cmmtcmt" type="com.pro.bf.dto.CmmtCmtVO" /> -->
 	
 	<select id="cmmtcmtAllList" parameterClass="int" resultClass="cmmtcmt">
-		select * from cmmtcmt where cmmt_num=#cmmt_num# order by cmmtcmt_num desc
+		select * from cmmtcmt where cmmt_num=#cmmt_num# order by cmmtcmt_num asc
 	</select>
 	
 	<!--댓글추가-->
 	<insert id="intsertCmmtcmt" parameterClass="cmmtcmt">
 		insert into cmmtcmt(cmmtcmt_num, cmmtcmt_content, mbr_id, cmmt_num) 
 		values(cmmtcmt_seq.nextval, #cmmtcmt_content#, #mbr_id#, #cmmt_num#)
+	</insert>
+	
+	<!-- 관리자 댓글 등록 -->
+	<insert id="insertCmmtcmtAdmin">
+		insert into cmmtcmt(cmmtcmt_num, cmmtcmt_content, admin_id, cmmt_num)
+		values(cmmtcmt_seq.nextval, #cmmtcmt_content#, #admin_id#, #cmmt_num#)
 	</insert>
 	
 	<!--댓글삭제-->	
@@ -31,6 +37,14 @@
 	<!--댓글수정-->
 	<update id="updateCmmtcmt" parameterClass="cmmtcmt">
 		update cmmtcmt set cmmtcmt_content=#cmmtcmt_content# where cmmtcmt_num=#cmmtcmt_num#		
+	</update>
+	
+	<select id="searchContent" parameterClass="int" resultClass="str">
+		select cmmtcmt_content from cmmtcmt where cmmtcmt_num=#result#
+	</select>
+	
+	<update id="cmmtCommentUpdate" parameterClass="cmmtcmt">
+		update cmmtcmt set cmmtcmt_content = #cmmtcmt_content# where cmmtcmt_num=#cmmtcmt_num#
 	</update>
 </sqlMap>
      

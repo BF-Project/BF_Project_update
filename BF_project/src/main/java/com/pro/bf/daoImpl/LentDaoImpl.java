@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.pro.bf.dao.LentDao;
+import com.pro.bf.dto.LentVO;
 
 public class LentDaoImpl implements LentDao{
 
@@ -35,6 +36,13 @@ public class LentDaoImpl implements LentDao{
 		List<String> lentList = new ArrayList<String>();
 		lentList = client.queryForList("lentList");
 		return lentList;
+	}
+
+	@Override
+	public List<LentVO> lentRecList(String asset) throws SQLException {
+		List<LentVO> lentRecList = new ArrayList<LentVO>();
+		lentRecList = client.queryForList("lentRecList",asset);
+		return lentRecList;
 	}
 	
 }

@@ -49,6 +49,24 @@
 		select fre_pict_afat from free where fre_num=#fre_num#
 	</select>
 	
+	<select id="TotalFreeList" parameterClass="str" resultClass="int">
+		select count(*) from free where fre_title like '%'||#search#||'%'
+	</select>
 	
+	<select id="FreeListForTitle" parameterClass="str" resultClass="free">
+		select * from free where fre_title like '%'||#search#||'%' order by fre_num desc
+	</select>
+	
+	<select id="freeListforID" parameterClass="str" resultClass="int">
+		select count(*) from free where mbr_id like '%'||#search#||'%'
+	</select>
+	
+	<select id="freeListForIDIDID" parameterClass="str" resultClass="free">
+		select * from free where mbr_id like '%'||#search#||'%' order by Fre_num desc
+	</select>
+	
+	<update id="viewCountUp" parameterClass="int">
+		update free set fre_cnt = fre_cnt + 1 where fre_num = #freeNum#
+	</update>
 	
 </sqlMap>

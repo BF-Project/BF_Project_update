@@ -4,9 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,8 @@ import com.pro.bf.serviceImpl.CalculateScoreImpl;
 import com.pro.bf.serviceImpl.FlowageServiceImpl;
 import com.pro.bf.serviceImpl.LentServiceImpl;
 import com.pro.bf.serviceImpl.MotelServiceImpl;
+import com.pro.bf.serviceImpl.OfflineServiceImpl;
+import com.pro.bf.serviceImpl.OnlineServiceImpl;
 import com.pro.bf.serviceImpl.PopulationServiceImpl;
 import com.pro.bf.serviceImpl.ShopServiceImpl;
 import com.pro.bf.serviceImpl.TouristServiceImpl;
@@ -37,6 +40,10 @@ public class SimulatorController {
 	ShopServiceImpl shopService;
 	@Autowired
 	CalculateScoreImpl calcService;
+	@Autowired
+	OfflineServiceImpl offlineService;
+	@Autowired
+	OnlineServiceImpl onlineService;
 
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	public String mainGet() {
@@ -54,14 +61,16 @@ public class SimulatorController {
 	@ResponseBody
 	@RequestMapping(value = "start", method = RequestMethod.POST)
 	public List<String> start(String radio, String kind, String addr,
-			String addrDetail, String startPeriod, String endPeriod,
-			String marketing, String prodManage, String sitemap,
+			String addrDetail, String asset,String startPeriod, String endPeriod,
+			String marketing, String prodManage, String sitemap, 
 			String prodDirect, String cooperation, String itemCreativity,
-			String customerManage) {
+			String customerManage, HttpSession session) {
 
-		
+		String user = (String)session.getAttribute("loginUser");
 		List<String> data = new ArrayList<String>();
 		if (radio.equals("offline")) {
+			
+			
 			float[][] matrix = {
 					{ 1, (float) 0.666, (float) 1.666, (float) 0.333,
 							(float) 1.333 },
@@ -150,21 +159,25 @@ public class SimulatorController {
 			 */
 
 			float totalScore = 0;
-
+			float populationScore = 0;
+			float touristScore = 0;
+			float shopScore = 0;
+			float motelScore = 0;
+			float lentScore = 0;
+			float flowageScore = 0;
 			for (int i = 0; i < 5; i++) {
 				try {
 					String address = addr + " " + addrDetail;
 					if (i == 0) {
-						float populationScore = populationService.score(addr);
+						populationScore = populationService.score(addr);
 						totalScore += populationScore * resultMatrix[i][5];
 						data.add(populationScore + "");
 					} else if (i == 1) {
-						float touristScore = touristService.score(addr);
+						touristScore = touristService.score(addr);
 						totalScore += touristScore * resultMatrix[i][5];
 						data.add(touristScore + "");
 					} else if (i == 2) {
-						float shopScore = 0;
-						float motelScore = 0;
+						
 						if (kind.equals("pension")) {
 							motelScore = motelService.score(addr);
 							totalScore += motelScore * resultMatrix[i][5];
@@ -175,11 +188,11 @@ public class SimulatorController {
 							data.add(shopScore + "");
 						}
 					} else if (i == 3) {
-						float lentScore = lentService.score(address);
+						lentScore = lentService.score(address);
 						totalScore += lentScore * resultMatrix[i][5];
 						data.add(lentScore + "");
 					} else if (i == 4) {
-						float flowageScore = flowageService.score(address);
+						flowageScore = flowageService.score(address);
 						totalScore += flowageScore * resultMatrix[i][5];
 						data.add(flowageScore + "");
 					}
@@ -195,14 +208,21 @@ public class SimulatorController {
 			int salesAccount = 0;
 			if (Math.random() * 100 <= totalScore) {
 				salesAccount = (int) calcService.calcScore(kind, totalScore, radio);
+				if(Integer.parseInt(asset)>=5000){
+					int addSales = Integer.parseInt(asset);
+					addSales = addSales*70;
+					salesAccount += addSales;
+				}
 			}
 			System.out.println("3일 매출 : " + salesAccount);
 			data.add(salesAccount + "");
-
+			data.add(totalScore+"");
+			
+			
 			return data;
 		}else{
 			int totalScore = 20;
-			int salesAccount = 1000000;
+			int salesAccount = 1200000;
 			if(marketing.equals("yes")){
 				totalScore += 20;
 			}
@@ -232,10 +252,49 @@ public class SimulatorController {
 			}
 			System.out.println("totalScore : "+totalScore);
 			salesAccount = salesAccount*totalScore/100;
+			if(Integer.parseInt(asset)>=5000){
+				int addSales = Integer.parseInt(asset);
+				addSales = addSales*70;
+				salesAccount += addSales;
+			}
 			data.add(salesAccount+"");
+			data.add(totalScore+"");
 		}
 		
 		return data;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "insert", method = RequestMethod.POST)
+	public void insertData(String radio, String kind, String addr,
+			String addrDetail, String asset,String startPeriod, String endPeriod,
+			String marketing, String prodManage, String sitemap, 
+			String prodDirect, String cooperation, String itemCreativity,
+			String customerManage, String benefit, HttpSession session,	String cnt,	String salesAccount,
+			String benefit2,String populationScore,String touristScore,String shopScore,
+			String lentScore,String flowageScore){
+		
+		String user = (String)session.getAttribute("loginUser");
+		
+		if(radio.equals("offline")){
+			try {
+				offlineService.insertData(user, addr, addrDetail, asset, kind,  Float.parseFloat(populationScore), Float.parseFloat(touristScore), 
+						Float.parseFloat(shopScore),Float.parseFloat(lentScore),Float.parseFloat(flowageScore), salesAccount, benefit2);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			try {
+				onlineService.insertData(user, asset, marketing, prodManage, sitemap, prodDirect, cooperation, itemCreativity, customerManage, benefit, salesAccount, benefit2);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

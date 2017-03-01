@@ -13,16 +13,16 @@ public class CalculateScoreImpl implements CalculateScore {
 				salesAccount += score*60*15000*3/100;
 				//salesAccount += 15000*3; 
 			}else if(kind.equals("cafe")){
-				salesAccount += score*4500*65*3/100;
+				salesAccount += score*800000*3/100;
 			}else if(kind.equals("restaurant")){
-				salesAccount += score*400000*3/100;
+				salesAccount += score*900000*3/100;
 			}else if(kind.equals("pension")){
-				salesAccount += score*300000*3/100;
+				salesAccount += score*700000*3/100;
 			}
 			return salesAccount;
 		}else{
 			if(kind.equals("marketing")){
-				salesAccount += 10000; 
+				salesAccount += 10000;
 			}else if(kind.equals("prodManage")){
 				salesAccount += 10000;
 			}else if(kind.equals("benefit")){

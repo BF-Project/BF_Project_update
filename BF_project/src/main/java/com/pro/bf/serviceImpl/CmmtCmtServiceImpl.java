@@ -35,7 +35,11 @@ public class CmmtCmtServiceImpl implements CmmtCmtService {
 	//댓글추가
 	@Override
 	public void intsertCmmtcmt(CmmtCmtVO cmmtcmtVO) throws SQLException {
-		cmmtcmtDAOImpl.intsertCmmtcmt(cmmtcmtVO);
+		if(cmmtcmtVO.getAdmin_id()!=null){
+			cmmtcmtDAOImpl.insertCmmtcmtAdmin(cmmtcmtVO);
+		}else{
+			cmmtcmtDAOImpl.intsertCmmtcmt(cmmtcmtVO);
+		}
 	}
 
 	//댓글삭제
@@ -62,6 +66,14 @@ public class CmmtCmtServiceImpl implements CmmtCmtService {
 	}
 
 
+	public String searchContent(int result) throws SQLException{
+		String cmtContent = cmmtcmtDAOImpl.searchContent(result);
+		return cmtContent;
+	}
+	
+	public void cmmtCommentUpdate(CmmtCmtVO cmmtcmtVo) throws SQLException{
+		cmmtcmtDAOImpl.cmmtCommentUpdate(cmmtcmtVo);
+	}
 	
 	
 }

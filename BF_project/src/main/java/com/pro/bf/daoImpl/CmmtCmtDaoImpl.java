@@ -49,4 +49,17 @@ public class CmmtCmtDaoImpl implements CmmtCmtDao  {
 		//client.update("updateCmmtcmt", cmmtcmt_num);
 	}
 
+	@Override
+	public void insertCmmtcmtAdmin(CmmtCmtVO cmmtcmtVO) throws SQLException { /// 관리자 댓글 등록
+		client.insert("insertCmmtcmtAdmin", cmmtcmtVO);
+	}
+
+	public String searchContent(int result) throws SQLException{
+		String cmtContent = (String) client.queryForObject("searchContent", result);
+		return cmtContent;
+	}
+	
+	public void cmmtCommentUpdate(CmmtCmtVO cmmtcmtVo) throws SQLException{
+		client.update("cmmtCommentUpdate",cmmtcmtVo);
+	}
 }

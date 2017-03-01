@@ -96,6 +96,8 @@ public class CmmtCmtController {
 		int cmmtcmtnum=Integer.parseInt(request.getParameter("result"));
 		try {
 			cmmtcmtServiceImpl.deleteCmmtcmt(cmmtcmtnum);
+//			map1.put("listlist", listlist); // null
+//			map1.put("cmmtcmtnum", cmmtcmtnum); // 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

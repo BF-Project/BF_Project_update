@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pro.bf.daoImpl.LentDaoImpl;
+import com.pro.bf.dto.LentVO;
 import com.pro.bf.service.LentService;
 
 public class LentServiceImpl implements LentService{
@@ -54,6 +55,13 @@ public class LentServiceImpl implements LentService{
 		}
 		System.out.println("lent score : "+score);
 		return score;
+	}
+
+	@Override
+	public List<LentVO> lentRecList(String asset) throws SQLException {
+		List<LentVO> lentRecList = new ArrayList<LentVO>();
+		lentRecList = lentDao.lentRecList(asset);
+		return lentRecList;	
 	}
 	
 	

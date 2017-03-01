@@ -55,7 +55,15 @@ public class LoginCheckFilter implements Filter{
                 httpResponse.sendRedirect("/bf/filter2");
         		return;
         	}
-        		
+        	if(requestUri.contains("cmmtphotodownload")){ // admin에서 파일 다운로드 하기 위해...
+        		chain.doFilter(request, response);
+        		return;
+        	}
+//        	if(requestUri.contains("freephotoDownload")){ // admin에서 파일을 다운로드 하기 위해...
+//        		chain.doFilter(request, response);
+//        		return;
+//        	}
+        	
         	session.setAttribute("needTologin", "needTologin");
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.sendRedirect("/bf/filter");

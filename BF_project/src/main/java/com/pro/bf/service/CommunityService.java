@@ -30,4 +30,8 @@ public interface CommunityService {
 
 	//파일다운로드 하기위한 service에 메소드 추가
 	String cmmtFileNameSearch(int cmmt_num)throws SQLException;
+	
+	// 
+	ArrayList<CommunityVO> communityList(int page, String search, String selectCombo) throws SQLException;
+	String pageNumber2(int page, String search, String currentPage, String selectCombo) throws SQLException;
 }

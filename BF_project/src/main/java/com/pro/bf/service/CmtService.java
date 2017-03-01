@@ -17,6 +17,6 @@ public interface CmtService {
 	//댓글삭제
 	public int deleteCmt(int cmt_num) throws SQLException;
 	public List<CmtVO> cmtListAn(int cmt_num) throws SQLException;
-
+	String searchContent(int result) throws SQLException;
 }
 

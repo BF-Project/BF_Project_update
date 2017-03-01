@@ -188,7 +188,7 @@
 	<script>
 		// 회원 상세보기
 		function detailMember(member_select_Id){
-			location = '<%=request.getContextPath()%>/admin/memberDetail?&member_select_Id='+member_select_Id+'&page=${page}';
+			location = '<%=request.getContextPath()%>/admin/memberDetail?&member_select_Id='+member_select_Id+'&page=${page}&comboSelectMember=${param.comboSelectMember}';
 		}
 	</script>
 </head>
@@ -294,21 +294,21 @@
 								<!-- c -->
 								<c:choose>
 									<c:when test="${!empty param.comboSelectMember}">
-										<c:if test="${param.comboSelectMember eq 'comboName'}">
+										<c:if test="${param.comboSelectMember eq 'comboName' or param.comboSelectMember eq 'NAME'}">
 											<select name="comboSelectMember" style="height: 30px">
 												    <option value="comboName" selected>이름</option>
 												    <option value="comboId">아이디</option>
 												    <option value="comboPhone">전화번호</option>
 											</select>
 										</c:if>
-										<c:if test="${param.comboSelectMember eq 'comboId'}">
+										<c:if test="${param.comboSelectMember eq 'comboId' or param.comboSelectMember eq 'ID'}">
 											<select name="comboSelectMember" style="height: 30px">
 											    <option value="comboName">이름</option>
 											    <option value="comboId" selected>아이디</option>
 											    <option value="comboPhone">전화번호</option>
 											</select>
 										</c:if>
-										<c:if test="${param.comboSelectMember eq 'comboPhone'}">
+										<c:if test="${param.comboSelectMember eq 'comboPhone' or param.comboSelectMember eq 'PHONE'}">
 											<select name="comboSelectMember" style="height: 30px">
 											    <option value="comboName">이름</option>
 											    <option value="comboId">아이디</option>

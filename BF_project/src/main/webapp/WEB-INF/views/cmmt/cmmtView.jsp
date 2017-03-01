@@ -20,7 +20,7 @@
 
 <script>
 $(document).ready(function() {
-    var cmmt_num = $('#cmmt_num').val();
+    var cmmt_num = $('#cmmt_num').val();  
     var data ={'cmmt_num' : cmmt_num};
     
     $.ajax({
@@ -63,7 +63,7 @@ $(document).ready(function() {
 						+'class="delete" name="delete">삭제</a>'
 						+ '<div class="'
 						+ data[i].cmmtcmt_num
-						+ '">'
+						+ '" style="margin-bottom:5%;">'
 						+ data[i].cmmtcmt_content
 						+'</div></div>';
           } else {
@@ -84,7 +84,7 @@ $(document).ready(function() {
 								+ '&nbsp;&nbsp;'
 								+ '<div class="'
 								+ data[i].cmmtcmt_num
-								+ '">'
+								+ '" style="margin-bottom:5%;">'
 								+ data[i].cmmtcmt_content
 								+'</div></div>';
           }
@@ -140,7 +140,7 @@ function commm_go() {
 						+'class="delete" name="delete">삭제</a>'
 						+ '<div class="'
 						+ data[i].cmmtcmt_num
-						+ '">'
+						+ '" style="margin-bottom:5%;">'
 						+ data[i].cmmtcmt_content
 						+'</div></div>';
         	} else {
@@ -161,7 +161,7 @@ function commm_go() {
      						+'&nbsp;&nbsp;'
      						+ '<div class="'
      						+ data[i].cmmtcmt_num
-     						+ '">'
+     						+ '" style="margin-bottom:5%;">'
      						+ data[i].cmmtcmt_content
      						+'</div></div>';
         	}
@@ -370,6 +370,7 @@ $(document).on('click','.btnn', function(e) {
 								style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
 								<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size: 14px">목록</b>
 							</button>
+							<br>
 
 						</c:when>
 
@@ -379,7 +380,7 @@ $(document).on('click','.btnn', function(e) {
 								style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
 								<i class="fa fa-list-ul"></i>&nbsp;<b style="font-size: 14px">목록</b>
 							</button>
-
+							<br>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -387,4 +388,5 @@ $(document).on('click','.btnn', function(e) {
 			</form>
 		</div>
 	</div>
+	<br>
 </body>
