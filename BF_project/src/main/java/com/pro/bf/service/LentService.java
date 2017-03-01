@@ -11,5 +11,5 @@ public interface LentService {
 	double count() throws SQLException;
 	List<String> lentList() throws SQLException;
 	float score(String dong) throws SQLException;
-	List<LentVO> lentRecList(String asset) throws SQLException;
+	List<LentVO> lentRecList(String asset, String addr) throws SQLException;
 }

@@ -42,7 +42,7 @@
 					if(numberPattern.test(mbr_phone)==true){
 						if(emailPattern.test(mbr_eml)==true){
 							if(!(mbr_addr==null) && !(mbr_addr=="")){
-								location.href='<%=request.getContextPath()%>/admin/memberUpdateGoGo?mbr_id='+mbr_id+'&mbr_pwd='+mbr_pwd+'&mbr_nm='+mbr_nm+'&mbr_phone='+mbr_phone+'&mbr_eml='+mbr_eml+'&mbr_addr='+mbr_addr+'&page=${page}'
+								location.href='<%=request.getContextPath()%>/join/memberUpdateGoGo?mbr_id='+mbr_id+'&mbr_pwd='+mbr_pwd+'&mbr_nm='+mbr_nm+'&mbr_phone='+mbr_phone+'&mbr_eml='+mbr_eml+'&mbr_addr='+mbr_addr+''
 							}else{
 								alert('주소를 입력해주세요.');
 								document.getElementById('updateAddr').value="";
@@ -71,6 +71,7 @@
 		}
 	</script>	
 </head>
+
 <body>
 	<div id="wrapper">
 		<div id="page-wrapper" style="text-align: center; height: 906.5px;">
@@ -91,7 +92,9 @@
 									<td><label for="InputPassword1">&nbsp;&nbsp;비밀번호</label></td>
 								</tr>
 								<tr>
+			<%-- 						<td><input type="text" class="form-control" name="InputId" id="updateId" value="${memberVo.mbr_id}" readonly></td> --%>
 									<td><input type="text" class="form-control" name="InputId" id="updateId" value="${memberVo.mbr_id}" readonly></td>
+									
 									<td></td>
 									<td><input type="password" class="form-control" name="InputPassword1" id="updatePWD" value="${memberVo.mbr_pwd}" placeholder="비밀번호를 입력해주세요"></td>
 								</tr>
@@ -170,12 +173,11 @@
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">수정완료</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 						</button>				
-						<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/admin/memberUpdateView?page=${page}&memberid=${memberVo.mbr_id}&comboSelectMember=${param.comboSelectMember}'" 
-
+						<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/join/memberUpdateView?&memberid=${memberVo.mbr_id}'" 
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">정보 복구하기</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 						</button>						
-						<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/admin/memberDetail?page=${page}&member_select_Id=${memberVo.mbr_id}&comboSelectMember=${param.comboSelectMember}'" 
+						<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/join/memberDetail?&member_select_Id=${memberVo.mbr_id}'" 
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">취소</b>&nbsp;<i class="fa fa-times spaceLeft"></i>
 						</button>

@@ -6,6 +6,7 @@
 <sqlMap namespace="Lent">
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="hash" type="java.util.HashMap"/>
 	<!-- <typeAlias alias="lent" type="com.pro.bf.dtd.LentVO" /> -->
 	
 	<!-- Query 문 작성란 -->
@@ -22,8 +23,8 @@
 		select count(*) from lent
 	</select>
 	
-	<select id="lentRecList" parameterClass='str' resultClass="lent">
-		select * from lent where <![CDATA[lent_price2<#asset#]]> order by lent_price2 desc
+	<select id="lentRecList" parameterClass="hash" resultClass="lent">
+		select * from lent where <![CDATA[lent_price2<#asset#]]> and lent_dong like '%'||#addr#||'%' order by lent_price2 desc
 	</select>
 		
 </sqlMap>

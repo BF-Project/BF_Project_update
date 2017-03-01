@@ -16,7 +16,7 @@ public class LentVO {
 	private int lent_num; // key, 일련번호
 	private String lent_dong; // 동
 	private int lent_firstzip; // 본번
-	private int secondzip; // 부번
+	private int lent_secondzip; // 부번
 	private String lent_price; // 공시가격
 	private String lent_price2;
 	

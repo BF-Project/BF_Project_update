@@ -525,7 +525,8 @@ select {
 									<ul>
 										<li><a href="<%=request.getContextPath()%>/consulting/consult" style="font-size: 13px">전문가 컨설팅</a></li>
 										<li><a href="<%=request.getContextPath()%>/consulting/recommend" style="font-size: 13px">지역추천</a></li>
-										<li><a href="javascript:void(0);" style="font-size: 13px">홈페이지제작(templates)</a></li>
+										<!-- <li><a href="javascript:void(0);" style="font-size: 13px">홈페이지
+												제작(templates)</a></li> -->
 									</ul></li>
 								<li class="scroll_btn"><a
 									href="<%=request.getContextPath()%>/simulator/main"
@@ -546,8 +547,8 @@ select {
 								<c:choose>
 									<c:when test="${!empty sessionScope.loginUser}">
 								
-										<li><a href="#" style="font-size: 14px">내 정보</a></li>
-										<%-- <li><a href="<%=request.getContextPath()%>/mypage/mypageView" style="font-size: 14px">내 정보</a></li> --%>
+										<!--<li><a href="#" style="font-size: 14px">내 정보</a></li> -->
+										<li><a href="<%=request.getContextPath()%>/join/mypage" style="font-size: 14px">내 정보</a></li>
 									
 									
 									</c:when>

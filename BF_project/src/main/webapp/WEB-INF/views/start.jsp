@@ -162,7 +162,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site.jpg"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>가운데에 있는 상형문자는 성공하는 사람들의 앞자를 따서 "성사"라는 로고를 만들었고, 창업자에게 조금이나마 도움을 주고 창업 성공률을 높여주기 위한 시스템 입니다.</span></td>
+									<td><span>성사는 성공하는 사람들의 줄임말로 현재 창업을 준비하고 있는 사람들에게 유용한 정보를 제공하기 위해 만든 서비스입니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -172,7 +172,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site1.jpg"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>핵심 시스템으로써 창업자가 저희가 원하는 특정정보를 입력하면 시스템에서 정보에 맞게 예상 월매출, 예상 순이익 등 시뮬레이션을 하여 창업자에게 적절한 유용한 정보를 제공해 주는 것입니다.</span></td>
+									<td><span>성사에서는 창업자에게 가상의 영업을 해 볼 수 있는 기회를 제공합니다. 시뮬레이터는 창업자의 보유자금, 업종, 설문조사 등을 토대로 사용자에게 예상매출, 예상순이익, 손익분기점 등의 정보를 제공합니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -182,7 +182,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site3.png"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>커뮤니티를 활성화 하여 창업자간의 정보공유를 할 수 있도록 해주는 게시판입니다.</span></td>
+									<td><span>성사에서는 사용자들간에 창업정보를 공유할 수 있는 커뮤니티를 이용할 수 있습니다. 커뮤니티에서는 게시글과 댓글을 통해 자유롭게 소툥이 가능합니다.</span></td>
 								</tr>
 							</table>
 						</div>
@@ -192,7 +192,7 @@
 								<tr>
 									<td style="width:400px; height:400px;"><img src="resources/images/logo/site2.png"></td>
 									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-									<td><span>시뮬레이션 한 결과를 가지고 전문가와 컨설팅이 가능하도록 연결을 해주는 것입니다.</span></td>
+									<td><span>성사에서는 컨설팅을 통해 전문가와 상담을 할 수 있습니다. 사용자는 관리자와 실시간대화 및 전문가와의 메일링 서비스를 할 수 있으며 원하는 창업지역의 추천 또한 받을 수 있습니다.</span></td>
 								</tr>
 							</table>
 						</div>						
