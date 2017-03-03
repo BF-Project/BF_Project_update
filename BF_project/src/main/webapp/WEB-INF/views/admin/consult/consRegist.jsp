@@ -16,10 +16,10 @@
 			<div class="row">
 				<br><br>        
 				<h1><b>전문가등록</b><br></h1><br><br>
-				<form style="margin-left:-220px">
-					이름 : <br><input type="text" class="form-control" id="irum" style="width:200px; margin-left:930px;"/><br>
-					이메일 : <br><input type="text" class="form-control" id="email" style="width:400px; margin-left:930px;" /><br>
-					<button type="button" class="btn btn-warning" id="regist" onclick="location.href='ConsManager'">등록</button>
+				<form style="margin-left:-220px" method="post" action='ConsManager'>
+					이름 : <br><input type="text" class="form-control" id="irum" name="irum" style="width:200px; margin-left:930px;"/><br>
+					이메일 : <br><input type="text" class="form-control" id="email" name="email" style="width:400px; margin-left:930px;" /><br>
+					<button type="submit" class="btn btn-warning" id="regist">등록</button>
 				</form>
 			</div>
 		</div>
