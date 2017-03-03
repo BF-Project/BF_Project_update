@@ -15,6 +15,52 @@
 }
 </style>
 
+<style>
+.checks {position: relative;} 
+
+.checks input[type="checkbox"] { /* 실제 체크박스는 화면에서 숨김 */ 
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); border: 0 } 
+
+.checks input[type="checkbox"] + label {
+	display: inline-block; 
+	position: relative; 
+	cursor: pointer; 
+	-webkit-user-select: none; 
+	-moz-user-select: none; 
+	-ms-user-select: none; } 
+
+.checks input[type="checkbox"] + label:before { /* 가짜 체크박스 */ 
+	content: ' '; 
+	display: inline-block; 
+	width: 21px; /* 체크박스의 너비를 지정 */ 
+	height: 21px; /* 체크박스의 높이를 지정 */ 
+	line-height: 21px; /* 세로정렬을 위해 높이값과 일치 */ 
+	margin: -2px 8px 0 0; 
+	text-align: center; 
+	vertical-align: middle; 
+	background: white; 
+	border: 1px solid #000000; 
+	border-radius : 3px; 
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); } 
+
+.checks input[type="checkbox"] + label:active:before, .checks input[type="checkbox"]:checked + label:active:before { 
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1); } 
+
+.checks input[type="checkbox"]:checked + label:before { /* 체크박스를 체크했을때 */ 
+	content: '\2714'; /* 체크표시 유니코드 사용 */ 
+	color: #FF0000; 
+	text-shadow: 1px 1px #FF0000; 
+	background: white; 
+ 	border-color: #000000; /* 검정 */
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1); }
+</style>
+
 </head>
 <body>
 	<!-- PRELOADER -->
@@ -37,8 +83,18 @@
 			</section>
 			<br>
 			<form action="sendMail" id="mail" method="post">
-				보내는사람 : <input type="text" class="form-control" name="sender" style="width: 25%;" /><br> 
-				받는사람 : <input type="text" class="form-control" name="to" style="width: 25%;" /><br> 
+				보내는사람 : <br><input type="text" class="form-control" name="sender" style="width: 25%; display: inline-block;" />
+				<select name="mailServer">
+					<option value="Naver">네이버</option>
+					<option value="Gmail">지메일</option>					
+				</select>
+				<div class="checks" style="margin-bottom: 18px; display:inline;">
+					<input type="checkbox" id="agree-all" name="allcheck" /> 
+					<label for="agree-all">기본계정사용여부</label>
+				</div>
+				<br><br>
+				패스워드 : <input type="password" class="form-control" name="password" style="width: 25%;" /><br>
+				받는사람 : <input type="text" class="form-control" name="to" value="${param.cons}" style="width: 25%;" readonly /><br> 
 				제목 : <input type="text" class="form-control" name="title" style="width: 25%;" /><br> 
 				내용 : <textarea cols="40" rows="15" class="form-control" name="context" style="width: 40%; height: 315px;"></textarea>
 				<!-- <input type="button" value="메일보내기" class="glyphicon glyphicon-envelope" onclick="javascript:this.form.submit();" /> -->

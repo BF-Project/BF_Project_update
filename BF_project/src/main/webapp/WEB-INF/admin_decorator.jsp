@@ -215,6 +215,12 @@
 <!-- 				<li class="cccc" style="font-size: 16px; margin-top: 8px"><a href="#"> -->
 <!-- 					<i class="fa fa-fw fa-bar-chart-o"></i> 시뮬레이터 X</a> -->
 <!-- 				</li> -->
+				<li class="eeee" style="font-size: 16px; margin-top: 8px"><a href="<%=request.getContextPath()%>/admin/ConsManager">
+					<i class="fa fa-group"></i> 전문가관리</a>
+				</li>
+				<li class="cccc" style="font-size: 16px; margin-top: 8px"><a href="#">
+					<i class="fa fa-fw fa-bar-chart-o"></i> 시뮬레이터 X</a>
+				</li>
 				<li class="dddd" style="font-size: 16px; margin-top: 8px"><a href="<%=request.getContextPath()%>/admin/notice">
 					<i class="fa fa-fw fa-edit"></i> 공지사항</a>
 				</li>

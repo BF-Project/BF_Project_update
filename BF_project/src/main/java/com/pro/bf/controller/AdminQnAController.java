@@ -20,7 +20,7 @@ import com.pro.bf.serviceImpl.QnAServiceImpl;
 
 @Controller
 @RequestMapping("admin")
-public class adminQnAController {
+public class AdminQnAController {
 
 	@Autowired
 	QnAServiceImpl qnaService;
