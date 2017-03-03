@@ -94,7 +94,7 @@
 				</div>
 				<br><br>
 				패스워드 : <input type="password" class="form-control" name="password" style="width: 25%;" /><br>
-				받는사람 : <input type="text" class="form-control" name="to" style="width: 25%;" /><br> 
+				받는사람 : <input type="text" class="form-control" name="to" value="${param.cons}" style="width: 25%;" readonly /><br> 
 				제목 : <input type="text" class="form-control" name="title" style="width: 25%;" /><br> 
 				내용 : <textarea cols="40" rows="15" class="form-control" name="context" style="width: 40%; height: 315px;"></textarea>
 				<!-- <input type="button" value="메일보내기" class="glyphicon glyphicon-envelope" onclick="javascript:this.form.submit();" /> -->
