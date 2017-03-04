@@ -69,7 +69,7 @@ $(function(){
 			method:'post',
 			dataType:'json',
 			success:function(response){
-				alert(JSON.stringify(response));
+				alert('삭제를 성공하였습니다.');
 				if(response.success){ // 삭제 성공
 					// 갱신된 properties 를 비동기 요청으로 받아옴
 					$.ajax({
@@ -86,8 +86,8 @@ $(function(){
 								html+='<label for="'+(index++)+'"></label>                                         ';
 								html+='</div>                                                                      ';
 								html+='</td>                                                                       ';
-								html+="<td>"+idx+"</td>";
 								html+="<td>"+entry+"</td>";
+								html+="<td>"+idx+"</td>";
 								html+="</tr>";
 							});
 							$("#consListArea").html(html);
