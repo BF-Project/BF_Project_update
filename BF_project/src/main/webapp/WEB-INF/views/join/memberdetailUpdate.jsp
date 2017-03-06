@@ -83,7 +83,7 @@
 
 <body>
 	<div id="wrapper">
-		<div id="page-wrapper" style="text-align: center; height: 906.5px;">
+		<div id="page-wrapper" style="text-align: center; height: 790px;">
 			<div class="row">
 			
 			<!-- memberUpdateForm -->
@@ -186,7 +186,7 @@
 						</button>
 					<!-- button -->
 					
-					<div class="page-header"></div>
+				<!-- 	<div class="page-header"></div> -->
 				</div>
 			<!-- memberUpdateForm : end -->
 			
