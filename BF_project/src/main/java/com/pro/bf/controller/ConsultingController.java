@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailException;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pro.bf.controller.ServerKind.ServerSpec;
 import com.pro.bf.dto.EmailVO;
 import com.pro.bf.dto.LentVO;
 import com.pro.bf.serviceImpl.LentServiceImpl;
@@ -29,8 +29,8 @@ public class ConsultingController {
 	@Autowired
 	LentServiceImpl lentService;
 	
-	@Resource(name="mailSender")
-	private MailSender mailSender;
+	/*@Resource(name="mailSender")
+	private MailSender mailSender;*/
 	
 	@RequestMapping(value="recommend")
 	public String recommend(){
@@ -77,11 +77,44 @@ public class ConsultingController {
 		return url;
 	}
 	
+	final String DEFAULTUSERNAME = "chash512@gmail.com";
+	final String DEFAULTPASSWORD = "tmdgus5736";
+	
 	@RequestMapping(value="/sendMail", method=RequestMethod.POST)
 	public String mailSender(EmailVO emailVO) {
 		String url = "consulting/consult";
 		
-		SimpleMailMessage message = new SimpleMailMessage();
+		ServerSpec mailServer = null;
+		
+		if("Naver".equals(emailVO.getMailServer())){
+			mailServer = ServerKind.NAVER.getSmtp();
+			
+		}else if("Gmail".equals(emailVO.getMailServer())){
+			mailServer = ServerKind.GMAIL.getSmtp();
+		}
+		
+		String to = emailVO.getTo();
+		String from = emailVO.getSender() + "@" + mailServer.getDomain();
+		
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost(mailServer.getHost());
+		mailSender.setPort(mailServer.getPort());
+		mailSender.setUsername(from);
+		mailSender.setPassword(emailVO.getPassword());
+		Properties props = new Properties();
+		props.put("mail.smtp.starttls.enable", true);
+		mailSender.setJavaMailProperties(props);
+		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo(to);
+		mail.setFrom(from);
+		mail.setSubject(emailVO.getTitle());
+		mail.setText(emailVO.getContext());
+
+		mailSender.send(mail);
+		System.out.println("전송 완료");
+		
+		/*SimpleMailMessage message = new SimpleMailMessage();
 		message.setSubject(emailVO.getTitle());
 		message.setFrom(emailVO.getSender());
 		message.setTo(emailVO.getTo());
@@ -92,7 +125,7 @@ public class ConsultingController {
 			
 		} catch (MailException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		return url;
 		

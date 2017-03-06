@@ -68,7 +68,7 @@
 		margin: -2px 8px 0 0; 
 		text-align: center; 
 		vertical-align: middle; 
-		background: white; 
+		background: white;
 		border: 1px solid #000000; 
 		border-radius : 3px; 
 		box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05); } 

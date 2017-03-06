@@ -1,7 +1,5 @@
 package com.pro.bf.dto;
 
-import java.sql.Date;
-
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
 
@@ -13,7 +11,9 @@ import lombok.Data;
 @Alias("email")
 @Data
 public class EmailVO {
-
+	
+	private String mailServer;
+	private String password;
 	private String sender; // 보내는 사람 / 운영자
 	private String to; // 받는 사람
 	private String context; // 내용

@@ -212,6 +212,12 @@
 				<li class="bbbb" style="font-size: 16px; margin-top: 8px"><a href="<%=request.getContextPath()%>/admin/memberOperate">
 					<i class="fa fa-group"></i> 회원관리</a>
 				</li>
+<!-- 				<li class="cccc" style="font-size: 16px; margin-top: 8px"><a href="#"> -->
+<!-- 					<i class="fa fa-fw fa-bar-chart-o"></i> 시뮬레이터 X</a> -->
+<!-- 				</li> -->
+				<li class="eeee" style="font-size: 16px; margin-top: 8px"><a href="<%=request.getContextPath()%>/admin/ConsManager">
+					<i class="fa fa-group"></i> 전문가관리</a>
+				</li>
 				<li class="cccc" style="font-size: 16px; margin-top: 8px"><a href="#">
 					<i class="fa fa-fw fa-bar-chart-o"></i> 시뮬레이터 X</a>
 				</li>
@@ -228,26 +234,26 @@
 						<li class="ggggThree"><a href="<%=request.getContextPath()%>/admin/QnAList"><i class="fa fa-tag"></i>&nbsp;&nbsp;Q & A 게시판</a></li>
 					</ul>
 				</li>
-				<li class="eeee" style="font-size: 16px; margin-top: 8px"><a href="#">
-					<i class="fa fa-fw fa-desktop"></i> Bootstrap Elements X</a>
-				</li>
-				<li class="ffff" style="font-size: 16px; margin-top: 8px"><a href="#">
-					<i class="fa fa-fw fa-wrench"></i> Bootstrap Grid X</a>
-				</li>
-				<li class="hhhh" style="font-size: 16px; margin-top: 8px">
-					<a href="#">
-						<i class="fa fa-fw fa-file"></i> Blank Page X
-					</a>
-				</li>
-				<li class="iiii" style="font-size: 16px; margin-top: 8px"><a href="#">
-					<i class="fa fa-fw fa-wrench"></i> Bootstrap Grid X</a>
-				</li>
-				<li class="jjjj" style="font-size: 16px; margin-top: 8px"><a href="#">
-					<i class="fa fa-fw fa-money"></i> Bootstrap Grid X</a>
-				</li>
-				<li class="kkkk" style="font-size: 16px; margin-top: 8px"><a href="#">
-					<i class="fa fa-fw fa-strikethrough"></i> Bootstrap Grid X</a>
-				</li>
+<!-- 				<li class="eeee" style="font-size: 16px; margin-top: 8px"><a href="#"> -->
+<!-- 					<i class="fa fa-fw fa-desktop"></i> Bootstrap Elements X</a> -->
+<!-- 				</li> -->
+<!-- 				<li class="ffff" style="font-size: 16px; margin-top: 8px"><a href="#"> -->
+<!-- 					<i class="fa fa-fw fa-wrench"></i> Bootstrap Grid X</a> -->
+<!-- 				</li> -->
+<!-- 				<li class="hhhh" style="font-size: 16px; margin-top: 8px"> -->
+<!-- 					<a href="#"> -->
+<!-- 						<i class="fa fa-fw fa-file"></i> Blank Page X -->
+<!-- 					</a> -->
+<!-- 				</li> -->
+<!-- 				<li class="iiii" style="font-size: 16px; margin-top: 8px"><a href="#"> -->
+<!-- 					<i class="fa fa-fw fa-wrench"></i> Bootstrap Grid X</a> -->
+<!-- 				</li> -->
+<!-- 				<li class="jjjj" style="font-size: 16px; margin-top: 8px"><a href="#"> -->
+<!-- 					<i class="fa fa-fw fa-money"></i> Bootstrap Grid X</a> -->
+<!-- 				</li> -->
+<!-- 				<li class="kkkk" style="font-size: 16px; margin-top: 8px"><a href="#"> -->
+<!-- 					<i class="fa fa-fw fa-strikethrough"></i> Bootstrap Grid X</a> -->
+<!-- 				</li> -->
 				<li class="llll" style="font-size: 16px; margin-top: 8px">
 					<a href="<%=request.getContextPath()%>/admin/exit"><i class="fa fa-fw fa-power-off"></i> Home(관리자모드 종료) </a>
 				</li>
