@@ -173,7 +173,7 @@
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">수정완료</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 						</button>				
-						<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/join/memberUpdateView?&memberid=${memberVo.mbr_id}'" 
+						<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/member/memberUpdateView?&memberid=${memberVo.mbr_id}'" 
 							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
 								<b style="font-size:14px">정보 복구하기</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 						</button>						
