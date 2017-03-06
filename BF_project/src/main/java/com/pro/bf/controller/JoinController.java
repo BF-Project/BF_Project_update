@@ -292,7 +292,7 @@ public class JoinController {
 		// mbrvo 에 정보다 다 담아짐
 		mbrService.memberUpdate(mbrvo);
 		session.setAttribute("memberUpdateYY", mbrvo.getMbr_id());
-		return "redirect:/join/memberDetail?"+"&member_select_Id="+mbrvo.getMbr_id();
+		return "redirect:/join/mypage";
 
 	}
 	
@@ -305,7 +305,6 @@ public class JoinController {
 		//request.setAttribute("tpage", request.getParameter("tpage")); // 현재 page를 jsp에 넘겨준다.
 		return "/join/mypage";
 	}
-	
-	
+
 	
 }
