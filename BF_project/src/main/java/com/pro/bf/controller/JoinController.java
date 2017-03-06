@@ -288,7 +288,7 @@ public class JoinController {
 	
 	@RequestMapping("memberUpdateGoGo")
 	public String memberUpdateGoGo(HttpServletRequest request, MbrVO mbrvo, HttpSession session) throws SQLException{
-		// 관리자가 수정할 수 있는 회원의 정보는  pw | name | phone | email | address  5개만  | id는 key값으로 사용
+		// 회원이 수정할 수 있는 회원의 정보는  pw | name | phone | email | address  5개만  | id는 key값으로 사용
 		// mbrvo 에 정보다 다 담아짐
 		mbrService.memberUpdate(mbrvo);
 		session.setAttribute("memberUpdateYY", mbrvo.getMbr_id());
@@ -296,7 +296,17 @@ public class JoinController {
 
 	}
 	
-	@RequestMapping("memberDetail")
+	@RequestMapping("delete")
+	public String memberDelete(HttpServletRequest request, HttpSession session) throws SQLException {
+		String url = "join/mypage";
+		String memberId = request.getParameter("memberId");
+		mbrService.deleteMember(memberId);
+		session.setAttribute("memberId", memberId);
+		return url;
+	}
+	
+	
+/*	@RequestMapping("memberDetail")
 	public String memberDetail(HttpServletRequest request) throws SQLException{
 		String memberId = request.getParameter("member_select_Id");
 		MbrVO memberVo = mbrService.MemberVoSearch(memberId);		
@@ -304,7 +314,7 @@ public class JoinController {
 		request.setAttribute("memberVo", memberVo); // Vo정보를 jsp에 넘겨준다.
 		//request.setAttribute("tpage", request.getParameter("tpage")); // 현재 page를 jsp에 넘겨준다.
 		return "/join/mypage";
-	}
+	}*/
 
 	
 }
