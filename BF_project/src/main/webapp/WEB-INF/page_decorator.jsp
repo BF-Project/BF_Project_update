@@ -686,7 +686,7 @@ select {
 					<div class="col-lg-12 text-center">
 						<p>
 							Crafted with <i class="fa fa-heart"></i>, <a
-								style="color: skyblue">대표 : 차승현 (010-6480-5736)</a>
+								style="color: skyblue">Business Friend</a>
 						</p>
 					</div>
 				</div>
