@@ -36,4 +36,6 @@ public interface QnAService {
 	
 	//파일다운로드 하기위한 Service에 메소드 추가
 	String qnaFileNameSearch(int qna_num)throws SQLException;
+	
+	public int countQnaRespond() throws SQLException;
 }

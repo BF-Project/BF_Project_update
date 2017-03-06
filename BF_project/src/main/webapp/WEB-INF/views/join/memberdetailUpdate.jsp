@@ -68,6 +68,7 @@
 				document.getElementById('updatePWD').value="";
 				document.getElementById('updatePWD').focus();
 			}
+			
 		}
 	</script>	
 </head>

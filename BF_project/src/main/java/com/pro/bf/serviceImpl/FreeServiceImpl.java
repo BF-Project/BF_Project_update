@@ -211,4 +211,9 @@ public class FreeServiceImpl implements FreeService {
 		}
 		return str;
 	}
+
+	@Override
+	public int totalFree() throws SQLException {
+		return freeDaoImpl.totalFree();
+	}
 }

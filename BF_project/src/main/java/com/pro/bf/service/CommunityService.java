@@ -34,4 +34,6 @@ public interface CommunityService {
 	// 
 	ArrayList<CommunityVO> communityList(int page, String search, String selectCombo) throws SQLException;
 	String pageNumber2(int page, String search, String currentPage, String selectCombo) throws SQLException;
+	
+	public int totalCmmt(String search) throws SQLException;
 }

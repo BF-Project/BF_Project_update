@@ -252,5 +252,10 @@ public class MbrServiceImpl implements MbrService {
       String memberUseYCount = mbrDao.memberListCount();
       return memberUseYCount;
    }
+
+@Override
+public int totalMbr(String search) throws SQLException {
+	return mbrDao.totalRecord(search);
+}
    
 }

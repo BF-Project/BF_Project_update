@@ -34,5 +34,7 @@ public interface QnADao {
 	void qnaRespondUpdate(int qna_num, String qna_respond) throws SQLException;
 	//파일 다운로드 하기위한 String fileName 메소드 추가
 	String qnaFileNameSearch(int qna_num)throws SQLException;
+	
+	public int countQnaRespond() throws SQLException;
 }
 

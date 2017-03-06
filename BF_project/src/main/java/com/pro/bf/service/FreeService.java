@@ -22,4 +22,6 @@ public interface FreeService {
 	// ADMIN
 	ArrayList<FreeVO> FreeList(int page, String search, String selectCombo) throws SQLException;
 	String pageNumber2(int page, String search, String currentPage, String selectCombo) throws SQLException;
+	
+	public int totalFree() throws SQLException;
 }

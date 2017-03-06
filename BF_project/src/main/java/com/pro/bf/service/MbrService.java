@@ -29,4 +29,5 @@ public interface MbrService {
 	MbrVO MemberVoSearch(String memberId) throws SQLException;
 	void memberUpdate(MbrVO mbrvo) throws SQLException;
 	String memberListCount() throws SQLException;
+	public int totalMbr(String search) throws SQLException;
 }
