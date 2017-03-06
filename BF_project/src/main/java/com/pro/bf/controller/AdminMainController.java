@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.pro.bf.dto.NoticeVO;
 import com.pro.bf.serviceImpl.AdminServiceImpl;
+import com.pro.bf.serviceImpl.CommunityServiceImpl;
+import com.pro.bf.serviceImpl.FreeServiceImpl;
+import com.pro.bf.serviceImpl.MbrServiceImpl;
 import com.pro.bf.serviceImpl.NoticeServiceImpl;
+import com.pro.bf.serviceImpl.QnAServiceImpl;
 import com.pro.bf.websocket.PushMessageHandler;
 
 @Controller
@@ -35,6 +38,14 @@ public class AdminMainController {
 	AdminServiceImpl adminService;
 	@Autowired
 	NoticeServiceImpl noticeService;
+	@Autowired
+	QnAServiceImpl qnaService;
+	@Autowired
+	CommunityServiceImpl communityService;
+	@Autowired
+	FreeServiceImpl freeService;
+	@Autowired
+	MbrServiceImpl mbrService;
 	
 	@RequestMapping(value="start", method=RequestMethod.GET)
 	public String goAdminPage(HttpServletRequest request, HttpSession session) throws SQLException{
@@ -43,6 +54,10 @@ public class AdminMainController {
 		String adminId = (String)session.getAttribute("loginAdmin");
 		String adminName = adminService.adminName(adminId);
 		session.setAttribute("adminName", adminName);
+		request.setAttribute("countQnaRespond", qnaService.countQnaRespond()+"");
+		request.setAttribute("totalCmmt", communityService.totalCmmt("")+"");
+		request.setAttribute("totalFree", freeService.totalFree()+"");
+		request.setAttribute("totalMbr", mbrService.totalMbr("")+"");
 		return url;
 	}
 	

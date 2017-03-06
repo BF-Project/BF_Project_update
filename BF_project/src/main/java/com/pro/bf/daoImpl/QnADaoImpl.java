@@ -137,4 +137,10 @@ public class QnADaoImpl implements QnADao {
 		String fileName=(String) client.queryForObject("qnaFileNameSearch", qna_num);
 		return fileName;
 	}
+
+	@Override
+	public int countQnaRespond() throws SQLException {
+		
+		return (int) client.queryForObject("countQnaRespond");
+	}
 }

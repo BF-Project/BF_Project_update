@@ -278,4 +278,11 @@ public class QnAServiceImpl implements QnAService{
 		String fileName=qnaDaoImpl.qnaFileNameSearch(qna_num);
 		return fileName;
 	}
+
+	@Override
+	public int countQnaRespond() throws SQLException {
+		
+		return qnaDaoImpl.countQnaRespond();
+		
+	}
 }

@@ -83,4 +83,9 @@
 	<update id="qnaRespondUpdate" parameterClass="qna">
 		update qna set qna_respond_yn='Y', qna_respond_content=#qna_respond_content# where qna_num=#qna_num#
 	</update>
+	
+	<select id="countQnaRespond" resultClass="int">
+		select count(*) from qna where qna_respond_yn = 'N'
+	</select>
+	
 </sqlMap>
