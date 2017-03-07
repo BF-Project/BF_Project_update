@@ -62,10 +62,6 @@
 		update mbr set mbr_use_yn='N' where mbr_id=#mbr_id#
 	</update>
 	
-	<delete id="UserDelete" parameterClass="str">
-		delete form mbr where mbr_id=#mbr_id#
-	</delete>
-	
 	<select id="LoginUserUseYNCheck" parameterClass="str" resultClass="str">
 		select mbr_use_yn from mbr where mbr_id=#login#
 	</select>

@@ -296,12 +296,11 @@ public class JoinController {
 
 	}
 	
-	@RequestMapping("delete")
-	public String memberDelete(HttpServletRequest request, HttpSession session) throws SQLException {
-		String url = "join/mypage";
-		String memberId = request.getParameter("memberId");
-		mbrService.deleteMember(memberId);
-		session.setAttribute("memberId", memberId);
+	@RequestMapping("memberRemove")
+	public String memberDelete(@RequestParam String memberid, HttpSession session) throws SQLException {
+		String url = "redirect:/start";
+		mbrService.deleteMember(memberid);
+		session.removeAttribute("loginUser");
 		return url;
 	}
 	

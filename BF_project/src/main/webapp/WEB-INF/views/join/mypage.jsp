@@ -167,17 +167,9 @@
 			<i class="fa fa-edit spaceLeft"></i>
 		</button>
 
-		<%-- <!--회원탈퇴-->
-		<button type="button" class="btn btn-default"
-			onclick="location.href='<%=request.getContextPath()%>/join/memberRemove?=memberid=${memberVo.mbr_id}'"
-			style="padding: 8px; margin-left: 10px; margin-top: 40px; position: relative; background-color: lightblue;">
-			<b style="font-size: 14px">회원탈퇴</b>&nbsp; <i
-				class="fa fa-edit spaceLeft"></i>
-		</button> --%>
-
 		<!-- 회원탈퇴 -->
 		<button type="button" id="del" class="btn"
-			onclick="location.href='<%=request.getContextPath()%>/join/memberRemove?=memberid=${memberVo.mbr_id}'"
+			onclick="location.href='<%=request.getContextPath()%>/join/memberRemove?memberid=${MbrVO.mbr_id}'"
 			style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
 			<b style="font-size: 14px">회원탈퇴</b>&nbsp;
 			<i class="fa fa-cut"></i>
