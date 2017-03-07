@@ -156,7 +156,9 @@ select {
    -moz-appearance: none; 
    appearance: none; 
 }
-
+#contact-form-face input[type=text]{
+background-color: #1c1c1c !important;
+}
 </style>
 
 
@@ -668,7 +670,7 @@ select {
 							<div id="note"></div>
 							<div id="fields">
 								<form id="contact-form-face" class="clearfix" action="#">
-									<input type="text" name="name" value="Name"
+									<input type="text" name="name" value=" Name"
 										onFocus="if (this.value == 'Name') this.value = '';"
 										onBlur="if (this.value == '') this.value = 'Name';" />
 									<textarea name="message"
