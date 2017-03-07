@@ -2,6 +2,7 @@ package com.pro.bf.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -256,6 +257,12 @@ public class MbrServiceImpl implements MbrService {
 @Override
 public int totalMbr(String search) throws SQLException {
 	return mbrDao.totalRecord(search);
+}
+
+@Override
+public int countForDate(Date date) throws SQLException {
+	String dd = (date.getYear()-100)+"/"+(date.getMonth()+1)+"/"+date.getDate();
+	return mbrDao.countForDate(dd);
 }
    
 }

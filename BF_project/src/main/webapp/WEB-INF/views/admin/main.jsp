@@ -10,8 +10,147 @@
 		background-color: #080808;
 	}	
 	</style>
+ <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fusioncharts.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fusioncharts.charts.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fusioncharts.powercharts.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/fusioncharts.widgets.js"></script>
 </head>
 <body>
+<script>
+function getFormatDate(interval){
+	
+	var date = new Date();
+	date.setDate(date.getDate()-interval);
+	
+	var year = date.getFullYear();                                 //yyyy
+	var month = (1 + date.getMonth());                     //M
+	month = month >= 10 ? month : '0' + month;     // month 두자리로 저장
+	var day = date.getDate();                                      //d
+	day = day >= 10 ? day : '0' + day;                            //day 두자리로 저장
+
+	return  year + '-' + month + '-' + day;
+
+}
+
+FusionCharts.ready(function () {
+	var today = new Date();
+    var visitChart = new FusionCharts({
+        type: 'mssplinearea',
+        renderAt: 'chart-container',
+        width: '1400',
+        height: '400',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "날짜별 현황",
+                "xAxisName": "Day",
+                "captionFontSize": "14",
+                "subcaptionFontSize": "14",
+                "baseFontColor" : "#333333",
+                "baseFont" : "Helvetica Neue,Arial",                        
+                "subcaptionFontBold": "0",
+                "paletteColors" : "#6baa01,#FFBB00,#FF3636",
+                "usePlotGradientColor": "0",
+                "bgColor" : "#ffffff",
+                "showBorder" : "0",
+                "showPlotBorder": "0",
+                "showValues": "0",                 
+                "showShadow" : "0",
+                "showAlternateHGridColor" : "0",
+                "showCanvasBorder": "0",
+                "showXAxisLine": "1",
+                "xAxisLineThickness": "1",
+                "xAxisLineColor": "#999999",
+                "canvasBgColor" : "#ffffff",
+                "divlineAlpha" : "100",
+                "divlineColor" : "#999999",
+                "divlineThickness" : "1",
+                "divLineIsDashed" : "1",
+                "divLineDashLen" : "1",
+                "divLineGapLen" : "1",
+                "legendBorderAlpha": "0",
+                "legendShadow": "0",
+                "toolTipColor": "#ffffff",
+                "toolTipBorderThickness": "0",
+                "toolTipBgColor": "#000000",
+                "toolTipBgAlpha": "80",
+                "toolTipBorderRadius": "2",
+                "toolTipPadding": "5"
+            },
+            
+            "categories": [
+                {
+                    "category": [
+						{ "label": getFormatDate(30) },                                 
+						{ "label": getFormatDate(27) },                                 
+						{ "label": getFormatDate(24) },
+						{ "label": getFormatDate(21) },
+                        { "label": getFormatDate(18) }, 
+                        { "label": getFormatDate(15) }, 
+                        { "label": getFormatDate(12) },
+                        { "label": getFormatDate(9) }, 
+                        { "label": getFormatDate(6) },
+                        { "label": getFormatDate(3) }, 
+                        { "label": getFormatDate(0) }
+                    ]
+                }
+            ],
+            "dataset": [
+                {
+                    "seriesname": "커뮤니티 게시글 수",
+                    "data": [
+						{ "value": "${countCmmt[10]}" }, 
+						{ "value": "${countCmmt[9]}" }, 
+						{ "value": "${countCmmt[8]}" }, 
+						{ "value": "${countCmmt[7]}" }, 
+                        { "value": "${countCmmt[6]}" }, 
+                        { "value": "${countCmmt[5]}" }, 
+                        { "value": "${countCmmt[4]}" }, 
+                        { "value": "${countCmmt[3]}" }, 
+                        { "value": "${countCmmt[2]}" }, 
+                        { "value": "${countCmmt[1]}" }, 
+                        { "value": "${countCmmt[0]}" }
+                    ]
+                }, 
+                {
+                    "seriesname": "자유게시판 게시글 수",
+                    "data": [
+                        { "value": "${countFree[10]}" }, 
+						{ "value": "${countFree[9]}" }, 
+						{ "value": "${countFree[8]}" }, 
+						{ "value": "${countFree[7]}" }, 
+                        { "value": "${countFree[6]}" }, 
+                        { "value": "${countFree[5]}" }, 
+                        { "value": "${countFree[4]}" }, 
+                        { "value": "${countFree[3]}" }, 
+                        { "value": "${countFree[2]}" }, 
+                        { "value": "${countFree[1]}" }, 
+                        { "value": "${countFree[0]}" }
+                    ]
+                },
+                {
+                    "seriesname": "회원수",
+                    "data": [
+                        { "value": "${countMbr[10]}" }, 
+						{ "value": "${countMbr[9]}" }, 
+						{ "value": "${countMbr[8]}" }, 
+						{ "value": "${countMbr[7]}" }, 
+                        { "value": "${countMbr[6]}" }, 
+                        { "value": "${countMbr[5]}" }, 
+                        { "value": "${countMbr[4]}" }, 
+                        { "value": "${countMbr[3]}" }, 
+                        { "value": "${countMbr[2]}" }, 
+                        { "value": "${countMbr[1]}" }, 
+                        { "value": "${countMbr[0]}" }
+                    ]
+                }
+          
+            ]
+        }
+    }).render();
+});
+</script>
+
 
 <div id="wrapper">
 
@@ -39,10 +178,10 @@
 					<div class="alert alert-info alert-dismissable">
 						<button type="button" class="close" data-dismiss="alert"
 							aria-hidden="true">&times;</button>
-						<i class="fa fa-info-circle"></i> <strong>성공하는 사람들</strong>
+						<i class="fa fa-info-circle"></i> <strong>Admin Main</strong>
 						<a
 							href="http://startbootstrap.com/template-overviews/sb-admin-2"
-							class="alert-link"></a> Admin Page
+							class="alert-link"></a>
 					</div>
 				</div>
 			</div>
@@ -146,17 +285,17 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">
-								<i class="fa fa-bar-chart-o fa-fw"></i> Area Chart
+								<i class="fa fa-bar-chart-o fa-fw"></i> Charts
 							</h3>
 						</div>
-						<div class="panel-body">
-							<div id="morris-area-chart"></div>
+						<div class="panel-body" style="text-align:center;">
+							<div id="chart-container">FusionCharts will render here</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /.row -->
-
+			<!-- 
 			<div class="row">
 				<div class="col-lg-4">
 					<div class="panel panel-default">
@@ -292,6 +431,7 @@
 				</div>
 			</div>
 			<!-- /.row -->
+
 
 		</div>
 		<!-- /.container-fluid -->

@@ -133,6 +133,11 @@ public class CommunityDaoImpl implements CommunityDao{
 	public void plusView(int cmmtNum) throws SQLException{
 		client.update("plusView", cmmtNum);
 	}
+
+	@Override
+	public int countForDate(String date) throws SQLException {
+		return (int) client.queryForObject("countCmmtDate",date);
+	}
 	
 	
 }

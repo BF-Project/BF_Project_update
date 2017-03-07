@@ -207,7 +207,7 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav" style="margin-top: 60px;">
 				<li class="aaaa" style="font-size: 16px;"><a href="<%=request.getContextPath()%>/admin/start">
-					<i class="fa fa-fw fa-dashboard"></i> Main X</a>
+					<i class="fa fa-fw fa-dashboard"></i> Main</a>
 				</li>
 				<li class="bbbb" style="font-size: 16px; margin-top: 8px"><a href="<%=request.getContextPath()%>/admin/memberOperate">
 					<i class="fa fa-group"></i> 회원관리</a>

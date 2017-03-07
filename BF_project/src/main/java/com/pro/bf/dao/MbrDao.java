@@ -27,4 +27,5 @@ public interface MbrDao {
 	MbrVO MemberVoSearch(String memberId) throws SQLException;
 	void memberUpdate(MbrVO mbrvo) throws SQLException;
 	String memberListCount() throws SQLException;
+	public int countForDate(String date) throws SQLException;
 }

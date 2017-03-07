@@ -2,8 +2,8 @@ package com.pro.bf.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
-import com.pro.bf.dto.CommunityVO;
 import com.pro.bf.dto.FreeVO;
 
 public interface FreeService {
@@ -24,4 +24,5 @@ public interface FreeService {
 	String pageNumber2(int page, String search, String currentPage, String selectCombo) throws SQLException;
 	
 	public int totalFree() throws SQLException;
+	public int countForDate(Date date) throws SQLException;
 }

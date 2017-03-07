@@ -127,5 +127,10 @@ public class MbrDaoImpl implements MbrDao{
 		return memberUseYCount+"";
 	}
 
+	@Override
+	public int countForDate(String date) throws SQLException {
+		return (int) client.queryForObject("countMbrDate",date);
+	}
+
 
 }
