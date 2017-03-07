@@ -14,7 +14,15 @@
 	<style>
 		#label{
 			text-align: left;
-		}		
+		}
+		
+		#updateId, #updatePWD, #updateNM, #updatejoinDate, #updatePhone, #updateEmail, #updateAddr, #updateBirth, #updateGender, #updateUseyn, #updateEmailRecive {
+			width : 300px;
+		}
+		
+		#mypage {
+			margin-left : 25%;
+		}
 	</style>
 	<script>
 		function memberUpdateComplete(){
@@ -75,27 +83,26 @@
 
 <body>
 	<div id="wrapper">
-		<div id="page-wrapper" style="text-align: center; height: 906.5px;">
+		<div id="page-wrapper" style="text-align: center; height: 790px;">
 			<div class="row">
 			
 			<!-- memberUpdateForm -->
-			<br><br><h1><b>회원수정</b></h1>
+			<br><br><h1><b>회원정보수정</b></h1>
 				<div class="table-responsive">
 				<div class="page-header"></div>
 				
 					<!-- tableForm -->
-					<article class="container">
+					<article class="container" id="mypage">
 						<div class="col-md-6 col-md-offset-3">
 							<table id="label" style="width:880px; margin-left: -150px" >
 								<tr>
-									<td><label for="InputId">&nbsp;&nbsp;아이디</label></td>
-									<td style="width:60px"></td>
+									<td style="width:40%;"><label for="InputId">&nbsp;&nbsp;아이디</label></td>
+									<td style="width:10px"></td>
 									<td><label for="InputPassword1">&nbsp;&nbsp;비밀번호</label></td>
 								</tr>
 								<tr>
-			<%-- 						<td><input type="text" class="form-control" name="InputId" id="updateId" value="${memberVo.mbr_id}" readonly></td> --%>
+							   <%-- <td><input type="text" class="form-control" name="InputId" id="updateId" value="${memberVo.mbr_id}" readonly></td> --%>
 									<td><input type="text" class="form-control" name="InputId" id="updateId" value="${memberVo.mbr_id}" readonly></td>
-									
 									<td></td>
 									<td><input type="password" class="form-control" name="InputPassword1" id="updatePWD" value="${memberVo.mbr_pwd}" placeholder="비밀번호를 입력해주세요"></td>
 								</tr>
@@ -144,11 +151,12 @@
 								<tr>
 									<td><label for="joinDate">&nbsp;&nbsp;가입날짜</label></td>
 									<td></td>
-									<td></td>
+									<td><label for="EmailRecive">&nbsp;&nbsp;이메일 수신여부</label></td>
 								</tr>
 								<tr>
 									<td><input type="text" class="form-control" name="joinDate" id="updatejoinDate" value="<fmt:formatDate value="${memberVo.mbr_date}" pattern="yyyy-MM-dd"/>" readonly></td>
 									<td></td>
+									<td><input type="text" class="form-control" name="EmailRecive" id="updateEmailRecive" value="${memberVo.mbr_eml_yn}" readonly></td>
 									<td></td>
 								</tr>
 								<tr>
@@ -157,34 +165,28 @@
 								<tr>
 									<td><label for="Useyn">&nbsp;&nbsp;사용여부</label></td>
 									<td></td>
-									<td><label for="EmailRecive">&nbsp;&nbsp;이메일 수신여부</label></td>
 								</tr>
 								<tr>
 									<td><input type="text" class="form-control" name="Useyn" id="updateUseyn" value="${memberVo.mbr_use_yn}" readonly></td>
 									<td></td>
-									<td><input type="text" class="form-control" name="EmailRecive" id="updateEmailRecive" value="${memberVo.mbr_eml_yn}" readonly></td>
 								</tr>
 							</table>
 						</div>
 					</article>
 					<!-- tableForm : end -->
-					
+					<br><br>
 					<!-- button -->
-						<button type="button" class="btn btn-info" onclick="memberUpdateComplete()" 
-							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
+						<button type="button" class="btn" onclick="memberUpdateComplete()" 
+							style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
 								<b style="font-size:14px">수정완료</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
 						</button>				
-						<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath()%>/join/memberUpdateView?&memberid=${memberVo.mbr_id}'" 
-							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
-								<b style="font-size:14px">정보 복구하기</b>&nbsp;<i class="fa fa-edit spaceLeft"></i>
-						</button>						
-						<button type="button" class="btn btn-default" onclick="location.href='<%=request.getContextPath()%>/join/memberDetail?&member_select_Id=${memberVo.mbr_id}'" 
-							style="padding:8px; margin-left:10px; margin-top:40px; position:relative; z-index:0">
+						<button type="button" class="btn" onclick="javascript:window.location='mypage'" 
+							style="padding: 8px; background-color: gray; border: 1px solid gray; border-radius: 6px; color: white;">
 								<b style="font-size:14px">취소</b>&nbsp;<i class="fa fa-times spaceLeft"></i>
 						</button>
 					<!-- button -->
 					
-					<div class="page-header"></div>
+				<!-- 	<div class="page-header"></div> -->
 				</div>
 			<!-- memberUpdateForm : end -->
 			

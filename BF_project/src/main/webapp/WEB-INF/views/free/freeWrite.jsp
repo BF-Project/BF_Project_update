@@ -96,11 +96,11 @@
 					</div>
 	
 					<div class="file_input">
-						<label> <i class="fa fa-photo"></i>&nbsp;사진첨부 <input
-							type="file" name="file"
-							onchange="javascript:document.getElementById('file_route').value=this.value">
-						</label> <input type="text" readonly="readonly" title="File Route"
-							id="file_route">
+						<label> 
+							<i class="fa fa-photo"></i>&nbsp;사진첨부 
+							<input type="file" name="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+						</label> 
+						<input type="text" readonly="readonly" title="File Route" id="file_route">
 					</div>
 	
 				</form>
