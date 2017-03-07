@@ -2,6 +2,7 @@ package com.pro.bf.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.pro.bf.dto.FreeVO;
 
@@ -23,5 +24,6 @@ public interface FreeDao {
 	int totalFreeList(String search) throws SQLException;
 	int freeListforID(String search) throws SQLException;
 	ArrayList<FreeVO> freeListForFirst(String search, int startRow, int counts2) throws SQLException;
-	ArrayList<FreeVO> freeListForIDIDID(String search, int startRow, int counts2) throws SQLException;	
+	ArrayList<FreeVO> freeListForIDIDID(String search, int startRow, int counts2) throws SQLException;
+	public int countForDate(String date) throws SQLException;
 }

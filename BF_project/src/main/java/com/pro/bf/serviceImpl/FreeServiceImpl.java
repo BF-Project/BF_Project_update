@@ -2,6 +2,7 @@ package com.pro.bf.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -215,5 +216,11 @@ public class FreeServiceImpl implements FreeService {
 	@Override
 	public int totalFree() throws SQLException {
 		return freeDaoImpl.totalFree();
+	}
+
+	@Override
+	public int countForDate(Date date) throws SQLException {
+		String dd = (date.getYear()-100)+"/"+(date.getMonth()+1)+"/"+date.getDate();
+		return freeDaoImpl.countForDate(dd);
 	}
 }

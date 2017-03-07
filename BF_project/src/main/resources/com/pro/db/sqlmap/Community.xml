@@ -71,4 +71,8 @@
 	<update id="plusView" parameterClass="int">
 		update community set cmmt_cnt = cmmt_cnt + 1 where cmmt_num = #cmmtNum#
 	</update>
+	
+	<select id="countCmmtDate" parameterClass="str" resultClass="int">
+		select count(*) from community where <![CDATA[cmmt_date < #date#]]>
+	</select>
 </sqlMap>

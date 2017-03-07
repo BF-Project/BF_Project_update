@@ -6,6 +6,7 @@
 <sqlMap namespace="Free">
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="date" type="java.util.Date"/>
 	
 	<!-- Query 문 작성란 -->
 	<select id="freeList" parameterClass="str" resultClass="free">
@@ -68,5 +69,9 @@
 	<update id="viewCountUp" parameterClass="int">
 		update free set fre_cnt = fre_cnt + 1 where fre_num = #freeNum#
 	</update>
+	
+	<select id="countForDate" parameterClass="str" resultClass="int">
+		select count(*) from free where <![CDATA[fre_date < #date#]]>
+	</select>
 	
 </sqlMap>

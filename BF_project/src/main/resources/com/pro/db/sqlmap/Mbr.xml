@@ -85,4 +85,8 @@
 	<select id="memberUseYCount" resultClass="int">
 		select count(*) from mbr where mbr_use_yn='Y'
 	</select>
+	
+	<select id="countMbrDate" parameterClass="str" resultClass="int">
+		select count(*) from mbr where <![CDATA[mbr_date < #date#]]>
+	</select>
 </sqlMap>

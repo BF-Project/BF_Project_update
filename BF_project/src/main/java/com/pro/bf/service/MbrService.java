@@ -2,6 +2,7 @@ package com.pro.bf.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 import com.pro.bf.dto.CommunityVO;
@@ -30,4 +31,5 @@ public interface MbrService {
 	void memberUpdate(MbrVO mbrvo) throws SQLException;
 	String memberListCount() throws SQLException;
 	public int totalMbr(String search) throws SQLException;
+	public int countForDate(Date date) throws SQLException;
 }

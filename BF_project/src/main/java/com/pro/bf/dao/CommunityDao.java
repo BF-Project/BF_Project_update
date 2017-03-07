@@ -37,4 +37,6 @@ public interface CommunityDao {
 	int communityListforID(String search) throws SQLException;
 	ArrayList<CommunityVO> communityListForFirst(String search, int startRow, int counts2) throws SQLException;
 	ArrayList<CommunityVO> communityListForIDIDID(String search, int startRow, int counts2) throws SQLException;
+	
+	public int countForDate(String date) throws SQLException;
 }

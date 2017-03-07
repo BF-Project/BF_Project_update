@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +60,24 @@ public class AdminMainController {
 		request.setAttribute("totalCmmt", communityService.totalCmmt("")+"");
 		request.setAttribute("totalFree", freeService.totalFree()+"");
 		request.setAttribute("totalMbr", mbrService.totalMbr("")+"");
+		
+		List<String> countFree = new ArrayList<String>();
+		List<String> countCmmt = new ArrayList<String>();
+		List<String> countMbr = new ArrayList<String>();
+		for(int i=0;i<31;i=i+3){
+			Date date = new Date();
+			date.setDate(date.getDate()-i);
+			countFree.add(freeService.countForDate(date)+"");
+			countCmmt.add(communityService.countForDate(date)+"");
+			countMbr.add(mbrService.countForDate(date)+"");
+			
+		}
+		for(int i=0;i<10;i++){
+			System.out.println(countFree.get(i));
+		}
+		request.setAttribute("countFree", countFree);
+		request.setAttribute("countCmmt", countCmmt);
+		request.setAttribute("countMbr", countMbr);
 		return url;
 	}
 	

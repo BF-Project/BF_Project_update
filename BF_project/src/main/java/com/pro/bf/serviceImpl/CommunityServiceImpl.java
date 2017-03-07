@@ -2,6 +2,7 @@ package com.pro.bf.serviceImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -275,5 +276,12 @@ public class CommunityServiceImpl implements CommunityService{
 	@Override
 	public int totalCmmt(String search) throws SQLException {
 		return cmmtDAO.totalCmmt(search);
+	}
+
+
+	@Override
+	public int countForDate(Date date) throws SQLException {
+		String dd = (date.getYear()-100)+"/"+(date.getMonth()+1)+"/"+date.getDate();
+		return cmmtDAO.countForDate(dd);
 	}		
 }

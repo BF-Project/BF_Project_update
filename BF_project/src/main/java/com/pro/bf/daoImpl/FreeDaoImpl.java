@@ -2,10 +2,10 @@ package com.pro.bf.daoImpl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.pro.bf.dao.FreeDao;
-import com.pro.bf.dto.CommunityVO;
 import com.pro.bf.dto.FreeVO;
 
 public class FreeDaoImpl implements FreeDao{
@@ -105,5 +105,9 @@ public class FreeDaoImpl implements FreeDao{
 	
 	public void viewCountUp(int freeNum) throws SQLException{
 		client.update("viewCountUp",freeNum);
+	}
+	@Override
+	public int countForDate(String date) throws SQLException {
+		return (int) client.queryForObject("countForDate",date);
 	}
 }
