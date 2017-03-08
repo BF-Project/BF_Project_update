@@ -23,7 +23,7 @@
 }
 
 #writeBtn {
-	margin-left: 39.2%;
+	margin-left: 40.3%;
 }
 
 
@@ -148,12 +148,13 @@
 					<label for="agree-all"></label>
 				</div>
 						
-					<div class="file_input" >
-						<label>
-						<i class="fa fa-photo"></i>&nbsp;사진첨부
-						<input type="file" name="file" >
-						</label>
-					</div>
+				<div class="file_input">
+					<label> 
+						<i class="fa fa-photo"></i>&nbsp;사진첨부 
+						<input type="file" name="file" onchange="javascript:document.getElementById('file_route').value=this.value">
+					</label> 
+					<input type="text" readonly="readonly" title="File Route" id="file_route">
+				</div>
 				</form>
 			</div>
 									

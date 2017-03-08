@@ -116,7 +116,7 @@
 			</section>
 			<br>
 			<form action="sendMail" id="mail" method="post" enctype="multipart/form-data">
-				보내는사람 : <br><input type="text" class="form-control" name="sender" style="width: 25%; display: inline-block;" />
+				보내는사람 : <br><input type="text" class="form-control" name="sender" style="width: 25%; display: inline-block;" placeholder="아이디만 입력하세요" />
 				<select name="mailServer">
 					<option value="Naver">네이버</option>
 					<option value="Gmail">지메일</option>					

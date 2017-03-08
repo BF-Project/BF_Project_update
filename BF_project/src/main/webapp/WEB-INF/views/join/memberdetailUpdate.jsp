@@ -21,7 +21,7 @@
 		}
 		
 		#mypage {
-			margin-left : 25%;
+			margin-left : 29%;
 		}
 	</style>
 	<script>

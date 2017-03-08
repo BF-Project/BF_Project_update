@@ -142,7 +142,10 @@ public class ConsultingController {
 		props.put("mail.smtp.starttls.enable", true);
 		mailSender.setJavaMailProperties(props);
 
-		/*SimpleMailMessage mail = new SimpleMailMessage();
+		
+		/*
+		// 일반적인 메일보내기
+		SimpleMailMessage mail = new SimpleMailMessage();
 
 		mail.setTo(to);
 		mail.setFrom(from);

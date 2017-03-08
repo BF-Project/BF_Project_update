@@ -15,22 +15,26 @@
 <html>
 <head>
 <meta charset=UTF-8">
+<link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <title></title>
 <style type="text/css">
-img {
-	width:100%;
-	height:100%;
-	
-}
+
 div{
 	width:100%;
 	text-align:center;
 }
+body {
+	background-image: url('<%=request.getContextPath()%>/resources/images/error/error_modify.png');
+	background-repeat:no-repeat;
+	background-position:center;
+	background-attachment:fixed;
+}
+
 </style>
 </head>
 <body>
-<div>
-<img src="<%=request.getContextPath()%>/resources/images/error/error_modify.png"/>
+<div style="margin-top: 28%;">
+	<input type="button" class="btn" value="메인으로가기" onclick="location.href='<%=request.getContextPath() %>/'" />
 </div>
 </body>
 </html>
