@@ -59,6 +59,39 @@
 	background: white; 
  	border-color: #000000; /* 검정 */
 	box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1); }
+	
+		.file_input label {
+		    display: inline-block; 
+ 			padding: .5em .75em; 
+ 			color: #1E82FF; 
+ 			font-size: inherit; 
+ 			line-height: normal; 
+ 			vertical-align: middle; 
+ 			background-color: #fdfdfd; 
+ 			cursor: pointer; 
+ 			border: 1px solid #1E82FF; 
+ 			border-bottom-color: #1E82FF; 
+ 			border-radius: .25em; 
+		}
+		.file_input label input {
+		    position:absolute;
+		    width:0;
+		    height:0;
+		    overflow:hidden;
+		}
+		.file_input input[type=text] {
+		    vertical-align:middle;
+		    display:inline-block;
+		    width:200px;
+		    height:26px;
+		    line-height:28px;
+		    font-size:15px;
+/* 		    color:#fdfdfd; */
+/* 		    padding:0; */
+ 		    border:0px; 
+/* 		    border:1px solid #777; */
+		}	
+	
 </style>
 
 </head>
@@ -82,22 +115,29 @@
 				</div>
 			</section>
 			<br>
-			<form action="sendMail" id="mail" method="post">
+			<form action="sendMail" id="mail" method="post" enctype="multipart/form-data">
 				보내는사람 : <br><input type="text" class="form-control" name="sender" style="width: 25%; display: inline-block;" />
 				<select name="mailServer">
 					<option value="Naver">네이버</option>
 					<option value="Gmail">지메일</option>					
 				</select>
-				<div class="checks" style="margin-bottom: 18px; display:inline;">
+				<!-- <div class="checks" style="margin-bottom: 18px; display:inline;">
 					<input type="checkbox" id="agree-all" name="allcheck" /> 
 					<label for="agree-all">기본계정사용여부</label>
-				</div>
+				</div> -->
 				<br><br>
 				패스워드 : <input type="password" class="form-control" name="password" style="width: 25%;" /><br>
 				받는사람 : <input type="text" class="form-control" name="to" value="${param.cons}" style="width: 25%;" readonly /><br> 
 				제목 : <input type="text" class="form-control" name="title" style="width: 25%;" /><br> 
 				내용 : <textarea cols="40" rows="15" class="form-control" name="context" style="width: 40%; height: 315px;"></textarea>
 				<!-- <input type="button" value="메일보내기" class="glyphicon glyphicon-envelope" onclick="javascript:this.form.submit();" /> -->
+				<div class="file_input">
+					<label>
+						<i class="fa fa-photo"></i>&nbsp;사진첨부 
+						<input type="file" name="picture" onchange="javascript:document.getElementById('file_route').value=this.value">
+					</label> 
+					<input type="text" readonly="readonly" title="File Route" id="file_route">
+				</div>
 				<button type="button" id="send" class="btn" onclick="javascript:this.form.submit();"
 					style="padding:8px; background-color:gray;
 					border:1px solid gray; border-radius:6px; color:white;">

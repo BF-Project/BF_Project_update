@@ -1,5 +1,7 @@
 package com.pro.bf.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.or.ddit.commons.ibatis.Alias;
 import lombok.Data;
 
@@ -18,6 +20,7 @@ public class EmailVO {
 	private String to; // 받는 사람
 	private String context; // 내용
 	private String title; // 제목
+	private MultipartFile picture;
 	
 
 }
