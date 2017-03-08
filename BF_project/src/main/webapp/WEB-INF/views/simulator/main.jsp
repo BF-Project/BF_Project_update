@@ -388,6 +388,7 @@ function interval(){
 	}
 	
 	$('#start').attr("disabled", true);
+	$('#reset').attr("disabled", true);
 	
 	var elem = document.getElementById("myBar");   
 	  width = 0;
@@ -473,6 +474,7 @@ function start(){
 		clearInterval(setTest);
 		//salesAccount = 0;
 		$('#start').attr("disabled", false);
+		$('#reset').attr("disabled", false);
 		insertData();
 		alert("시뮬레이션이 끝났습니다");
 		
@@ -1077,7 +1079,7 @@ function changeOption2(){
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3" style="text-align:center;"><input class="button" id="start" type="button" value="START" onclick="interval();"/>&nbsp;&nbsp;&nbsp;&nbsp;<input class="button" type="reset" value="RESET"/></td>
+				<td colspan="3" style="text-align:center;"><input class="button" id="start" type="button" value="START" onclick="interval();"/>&nbsp;&nbsp;&nbsp;&nbsp;<input class="button" type="reset" value="RESET" id="reset"/></td>
 			</tr>
 			
 		</table>
