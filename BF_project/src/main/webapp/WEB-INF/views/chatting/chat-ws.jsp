@@ -137,7 +137,7 @@
 			
 			// 관리자에게 pushMessage 알림을 해주기 위함
 			var wsocket2 = new WebSocket(
-			"ws:/192.168.202.147:8181${pageContext.request.contextPath}/pushMessage");
+			"ws:/192.168.202.141:8181${pageContext.request.contextPath}/pushMessage");
 			wsocket2.onopen = function(){
 				wsocket2.send("${room.roomId},${owner}"); // 현재 방번호와 방주인을 보내준다. admin_decorator의 function onMessage(evt)==> evt.data로 정보가 넘어감
 			}
