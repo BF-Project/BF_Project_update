@@ -28,7 +28,7 @@
 }
 
 #updateBtn {
-	margin-left: 39.1%;
+	margin-left: 40.3%;
 }
 
 .file_input label {

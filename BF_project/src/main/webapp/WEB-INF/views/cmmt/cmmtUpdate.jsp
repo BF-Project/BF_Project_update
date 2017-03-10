@@ -16,7 +16,7 @@
 <style>
 
 #gobtn1 {
-	margin-left: 40.3%;
+	margin-left: 41.3%;
 }
 
 #titletext {
@@ -28,7 +28,7 @@
 }
 
 #content1 {
-	margin-right: 320px;
+	margin-right: 345px;
 }
 
 #hideimg {
@@ -114,7 +114,7 @@
 					
 					<div class="form-group">
 					<label id="content1">내용</label><br>
-					<textarea class="form-control" rows="8" cols="65" id="content2" name="cmmt_content" style="width:40%;" >${cmmtVO.cmmt_content}</textarea>
+					<textarea class="form-control" rows="8" cols="65" id="content2" name="cmmt_content" style="width:32%;" >${cmmtVO.cmmt_content}</textarea>
 					</div>		
 				
 				<!--사진수정  -->

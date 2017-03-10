@@ -23,7 +23,7 @@
 }
 
 #writeBtn {
-	margin-left: 40.3%;
+	margin-left: 39.3%;
 }
 
 
@@ -172,5 +172,6 @@
 				목록</button>
 		</div>
 	</div>
+	<br>
 </body>
 </html>

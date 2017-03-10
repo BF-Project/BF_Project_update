@@ -101,7 +101,6 @@
 <!-- 						<td colspan="3"></td> -->
 <!-- 					</tr> -->
 					<tr>
-						<th></th>
 						<td>
 							<button type="button" class="btn btn-success" onclick="location.href='main?page=${page}'"
 					            style="padding:8px; background-color: gray; border: 1px solid gray; 

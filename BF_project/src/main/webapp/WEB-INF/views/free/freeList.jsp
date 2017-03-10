@@ -28,7 +28,7 @@
 }
 
 #writeBtn {
-	margin-left: 72%;
+	margin-left: 69.7%;
 }
 
 td, th {

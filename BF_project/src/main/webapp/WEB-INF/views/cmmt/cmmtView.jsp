@@ -55,12 +55,12 @@ $(document).ready(function() {
 						+'<a href="" id="'
 						+data[i].cmmtcmt_num
 						+'" '
-						+'class="writeForm" name="writeForm">수정</a>'
+						+'class="writeForm" name="writeForm" style="color:blue;">수정</a>'
 						+'&nbsp;&nbsp;'
 						+'<a href="" id="'
 						+data[i].cmmtcmt_num
 						+'" ' 
-						+'class="delete" name="delete">삭제</a>'
+						+'class="delete" name="delete" style="color:red;">삭제</a>'
 						+ '<div class="'
 						+ data[i].cmmtcmt_num
 						+ '" style="margin-bottom:5%;">'
@@ -132,12 +132,12 @@ function commm_go() {
 						+'<a href="" id="'
 						+data[i].cmmtcmt_num
 						+'" '
-						+'class="writeForm" name="writeForm">수정</a>'
+						+'class="writeForm" name="writeForm" style="color:blue;">수정</a>'
 						+'&nbsp;&nbsp;'
 						+'<a href="" id="'
 						+data[i].cmmtcmt_num
 						+'" ' 
-						+'class="delete" name="delete">삭제</a>'
+						+'class="delete" name="delete" style="color:red;">삭제</a>'
 						+ '<div class="'
 						+ data[i].cmmtcmt_num
 						+ '" style="margin-bottom:5%;">'
@@ -206,7 +206,7 @@ $(document).on('click','.writeForm', function(e) {
 			});
 
                 $('.'+cmmtcmtList).html(
-                	'<textarea id="mm" >'
+                	'<textarea id="mm" style="width : 467px;">'
                 	+ aa[0].innerHTML
                 	+'</textarea>'
                 	+'&nbsp;'
